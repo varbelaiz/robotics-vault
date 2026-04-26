@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Obsidian — workspace state (per-machine, not content)
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Editor / IDE noise
+.vscode/
+.idea/
+
+# Large scanned PDF (291 MB, exceeds GitHub's 100 MB file limit).
+# File is immutable reference material that lives only on the local machine.
+Raw/Apuntes/Resumen Parcial- Principios de la Robótica Autónoma.pdf
+
