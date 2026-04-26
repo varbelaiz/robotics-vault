@@ -37,6 +37,35 @@
 - Concrete example en SKILL.md actualizado a la nueva sintaxis.
 - Objetivo: que la doc sea autosuficiente para correr ingestas en plan mode en sesiones futuras sin contexto previo.
 
+## [2026-04-26] ingest | Teóricas 03,04,06,07 - M2 Locomoción + M3 Sensores y Modelos
+- Fuentes:
+  - `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf` (35 slides)
+  - `Raw/Diapositivas/Teoricas/04-sensores-3.pdf` (28 slides)
+  - `Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf` (48 slides)
+  - `Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf` (32 slides)
+- Páginas conceptuales creadas (5) en `wiki/2. Locomoción/`:
+  - `Locomoción y Tipos de Accionamientos.md` (PDF 03 slides 2–8)
+  - `Cinemática del Robot Diferencial.md` (PDF 03 slides 9–23)
+  - `Otros Accionamientos - Ackermann, Síncrono, Omni.md` (PDF 03 slides 24–33)
+  - `Odometría y Modelo de Movimiento (Odometría).md` (PDF 03 slides 34–35 + PDF 06 slides 1–32)
+  - `Modelo de Movimiento (Velocidad).md` (PDF 06 slides 33–48)
+- Páginas conceptuales creadas (5) en `wiki/3. Sensores y Modelos/`:
+  - `Sensores Internos.md` (PDF 04 slides 2–9, 28)
+  - `Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras.md` (PDF 04 slides 10–27)
+  - `Modelo de Sensor Basado en Haz.md` (PDF 07 slides 1–20)
+  - `Modelo de Campo de Verosimilitud.md` (PDF 07 slides 21–26)
+  - `Modelo de Detección de Landmarks.md` (PDF 07 slides 27–31)
+- `_Overview.md` reescritos para M2 y M3 (tagline, narrativa, recorrido sugerido, conexiones, lista de páginas).
+- `Home.md`: M2 y M3 estado `Esqueleto → Completo`.
+- `index.md`: entradas para las 10 páginas nuevas, agrupadas por módulo.
+- Screenshots capturadas: 46 PNGs en `wiki/2. Locomoción/Img/`, 37 en `wiki/3. Sensores y Modelos/Img/` (83 totales).
+- Forward-references a páginas aún no creadas (resolverán en futuras ingestas):
+  `[[Filtro de Kalman]]`, `[[EKF]]`, `[[MCL - Filtro de Partículas]]`, `[[Filtros Discretos]]`,
+  `[[Regla de Bayes]]`, `[[Mapa de Ocupación]]`, `[[Tutorial 6 - Movimiento, Sensores e Histogramas]]`.
+- Decisiones de partición:
+  - PDF 06 (modelos de movimiento) entró a M2, no a M5 — alineado con la guía del `_Overview` original ("los modelos de movimiento alimentan los filtros").
+  - PDF 02 (paradigmas) queda fuera de este batch — no encaja limpio en M2 ni M3.
+
 ## [2026-04-26] doc | nueva skill project-local "ingest"
 - Creada `.claude/skills/ingest/SKILL.md`: encapsula el runbook completo de ingesta como skill auto-triggered (phrases tipo "ingerí X", "agregá esta PDF al wiki", "procesá Tutorial Y", "hacé el ingest de TP2").
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).

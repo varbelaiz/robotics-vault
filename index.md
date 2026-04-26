@@ -17,10 +17,20 @@
 - [[Transformaciones Homogéneas]] — Rototraslación; pose del robot; composición.
 
 ## 2. Locomoción
-- [[2. Locomoción/_Overview|_Overview]] — *(módulo en esqueleto, pendiente de ingesta)*
+- [[2. Locomoción/_Overview|_Overview]] — Mapa del módulo: cinemática, accionamientos, odometría y modelos de movimiento.
+- [[Locomoción y Tipos de Accionamientos]] — Tipos de locomoción, ruedas, accionamientos canónicos y restricciones holonómicas.
+- [[Cinemática del Robot Diferencial]] — Pose 2D, derivación completa de la cinemática directa con ICC.
+- [[Otros Accionamientos - Ackermann, Síncrono, Omni]] — Ackermann, síncrono, mecanum, vehículos especiales.
+- [[Odometría y Modelo de Movimiento (Odometría)]] — Dead reckoning + modelo probabilístico basado en encoders.
+- [[Modelo de Movimiento (Velocidad)]] — Modelo probabilístico cuando el control viene como $(v, \omega)$.
 
 ## 3. Sensores y Modelos
-- [[3. Sensores y Modelos/_Overview|_Overview]] — *(módulo en esqueleto, pendiente de ingesta)*
+- [[3. Sensores y Modelos/_Overview|_Overview]] — Mapa del módulo: hardware sensorial + modelos probabilísticos $p(z\|x,m)$.
+- [[Sensores Internos]] — Clasificación, encoders, táctiles, magnetómetro, giróscopo, acelerómetro, IMU.
+- [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — GPS/RTK, sonar, lidar, RGBd, estéreo.
+- [[Modelo de Sensor Basado en Haz]] — Mezcla de hit/unexp/max/rand para sonar y lidar.
+- [[Modelo de Campo de Verosimilitud]] — Alternativa eficiente y suave al beam-based.
+- [[Modelo de Detección de Landmarks]] — Modelo cuando se observan marcadores conocidos.
 
 ## 4. Robótica Probabilística
 - [[4. Robótica Probabilística/_Overview|_Overview]] — *(módulo en esqueleto, pendiente de ingesta)*
