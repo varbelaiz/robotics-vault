@@ -9,7 +9,7 @@
 
 | # | Módulo | Estado |
 |---|---|---|
-| 1 | [[1. Fundamentos/_Overview\|Fundamentos]] | Esqueleto |
+| 1 | [[1. Fundamentos/_Overview\|Fundamentos]] | En progreso |
 | 2 | [[2. Locomoción/_Overview\|Locomoción]] | Esqueleto |
 | 3 | [[3. Sensores y Modelos/_Overview\|Sensores y Modelos]] | Esqueleto |
 | 4 | [[4. Robótica Probabilística/_Overview\|Robótica Probabilística]] | Esqueleto |

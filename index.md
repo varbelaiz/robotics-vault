@@ -8,7 +8,13 @@
 ---
 
 ## 1. Fundamentos
-- [[1. Fundamentos/_Overview|_Overview]] — *(módulo en esqueleto, pendiente de ingesta)*
+- [[1. Fundamentos/_Overview|_Overview]] — Mapa del módulo: vectores, matrices, rotaciones, transformaciones.
+- [[Vectores]] — Arreglos ordenados de números; producto interno, dependencia lineal.
+- [[Matrices]] — Operaciones, productos, rango, inversa, traza, determinante.
+- [[Matriz Definida Positiva]] — Análoga al "número positivo"; covarianzas en filtros.
+- [[Matriz Jacobiana]] — Generalización del gradiente; linealización en EKF.
+- [[Rotaciones]] — Matrices ortogonales; rotaciones 2D y 3D, no conmutatividad.
+- [[Transformaciones Homogéneas]] — Rototraslación; pose del robot; composición.
 
 ## 2. Locomoción
 - [[2. Locomoción/_Overview|_Overview]] — *(módulo en esqueleto, pendiente de ingesta)*
