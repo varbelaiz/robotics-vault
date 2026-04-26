@@ -30,3 +30,9 @@
 - Actualizado: `index.md` (entradas de M1).
 - Screenshots capturadas: 29 PNGs en `wiki/1. Fundamentos/Img/`.
 - Forward-references a páginas aún no creadas (resolverán en futuras ingestas): `[[EKF]]`, `[[Filtro de Kalman]]`, `[[MCL - Filtro de Partículas]]`.
+
+## [2026-04-26] doc | tightening del pipeline de ingesta
+- Expandida la sección `Workflows → Ingestion` de `CLAUDE.md` con detalle por fase (page-count discovery, cap de 20 págs del Read tool, orden de ejecución, gotchas, referencia al ingest M1 como worked example, compatibilidad con plan mode).
+- `slide-screenshot/SKILL.md` Step 4 reescrito: usa `pdftoppm -singlefile` + absolute paths (elimina el `mv` y el `cd`). Removido el bloque de "path translation" obsoleto (era heredado del vault de NLP, no aplica a este entorno).
+- Concrete example en SKILL.md actualizado a la nueva sintaxis.
+- Objetivo: que la doc sea autosuficiente para correr ingestas en plan mode en sesiones futuras sin contexto previo.

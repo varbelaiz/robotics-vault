@@ -75,30 +75,27 @@ If the page is wrong, scan ±2 pages to find the correct one. PDF page numbers f
 
 ### Step 4 — Extract the slide as PNG
 
-Use `pdftoppm` from the bash sandbox. Render at 200 DPI for crisp text:
+Use `pdftoppm` with the `-singlefile` flag and **absolute paths** (avoid `cd`, since the bash CWD persists across calls and a leftover `cd` from an earlier call corrupts later relative paths). Render at 200 DPI for crisp text:
 
 ```bash
-cd "wiki/<module>/Img" && \
-pdftoppm -f <PAGE> -l <PAGE> -r 200 -png \
-  "../../../Raw/Diapositivas/Teoricas/<PDF FILENAME>" "<descriptive name>"
+pdftoppm -f <PAGE> -l <PAGE> -r 200 -png -singlefile \
+  "/Users/varbelaiz/Obsidian/Robotica/Raw/Diapositivas/Teoricas/<PDF>" \
+  "/Users/varbelaiz/Obsidian/Robotica/wiki/<module>/Img/<descriptive name>"
 ```
 
-Adjust the `..` count if the source PDF is in a different `Raw/` subfolder. Examples:
-- Source in `Raw/Diapositivas/Teoricas/`: `../../../Raw/Diapositivas/Teoricas/<PDF>`
-- Source in `Raw/Diapositivas/Tutoriales/`: `../../../Raw/Diapositivas/Tutoriales/<PDF>`
-- Source in `Raw/Apuntes/`: `../../../Raw/Apuntes/<PDF>`
-- Source in `Raw/TPs/`: `../../../Raw/TPs/<PDF>`
+The `-singlefile` flag prevents `pdftoppm` from appending a `-<page>.png` suffix to the output, so the resulting file is exactly `<descriptive name>.png` — no `mv` step needed.
 
-`pdftoppm` appends a page-number suffix to the filename (e.g., `KF predict update-9.png`). Rename the file to drop the suffix:
+The PDF source can sit in any `Raw/` subfolder; just point to the right one:
+- `Raw/Diapositivas/Teoricas/<PDF>`
+- `Raw/Diapositivas/Tutoriales/<PDF>`
+- `Raw/Apuntes/<PDF>`
+- `Raw/TPs/<PDF>`
 
-```bash
-cd "wiki/<module>/Img" && \
-mv "<descriptive name>-<PAGE>.png" "<descriptive name>.png"
-```
+When generating many screenshots for a single ingestion, **batch all `pdftoppm` calls in one bash call** chained with `&&` — much faster than separate calls.
 
-After renaming, **read the resulting PNG with the `Read` tool** as a final safety net. Even after Step 3, render glitches happen — `pdftoppm` occasionally produces blank pages on PDFs with unusual layers. If the PNG is wrong, see "Recovering from a wrong capture" below.
+After each PNG is written, **read the resulting PNG with the `Read` tool** as a final safety net. For a large batch (>10 screenshots) it is acceptable to spot-check 2–4 representative PNGs instead of reading all of them, since `pdftoppm` is deterministic — if the spot-checks render correctly the rest will too.
 
-**Path translation**: when working through Claude file tools the path is `/Users/varbelaiz/Obsidian/Robotica/...`; in the bash sandbox the same folder is `/sessions/<session>/mnt/Robotica/...`. Use the bash mount path for shell commands.
+If a PNG is wrong, see "Recovering from a wrong capture" below.
 
 ### Step 5 — Insert the image in the wiki page
 
@@ -152,10 +149,9 @@ Steps:
 2. Use `Read` with `pages: "9"` on the PDF to confirm slide 9 has the predict/update diagram (and not e.g. an algorithm pseudocode).
 3. Generate the image:
    ```bash
-   cd "/sessions/<session>/mnt/Robotica/wiki/5. Filtros Bayesianos/Img" && \
-   pdftoppm -f 9 -l 9 -r 200 -png \
-     "../../../Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf" "KF - predict update" && \
-   mv "KF - predict update-9.png" "KF - predict update.png"
+   pdftoppm -f 9 -l 9 -r 200 -png -singlefile \
+     "/Users/varbelaiz/Obsidian/Robotica/Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf" \
+     "/Users/varbelaiz/Obsidian/Robotica/wiki/5. Filtros Bayesianos/Img/KF - predict update"
    ```
 4. Verify with `Read` on the resulting PNG.
 5. Edit the wiki page to insert under the relevant section:
@@ -163,7 +159,7 @@ Steps:
    ![[KF - predict update.png]]
    *Ciclo predict/update del Kalman, slide 9.*
    ```
-6. Repeat for the other 2–8 visuals planned for the page.
+6. For multiple visuals, batch all `pdftoppm` calls into a single bash command chained with `&&`.
 
 ## Why this skill exists
 
