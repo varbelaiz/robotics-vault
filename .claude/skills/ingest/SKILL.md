@@ -66,7 +66,7 @@ State **before touching any file**, with exact paths and counts:
 - New concept pages to create (full paths in `wiki/<module>/`).
 - Existing pages to update (backlinks, prerequisites, comparison sections).
 - `_Overview.md` updates for affected modules.
-- `Home.md` status changes, `index.md` entries, `log.md` ingest entry.
+- `Robotica.md` status changes, `Robotica.md` entries, `log.md` ingest entry.
 - Screenshots planned: a count per page + the slide numbers each comes from.
 - Draft commit message.
 
@@ -94,7 +94,7 @@ Order matters because later steps reference earlier outputs:
 2. **Spot-check** 2–4 of the visually complex PNGs via `Read`. Reading every PNG of a large ingestion is overkill — `pdftoppm` is deterministic; if the spot-checks render correctly the rest will too.
 3. **Write the new concept pages** in parallel (one `Write` per page). Use **template A** from `CLAUDE.md` (frontmatter, back-link, prerequisites, intuition + grounded sections, variants, fuentes). Every section header carries an inline citation: `*(Teóricas <PDF short name>, slides X–Y)*`.
 4. **Overwrite the affected `_Overview.md`** files (parallel `Write`). Use **template B** from `CLAUDE.md`.
-5. **Edit `Home.md`** status (Esqueleto → En progreso, or En progreso → Completo when applicable), **`index.md`** entries (one line per new page under the right module), **`log.md`** ingest entry — all in parallel via `Edit`.
+5. **Edit `Robotica.md`** status (Esqueleto → En progreso, or En progreso → Completo when applicable), **`Robotica.md`** entries (one line per new page under the right module), **`log.md`** ingest entry — all in parallel via `Edit`.
 6. **Stage + commit + push** as one commit per ingestion.
 
 ## Phase 6 — Summary
@@ -151,7 +151,7 @@ The Module 1 ingestion of `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` (c
 - **Source**: 41-slide lecture covering vectores → transformaciones homogéneas.
 - **Output**: 6 concept pages in `wiki/1. Fundamentos/` (Vectores, Matrices, Matriz Definida Positiva, Matriz Jacobiana, Rotaciones, Transformaciones Homogéneas).
 - **Screenshots**: 29 PNGs in `wiki/1. Fundamentos/Img/`, ~5 per page on average.
-- **Meta updates**: `_Overview.md` (M1) overwritten with full narrative, `Home.md` status flipped Esqueleto → En progreso, `index.md` entries added under M1, `log.md` ingest entry appended.
+- **Meta updates**: `_Overview.md` (M1) overwritten with full narrative, `Robotica.md` status flipped Esqueleto → En progreso, `Robotica.md` entries added under M1, `log.md` ingest entry appended.
 - **Forward-refs**: `[[EKF]]`, `[[Filtro de Kalman]]`, `[[MCL - Filtro de Partículas]]` left as broken wikilinks for upcoming ingestions to resolve.
 - **Commit**: single `a92dcd4` with a structured message documenting the partition rationale.
 

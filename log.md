@@ -4,12 +4,12 @@
 > Formato: `## [YYYY-MM-DD] {ingest|consulta|lint|bootstrap} | <título corto>`
 > Recientes: `grep "^## \[" log.md | tail -10`
 
-> [[Home|← Inicio]]
+> [[Robotica|← Inicio]]
 
 ---
 
 ## [2026-04-26] bootstrap | inicialización del wiki
-- Creados meta files: `Home.md`, `index.md`, `log.md`
+- Creados meta files: `Robotica.md`, `Robotica.md`, `log.md`
 - Creados esqueletos de los 7 módulos (`_Overview.md` + `Img/`)
 - Skill `slide-screenshot` adaptada de NLP a Robótica
 - Eliminado `Welcome.md` placeholder default de Obsidian
@@ -26,8 +26,8 @@
   - `Rotaciones.md` (slides 25–31)
   - `Transformaciones Homogéneas.md` (slides 32–40)
 - Actualizado: `_Overview.md` (M1) con tagline, narrativa, recorrido sugerido y lista de páginas.
-- Actualizado: `Home.md` (M1 estado: Esqueleto → En progreso).
-- Actualizado: `index.md` (entradas de M1).
+- Actualizado: `Robotica.md` (M1 estado: Esqueleto → En progreso).
+- Actualizado: `Robotica.md` (entradas de M1).
 - Screenshots capturadas: 29 PNGs en `wiki/1. Fundamentos/Img/`.
 - Forward-references a páginas aún no creadas (resolverán en futuras ingestas): `[[EKF]]`, `[[Filtro de Kalman]]`, `[[MCL - Filtro de Partículas]]`.
 
@@ -56,8 +56,8 @@
   - `Modelo de Campo de Verosimilitud.md` (PDF 07 slides 21–26)
   - `Modelo de Detección de Landmarks.md` (PDF 07 slides 27–31)
 - `_Overview.md` reescritos para M2 y M3 (tagline, narrativa, recorrido sugerido, conexiones, lista de páginas).
-- `Home.md`: M2 y M3 estado `Esqueleto → Completo`.
-- `index.md`: entradas para las 10 páginas nuevas, agrupadas por módulo.
+- `Robotica.md`: M2 y M3 estado `Esqueleto → Completo`.
+- `Robotica.md`: entradas para las 10 páginas nuevas, agrupadas por módulo.
 - Screenshots capturadas: 46 PNGs en `wiki/2. Locomoción/Img/`, 37 en `wiki/3. Sensores y Modelos/Img/` (83 totales).
 - Forward-references a páginas aún no creadas (resolverán en futuras ingestas):
   `[[Filtro de Kalman]]`, `[[EKF]]`, `[[MCL - Filtro de Partículas]]`, `[[Filtros Discretos]]`,
@@ -70,4 +70,26 @@
 - Creada `.claude/skills/ingest/SKILL.md`: encapsula el runbook completo de ingesta como skill auto-triggered (phrases tipo "ingerí X", "agregá esta PDF al wiki", "procesá Tutorial Y", "hacé el ingest de TP2").
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
+
+## [2026-04-26] bootstrap | construcción del grafo de conceptos completos (M4–M7)
+- **Objetivo**: crear esqueletos de todas las páginas principales extraídas de `Raw/` y establecer el grafo de enlaces cruzados.
+- Páginas creadas M1 (2):
+  - `Introducción a la Robótica Móvil.md` (fuente: 00-introduccion)
+  - `Paradigmas de Control de Robots.md` (fuente: 02-paradigmas)
+- Páginas creadas M4 (11):
+  - `Introducción a la Robótica Probabilística.md`, `Axiomas de Probabilidad.md`, `Variables Aleatorias Discretas.md`, `Variables Aleatorias Continuas.md`, `Probabilidad Conjunta.md`, `Probabilidad Condicional.md`, `Regla de Bayes.md`, `Suposición de Markov.md`, `Filtro de Bayes.md`, `Modelo de Movimiento.md`, `Modelo de Sensor.md`
+- Páginas creadas M5 (9):
+  - `Filtros Discretos.md`, `MCL - Filtro de Partículas.md`, `Muestreo por Importancia.md`, `Gaussiana Multivariada.md`, `Filtro de Kalman.md`, `EKF - Filtro de Kalman Extendido.md`, `UKF - Filtro de Kalman No Centrado.md`, `Puntos Sigma.md`, `Descomposición de Cholesky.md`
+- Páginas creadas M6 (6):
+  - `Mapas de Ocupación.md`, `Mapas de Grilla.md`, `Mapeo con Poses Conocidas.md`, `SLAM - Mapeo y Localización Simultánea.md`, `Features vs Mapas Volumétricos.md`, `Exploración.md`
+- Páginas creadas M7 (21):
+  - ROS2 infra: `ROS2 - Conceptos Base.md`, `ROS2 - Nodos.md`, `ROS2 - Topics.md`, `ROS2 - Mensajes.md`, `ROS2 - Publisher.md`, `ROS2 - Subscriber.md`, `ROS2 - TF2.md`, `ROS2 - Launch Files.md`, `Gazebo y rviz.md`
+  - Tutoriales: T1–T8 (8 páginas)
+  - TPs: `TP1 - Transformaciones, Locomoción y Sensado.md`, `TP2 - Modelos Probabilísticos y Filtros Discretos.md`, `TP3 - Filtros de Partículas.md`
+- **Total páginas creadas**: 49
+- Actualizados:
+  - `_Overview.md` de M1, M4, M5, M6, M7 (taglines, narrativa, recorrido sugerido, conexiones, lista de páginas)
+  - `Robotica.md` (entradas para 49 páginas nuevas, 5 módulos actualizados)
+  - `Robotica.md` (M4–M7: Esqueleto → En progreso)
+- **Próximo paso**: ingesta de contenido grounded por PDF usando la skill `ingest`.
 - Plan-mode-friendly por construcción: fases 1–3 read-only para el plan window, phase 4 es el ExitPlanMode gate, fases 5–6 ejecutan tras aprobación.

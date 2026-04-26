@@ -6,7 +6,7 @@ fuentes:
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[_Overview|← Locomoción]] | [[Home|← Inicio]]
+> [[Locomoción|← Locomoción]] | [[Robotica|← Inicio]]
 
 # Modelo de Movimiento (Velocidad)
 

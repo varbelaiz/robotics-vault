@@ -6,7 +6,7 @@ fuentes:
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[_Overview|← Fundamentos]] | [[Home|← Inicio]]
+> [[Fundamentos|← Fundamentos]] | [[Robotica|← Inicio]]
 
 # Matriz Jacobiana
 
