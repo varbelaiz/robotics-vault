@@ -213,87 +213,18 @@ Same as A, but with emphasis on **code blocks** (`bash`, `python`, `xml` for lau
 
 ### Ingestion (default: one source at a time)
 
-The ingestion workflow has six phases. **Plan mode** is well-suited for it: phases 1–3 are pure research and proposal (no writes), `ExitPlanMode` is the user-approval gate, phases 5–6 execute after the user exits plan mode.
-
-#### Phases at a glance
+Ingestion is owned by the **`ingest` skill** at `.claude/skills/ingest/SKILL.md`, which auto-triggers on phrases like *"ingerí X"*, *"agregá esta PDF al wiki"*, *"procesá Tutorial 5"*, *"metelo al wiki"*, *"hacé el ingest de TP2"*. The skill is the canonical runbook for the six-phase workflow:
 
 1. **Read** the PDF.
 2. **Discuss takeaways** with the user.
 3. **Propose change plan**.
 4. **Wait for user approval**.
-5. **Execute** in order: screenshots → concept pages → `_Overview.md` of affected modules → `Home.md` → `index.md` → `log.md` → commit + push.
-6. **Summarize** what was touched (paths + commit hash).
+5. **Execute** (screenshots → concept pages → `_Overview.md` → `Home.md` → `index.md` → `log.md` → commit + push).
+6. **Summarize** what was touched.
 
-#### Phase 1 — Reading the PDF
+The skill is **plan-mode-friendly** — phases 1–3 are read-only research suitable for the plan window; phase 4 is the `ExitPlanMode` gate; phases 5–6 execute on approval.
 
-The `Read` tool requires the `pages:` parameter for any PDF longer than 10 pages, and **caps each request at 20 pages**. Discover the page count first, then read in chunks:
-
-```bash
-mdls -name kMDItemNumberOfPages "Raw/.../<filename>.pdf"
-# or
-pdfinfo "Raw/.../<filename>.pdf" | grep -i pages
-```
-
-Then `Read` with `pages: "1-20"`, `pages: "21-40"`, etc.
-
-#### Phase 2 — Takeaways
-
-Map the PDF for the user:
-- A `slides → topic` table covering the full PDF.
-- Which slides carry strong visual value (diagrams, key formulas, worked examples, sensor/robot photos).
-- Which existing modules and concept pages the source touches, and which forward-references will resolve once it is ingested.
-
-#### Phase 3 — Change plan
-
-Propose **before touching any file**, with exact paths and counts:
-
-- New concept pages to create.
-- Existing pages to update (backlinks, prerequisites, comparison sections).
-- `_Overview.md` updates for affected modules.
-- `Home.md` status changes, `index.md` entries, `log.md` entry.
-- Screenshots planned: count per page + the slide numbers each comes from.
-- Draft commit message.
-
-**Partitioning heuristic for concept pages**: each concept page should be a node that *other modules will wikilink to*. If a concept will be referenced from a future module, it earns its own page. Avoid both extremes — one giant page (loses graph value) and over-fragmenting into micro pages.
-
-#### Phase 4 — User approval
-
-Wait. Do not pre-emptively start writing. In plan mode, this is the `ExitPlanMode` checkpoint.
-
-#### Phase 5 — Execution order
-
-1. **Generate all screenshots first** in a single bash call (chained with `&&`). Use `pdftoppm -singlefile` (see `slide-screenshot/SKILL.md`).
-2. **Spot-check** 2–4 of the visually complex PNGs via `Read`. Reading every PNG of a large ingestion is overkill — `pdftoppm` is deterministic.
-3. **Write the new concept pages** in parallel (one `Write` per page).
-4. **Overwrite the affected `_Overview.md`** files (parallel `Write`).
-5. **Edit `Home.md` status, `index.md` entries, `log.md` ingest entry** in parallel.
-6. **Stage + commit + push** as one commit per ingestion.
-
-#### Phase 6 — Summary
-
-Report:
-- Source ingested (path + slide count).
-- Concept pages created (paths).
-- Screenshots captured (count + folder).
-- Meta files updated.
-- Commit hash + push status.
-- Forward-references introduced (wikilinks deliberately broken until later ingestions).
-
-#### Special cases
-
-- **TP ingestion**: also update the `## En ROS2 / En los TPs` section of every concept page the TP uses.
-- **Apunte del compañero**: treat as a complementary source. Anything not in the lecture PDFs goes inside `> [!info] Complemento (apunte de compañero)` callouts, never mixed in as if it were official material.
-- **Batch ingestion** (multiple sources without per-source confirmation) is allowed when the user explicitly requests it.
-
-#### Operational gotchas
-
-- **Bash CWD persists across calls.** A `cd` in one bash call carries to the next. Either start each ingest-related bash with `cd /Users/varbelaiz/Obsidian/Robotica` or use absolute paths everywhere.
-- **Filenames with spaces or non-ASCII chars** must be quoted in bash. `git add` of paths with spaces sometimes needs the path quoted too.
-- **Forward-references are normal.** Wikilinks to pages that don't exist yet appear as broken in Obsidian and resolve automatically when the target page is created. The `lint` workflow surfaces them as a category, separate from genuinely broken refs.
-
-#### Worked reference
-
-The Module 1 ingestion (`Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf`, commit `a92dcd4`) is a complete worked example: 6 concept pages from a 41-slide source, 29 screenshots, single commit with structured message, deliberate forward-refs to upcoming filter pages. Use it as a template when in doubt about partitioning, screenshot density, or commit format.
+Special cases (TP ingestion, apunte del compañero as complementary source, batch ingestion, source not in `Raw/`), operational gotchas (bash CWD persistence, filename quoting, forward-references), and a complete worked reference (M1 algebra lineal, commit `a92dcd4`) all live inside the skill.
 
 ### Query
 
