@@ -1,54 +1,74 @@
 ---
 name: slide-screenshot
-description: Captures relevant slide diagrams from class PDFs and embeds them inline when writing answers in the NLP Obsidian vault. Use this skill whenever Valentino asks to write, fill in, or save an answer in a `Preguntas.md` file (phrases like "escribí la respuesta en el archivo", "respondé y guardalo", "completá esta pregunta en el archivo"). The skill handles the full mechanical loop — identifying which slide pages contain visual content worth showing (diagrams, architectures, unrolled networks, side-by-side comparisons), extracting them as PNG with `pdftoppm`, naming them per the vault convention, and inserting them with Obsidian wikilink syntax. Use even when Valentino doesn't explicitly ask for screenshots — that's the point of the skill, to do this automatically when relevant.
+description: Captures relevant slide visuals (diagrams, formulas, definitions, worked examples) from PDFs in `Raw/` and embeds them inline when writing or expanding wiki concept pages in the Robótica vault. Use this skill whenever Valentino is ingesting a new source from `Raw/` into the wiki, or expanding/rewriting a concept page in `wiki/<module>/`. The skill handles the full mechanical loop — identifying which slide pages contain visuals worth showing, extracting them as PNG with `pdftoppm`, naming them per vault convention, and inserting them with Obsidian wikilink syntax + italic caption. Triggers automatically as part of any wiki write — Valentino does not need to ask for screenshots explicitly.
 ---
 
 # Slide Screenshot Skill
 
-Captures slide images from the class PDF of the relevant NLP class folder and embeds them in the answer being written to `Preguntas.md`.
+Captures slide images from PDFs in `Raw/` and embeds them in the wiki page being written under `wiki/<module>/`, with the captured PNG stored in that module's `Img/` folder.
 
 ## When to invoke this skill
 
-Trigger this skill when Valentino asks to write or save an answer in `Preguntas.md` — phrases like *"escribí la respuesta en el archivo"*, *"respondé esta pregunta y guardala"*, *"completá esta en el archivo"*. The skill should run silently as part of writing the answer; Valentino does not need to ask for screenshots explicitly.
+Trigger this skill when Valentino is:
+
+- **Ingesting a new source** from `Raw/` into the wiki (he says things like *"ingerí 05-intro_robo_proba"*, *"agregá esta PDF al wiki"*, *"procesá Tutorial 8"*).
+- **Writing or expanding a concept page** under `wiki/<module>/` (e.g. *"escribí la página de Filtro de Kalman"*, *"completá la sección de derivación en EKF"*, *"ampliá MCL con la parte del resampling"*).
+
+The skill should run silently as part of writing the page; Valentino does not need to ask for screenshots explicitly.
 
 Do NOT invoke this skill when:
 
-- Valentino is only asking the question conversationally without asking to save it ("explicame X", "ayudame a entender Y").
-- The user is editing existing answers without adding new content.
-- The work is on `Resumen.md`, `<Tema> - Desarrollo.md`, or `Home.md` — those have their own conventions and don't follow this image flow.
+- Valentino is only asking conceptually without writing to the wiki ("explicame X", "ayudame a entender Y").
+- The work is on `Home.md`, `index.md`, `log.md`, `_Overview.md`, `CLAUDE.md`, or `DESIGN.md` — those are meta files and do not get inline screenshots.
+- He is editing existing pages without adding new content (typos, link fixes, etc.).
+- He explicitly says "sin screenshots" / "no agregues imágenes".
 
 ## What this skill does
 
 The flow has five steps. **Read all of them before acting** — the order matters, especially the verification steps before and after generation.
 
-### Step 1 — Identify the class folder and PDF
+### Step 1 — Identify the source PDF
 
-The vault is organized as `N. <Topic>/` folders, each containing one PDF named like `CLASE N -<...>.pdf`. The current class is determined by which `Preguntas.md` is being edited. The PDF in that same folder is the source of truth for slide content.
+Sources live in `Raw/`, organized as:
 
-Use `Glob` on `<class folder>/CLASE *.pdf` to find the exact filename — names vary slightly between classes.
+- `Raw/Diapositivas/Teoricas/` — 14 lecture PDFs (`00-introduccion-3.pdf`, `01-algebra_lineal-2.pdf`, …, `12-mapas_de_ocupacion-2.pdf`).
+- `Raw/Diapositivas/Tutoriales/` — 8 ROS2 tutorial PDFs (`Tutorial 1_ ...pdf` … `Tutorial 8_ ...pdf`).
+- `Raw/Apuntes/` — classmate's parcial summary (single PDF, large, local-only).
+- `Raw/TPs/` — three TP statements (`Enunciado TP1.pdf`, `Enunciado TP2.pdf`, `Enunciado TP3.pdf`).
+
+The source PDF is determined by the page being written:
+
+- If Valentino names a source explicitly (*"ingerí Teóricas/05-..."*), use that.
+- If he names a concept (*"escribí la página de Kalman"*), pick the matching theoretical PDF (e.g. `Teoricas/10-filtro_de_kalman-3.pdf`) and any related tutorial (e.g. `Tutoriales/Tutorial 8_ KF, EKF, UKF.pdf`). Confirm with him in chat if ambiguous.
+
+Use `Glob` on `Raw/**/*.pdf` to enumerate available files when needed.
 
 ### Step 2 — Decide whether any slide is worth capturing
 
-Most answers do **not** need an image. Citing the slide by page number (*"slides pág. 22"*) is enough for textual content. Only capture a slide when **all** of these are true:
+The bar in this vault is **liberal but not infinite**: capture a slide when it adds something prose alone can't carry. Concretely, capture it if any of the following hold:
 
-- The slide contains a **diagram, architecture, unrolled network, side-by-side visual comparison, or worked-out equation that would lose information if reduced to a text description**.
-- The diagram directly illustrates the concept the answer is explaining.
-- A reader of the answer would understand the concept faster *with* the image than without it.
+- It contains a **diagram, architecture, unrolled algorithm, side-by-side visual comparison, or sensor/robot photo**.
+- It contains a **key formula or equation** as it appears in the slide (with the cátedra's notation, boxed, or with surrounding labels), and that formula anchors the section being written.
+- It contains a **definition or boxed statement** that is the canonical phrasing of the concept.
+- It contains a **worked example** (numerical instance, traced execution, comparison table) that the page is referencing.
 
-Skip slides that are mostly bullet points, titles, or text — those are better cited inline.
+Skip slides that are:
 
-**Maximum 3 images per answer.** If more than 3 candidate slides exist, pick the ones that show the most distinct visual ideas. Saturating the note with images defeats the purpose.
+- Decorative covers, indices, agenda slides, or pure-text bullet lists with no visual structure.
+- Slides whose content is fully captured in adjacent prose without losing meaning.
 
-If no slide passes this bar, **write the answer without any image**. Do not force an image just because the skill is active.
+**Cap: 6–10 images per concept page**, more if every additional one clearly adds value. Saturating with marginal screenshots dilutes the high-value ones — restraint matters.
+
+If no slide passes this bar for a given section, **write the section without any image**. Do not force an image just because the skill is active.
 
 ### Step 3 — Confirm the page number BEFORE generating
 
-This step is critical. PDF page numbering can be off by one relative to the slide number shown in the slide footer (the PDF's first page is usually the cover, not slide 1). Generating the wrong slide and writing it to disk is **expensive to undo**: the bash sandbox does not have permission to delete files in the vault's `Imagenes/` folder (`rm` returns `Operation not permitted`), so a wrong file becomes an orphan that Valentino has to delete manually from Obsidian/Finder.
+This step is critical. PDF page numbering can be off by one relative to the slide number shown in the slide footer (the PDF's first page is usually the cover, not slide 1). Generating the wrong slide and writing it to disk is **expensive to undo**: the bash sandbox does not have permission to delete files in the vault (`rm` returns `Operation not permitted`), so a wrong file becomes an orphan that Valentino has to delete manually from Obsidian or Finder.
 
 **Before calling `pdftoppm`, always:**
 
 1. Use the `Read` tool on the PDF with the `pages: "<N>"` parameter to view the candidate page directly.
-2. Confirm the page contains the diagram you intended to capture.
+2. Confirm the page contains the diagram/formula/etc. you intended to capture.
 3. Only then proceed to Step 4.
 
 If the page is wrong, scan ±2 pages to find the correct one. PDF page numbers from `pdftoppm`'s `-f`/`-l` are 1-indexed and typically match what `Read` returns with `pages:`.
@@ -58,81 +78,97 @@ If the page is wrong, scan ±2 pages to find the correct one. PDF page numbers f
 Use `pdftoppm` from the bash sandbox. Render at 200 DPI for crisp text:
 
 ```bash
-cd "<class folder>/Imagenes" && \
+cd "wiki/<module>/Img" && \
 pdftoppm -f <PAGE> -l <PAGE> -r 200 -png \
-  "../<PDF FILENAME>" "<descriptive name>"
+  "../../../Raw/Diapositivas/Teoricas/<PDF FILENAME>" "<descriptive name>"
 ```
 
-`pdftoppm` appends a page-number suffix to the filename (e.g., `Generacion de texto-21.png`). Rename the file to drop the suffix:
+Adjust the `..` count if the source PDF is in a different `Raw/` subfolder. Examples:
+- Source in `Raw/Diapositivas/Teoricas/`: `../../../Raw/Diapositivas/Teoricas/<PDF>`
+- Source in `Raw/Diapositivas/Tutoriales/`: `../../../Raw/Diapositivas/Tutoriales/<PDF>`
+- Source in `Raw/Apuntes/`: `../../../Raw/Apuntes/<PDF>`
+- Source in `Raw/TPs/`: `../../../Raw/TPs/<PDF>`
+
+`pdftoppm` appends a page-number suffix to the filename (e.g., `KF predict update-9.png`). Rename the file to drop the suffix:
 
 ```bash
-cd "<class folder>/Imagenes" && \
+cd "wiki/<module>/Img" && \
 mv "<descriptive name>-<PAGE>.png" "<descriptive name>.png"
 ```
 
 After renaming, **read the resulting PNG with the `Read` tool** as a final safety net. Even after Step 3, render glitches happen — `pdftoppm` occasionally produces blank pages on PDFs with unusual layers. If the PNG is wrong, see "Recovering from a wrong capture" below.
 
-Path translation: when working through Obsidian/file tools the path is `/Users/varbelaiz/Obsidian/NLP/...`; in the bash sandbox the same folder is `/sessions/<session>/mnt/NLP/...`. Use the bash mount path for shell commands.
+**Path translation**: when working through Claude file tools the path is `/Users/varbelaiz/Obsidian/Robotica/...`; in the bash sandbox the same folder is `/sessions/<session>/mnt/Robotica/...`. Use the bash mount path for shell commands.
 
-### Step 5 — Insert the image in `Preguntas.md`
+### Step 5 — Insert the image in the wiki page
 
-Use Obsidian wikilink syntax with just the filename (Obsidian resolves images vault-wide):
+Use Obsidian wikilink syntax with just the filename (Obsidian resolves images vault-wide), followed by an italic caption:
 
 ```markdown
-![[Nombre descriptivo.png]]
+![[KF predict-update.png]]
+*Ciclo predict/update del Kalman, slide 9.*
 ```
 
-Place the image directly under the paragraph it supports — usually right after the prose introduction of the diagram, before any list or equation that elaborates on it.
+Place the image directly under the section heading + grounding citation, before the prose explanation, when the image *introduces* the concept. Place it after the prose when the image *illustrates* a point already made.
 
 ## Naming convention
 
-**Descriptive names without dates.** Use a noun phrase that identifies the concept the slide illustrates. Match the casing and phrasing style of existing files in `Imagenes/`.
+**Descriptive names without dates and without slide numbers.** Use a noun phrase that identifies the concept the slide illustrates.
+
+Optional **concept prefix** when the same visual idea appears across modules (e.g. all the filters have a "predict/update" diagram): prefix with the concept short-name to disambiguate.
 
 Examples that match the convention:
 
-- `Generacion de texto.png` — the unrolled RNN generating *"Yo quiero ver un tren"*.
-- `Celda LSTM.png` — the LSTM cell with gates labeled.
-- `Seq2Seq traduccion.png` — encoder-decoder pipeline for translation.
-- `RNN bidireccional.png` — the two-direction unrolled diagram.
+- `KF - predict update.png` — Kalman cycle.
+- `EKF - jacobiano.png` — linearization step.
+- `MCL - resampling.png` — particle resampling diagram.
+- `Bayes - regla.png` — boxed statement of Bayes rule.
+- `Sensor laser - haz.png` — diagram of a laser scanner's beam model.
+- `Mapa de ocupación - grid.png` — example occupancy grid.
 
-Do **not** use generic names like `slide-21.png`, `diagram.png`, `image1.png`, or include the class number. The folder context already disambiguates which class the image belongs to.
+Do **not** use generic names like `slide-21.png`, `diagram.png`, `image1.png`, or include the lecture number from the PDF filename (e.g. avoid `10-KF.png`). The module folder context already disambiguates which module the image belongs to.
 
-If a name collision exists (a file with the same name is already in `Imagenes/`), check whether the existing file is the same slide — if so, reuse it instead of regenerating. If it's a different slide that happens to share a concept, disambiguate with a more specific noun phrase (e.g., `Celda LSTM gates.png` vs. `Celda LSTM ecuaciones.png`).
+If a name collision exists (a file with the same name is already in the module's `Img/`), check whether the existing file is the same slide — if so, reuse it instead of regenerating. If it's a different slide that happens to share a concept, disambiguate with a more specific noun phrase.
 
 ## Recovering from a wrong capture
 
 If you generate a PNG that turns out to be wrong (after reading it in Step 4), you cannot delete it — the bash sandbox returns `Operation not permitted` on `rm` against vault files. The recovery procedure is:
 
-1. **Generate the correct image with a slightly different name** to avoid collision (e.g., add a one-word qualifier: `Preentrenados ELMo menos datos.png` instead of `Preentrenados menos datos.png`).
-2. **Reference the new name** in `Preguntas.md`. The wrong file becomes an orphan but does not affect the answer's rendering.
-3. **Tell Valentino at the end** that there is an orphaned file in `Imagenes/` (give the exact filename) so he can delete it manually from Obsidian or Finder.
+1. **Generate the correct image with a slightly different name** to avoid collision (e.g., add a one-word qualifier: `KF - predict update detallado.png` instead of `KF - predict update.png`).
+2. **Reference the new name** in the wiki page. The wrong file becomes an orphan but does not affect the page's rendering.
+3. **Tell Valentino at the end** of the response that there is an orphaned file in `wiki/<module>/Img/` (give the exact filename) so he can delete it manually from Obsidian or Finder. The lint workflow in `CLAUDE.md` will also surface orphans on its next run.
 
 Do not try `mv` to overwrite the bad file — it works, but losing the original name is worse than telling Valentino once. The clean Step 3 verification *before* generation is the real fix; this recovery procedure is for the rare case it slips through.
 
 ## Concrete example
 
-Input request: *"Respondé esta pregunta y guardala en el archivo: ¿Cómo se usa una RNN para generación de texto?"*
+Input request: *"escribí la página de Filtro de Kalman ingiriendo `Teoricas/10-filtro_de_kalman-3.pdf`"*
 
-The answer involves the autoregressive generation loop. The unrolled RNN diagram with `<start>`, `Yo quiero ver un tren .`, and `<end>` is a strong candidate — the diagram conveys the autoregressive flow more directly than text.
+The page will need visuals for: the predict/update cycle, the Kalman gain derivation, and a comparison of prediction-only vs corrected-by-observation Gaussians.
 
 Steps:
 
-1. Find the PDF: `3. RNNs/CLASE 3 -Language models 2 (RNN).pptx.pdf`.
-2. Use `Read` with `pages: "21"` on the PDF to confirm slide 21 is the full unrolled diagram (not the partial intermediate version on slides 17-20).
+1. Identify PDF: `Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf`.
+2. Use `Read` with `pages: "9"` on the PDF to confirm slide 9 has the predict/update diagram (and not e.g. an algorithm pseudocode).
 3. Generate the image:
    ```bash
-   cd "/sessions/<session>/mnt/NLP/3. RNNs/Imagenes" && \
-   pdftoppm -f 21 -l 21 -r 200 -png \
-     "../CLASE 3 -Language models 2 (RNN).pptx.pdf" "Generacion de texto" && \
-   mv "Generacion de texto-21.png" "Generacion de texto.png"
+   cd "/sessions/<session>/mnt/Robotica/wiki/5. Filtros Bayesianos/Img" && \
+   pdftoppm -f 9 -l 9 -r 200 -png \
+     "../../../Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf" "KF - predict update" && \
+   mv "KF - predict update-9.png" "KF - predict update.png"
    ```
 4. Verify with `Read` on the resulting PNG.
-5. Edit `Preguntas.md` to insert `![[Generacion de texto.png]]` right after the introductory paragraph that mentions the autoregressive procedure.
+5. Edit the wiki page to insert under the relevant section:
+   ```markdown
+   ![[KF - predict update.png]]
+   *Ciclo predict/update del Kalman, slide 9.*
+   ```
+6. Repeat for the other 2–8 visuals planned for the page.
 
 ## Why this skill exists
 
-Valentino's notes are a study tool he revisits for exams. Visual reinforcement matters for architectures (RNN unrolled, LSTM gates, encoder-decoder, BiLSTM). Doing this by hand every time is mechanical and slows down the actual study workflow. The skill keeps the visual quality of the notes high without making Valentino break flow to fiddle with `pdftoppm` and Obsidian image syntax.
+Valentino's wiki is a study tool grounded strictly in the source PDFs (see the grounding rule in `CLAUDE.md`). Visual reinforcement matters disproportionately in robotics, where diagrams (sensor beam models, occupancy grids, particle distributions, Kalman gain geometry) carry intuitions that prose can only approximate. Doing this by hand every time is mechanical and slows down the actual study workflow.
 
-The constraints (descriptive names, max 3 images, only diagrams, only when writing to `Preguntas.md`) exist because oversaturating the vault with images dilutes their value — when *every* answer has 5 screenshots, none of them stand out. Restraint is the point.
+The constraints (descriptive names, ~6–10 images per page, only slides that pass the bar, only when writing to wiki concept pages) exist because oversaturating the vault with images dilutes their value. Restraint is the point — every screenshot should earn its place.
 
 The verification steps (Step 3 *before* generation, the `Read` after Step 4) exist because the vault is read/write but not delete from the sandbox: a wrong capture becomes a permanent orphan that Valentino has to clean up manually. Catching mistakes before they hit disk is the only clean path.
