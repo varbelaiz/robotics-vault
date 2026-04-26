@@ -12,7 +12,7 @@
 | 1 | [[1. Fundamentos/_Overview\|Fundamentos]] | En progreso |
 | 2 | [[2. Locomoción/_Overview\|Locomoción]] | Completo |
 | 3 | [[3. Sensores y Modelos/_Overview\|Sensores y Modelos]] | Completo |
-| 4 | [[4. Robótica Probabilística/_Overview\|Robótica Probabilística]] | Esqueleto |
+| 4 | [[4. Robótica Probabilística/_Overview\|Robótica Probabilística]] | Completo |
 | 5 | [[5. Filtros Bayesianos/_Overview\|Filtros Bayesianos]] | Esqueleto |
 | 6 | [[6. Mapeo/_Overview\|Mapeo]] | Esqueleto |
 | 7 | [[7. ROS2 y TPs/_Overview\|ROS2 y TPs]] | Esqueleto |

@@ -33,7 +33,12 @@
 - [[Modelo de Detección de Landmarks]] — Modelo cuando se observan marcadores conocidos.
 
 ## 4. Robótica Probabilística
-- [[4. Robótica Probabilística/_Overview|_Overview]] — *(módulo en esqueleto, pendiente de ingesta)*
+- [[4. Robótica Probabilística/_Overview|_Overview]] — Mapa del módulo: probabilidad → Bayes → filtro de Bayes.
+- [[Probabilidad - Axiomas y Variables Aleatorias]] — Axiomas, variables discretas y continuas, conjunta, condicional, marginalización.
+- [[Regla de Bayes]] — Fórmula, normalización, ejemplo de la puerta (causal vs diagnóstico).
+- [[Actualización Recursiva Bayesiana]] — Cómo combinar múltiples observaciones con la suposición de Markov.
+- [[Modelado de Acciones]] — $P(x \mid u, x')$ y por qué las acciones aumentan la incerteza.
+- [[Filtro de Bayes]] — Derivación, algoritmo y ejemplo de localización probabilística.
 
 ## 5. Filtros Bayesianos
 - [[5. Filtros Bayesianos/_Overview|_Overview]] — *(módulo en esqueleto, pendiente de ingesta)*

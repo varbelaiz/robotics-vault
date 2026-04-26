@@ -37,6 +37,24 @@
 - Concrete example en SKILL.md actualizado a la nueva sintaxis.
 - Objetivo: que la doc sea autosuficiente para correr ingestas en plan mode en sesiones futuras sin contexto previo.
 
+## [2026-04-26] ingest | Teóricas 05 partes 1+2 - M4 Robótica Probabilística
+- Fuentes:
+  - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` (31 slides)
+  - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf` (15 págs PDF, slides 31–45 con cover)
+- Páginas conceptuales creadas (5) en `wiki/4. Robótica Probabilística/`:
+  - `Probabilidad - Axiomas y Variables Aleatorias.md` (parte 1 slides 2–12)
+  - `Regla de Bayes.md` (parte 1 slides 13–19)
+  - `Actualización Recursiva Bayesiana.md` (parte 1 slides 20–22)
+  - `Modelado de Acciones.md` (parte 1 slides 23–31)
+  - `Filtro de Bayes.md` (parte 1 slide 31 + parte 2 slides 32–45)
+- Actualizado: `_Overview.md` (M4) reescrito con tagline, narrativa, recorrido, conexiones, lista de páginas.
+- Actualizado: `Home.md` (M4 estado: Esqueleto → Completo).
+- Actualizado: `index.md` (entradas de M4).
+- Screenshots capturadas: 20 PNGs en `wiki/4. Robótica Probabilística/Img/`.
+- Resuelve forward-references previas: `[[Regla de Bayes]]` (referenciado desde *Odometría y Modelo de Movimiento (Odometría)*, *Modelo de Movimiento (Velocidad)*, *Modelo de Sensor Basado en Haz*).
+- Deja preparado `[[Filtro de Bayes]]` como hub para M5; nuevas forward-refs a `[[Filtro de Kalman]]`, `[[MCL - Filtro de Partículas]]`, `[[Filtros Discretos]]` (M5).
+- Recovery: las 4 PNGs de parte 2 inicialmente extraídas con offset incorrecto (parte 2 tiene su propia cover en p1, slides empiezan en p2). Re-extraídas con `pdftoppm -singlefile` (overwrite).
+
 ## [2026-04-26] ingest | Teóricas 03,04,06,07 - M2 Locomoción + M3 Sensores y Modelos
 - Fuentes:
   - `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf` (35 slides)
