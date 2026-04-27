@@ -45,6 +45,9 @@ Que cada estudiante pueda:
 
 ## 1. Truco numérico: log-likelihoods en MCL
 
+![[Tutorial 8 - likelihood field scan.png]]
+*Recap del [[Tutorial 7 - Filtro de Partículas|Tutorial 7]]: el robot evalúa cada haz del lidar contra el likelihood field; cada haz da una verosimilitud, y el peso de la partícula es el producto de todas. Slide 4.*
+
 Con $K \approx 360$ haces de lidar, el peso de cada partícula es el **producto** de $K$ likelihoods:
 
 $$w^{[i]} = \prod_{j=1}^{K} p(z_j \mid x^{[i]})$$
