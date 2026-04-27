@@ -10,13 +10,13 @@ Todo el curso culmina en código real. Los tutoriales introducen las herramienta
 
 ## Estado actual
 
-**Fase 1 + 2 ingestadas (2026-04-27)**: Tutoriales 1–4 + 9 conceptos de infra core con contenido grounded (incluye TF2, Launch Files y Gazebo y rviz). Quedan los tutoriales 5–8 (probabilística) y los TPs.
+**Fases 1, 2 y 3 ingestadas (2026-04-27)**: Tutoriales 1–5 + 9 conceptos de infra core con contenido grounded. T5 aterriza Bayes con un ejercicio recursivo completo (sensor defectuoso). Quedan T6–T8 (movimiento, partículas, Kalman) y los TPs.
 
 | Fase | Tutoriales | Estado |
 |---|---|---|
 | 1 | T1 + T2 | ✅ Completa |
 | 2 | T3 + T4 | ✅ Completa |
-| 3 | T5 | Pendiente |
+| 3 | T5 | ✅ Completa |
 | 4 | T6 | Pendiente |
 | 5 | T7 + T8 | Pendiente |
 | 6 | TP1 + TP2 + TP3 | Pendiente |
@@ -41,7 +41,7 @@ Todo el curso culmina en código real. Los tutoriales introducen las herramienta
 2. [[Tutorial 2 - Speaker and Listener]] — pub/sub básico + anticipo TP1. ✅
 3. [[Tutorial 3 - Interactuando con Gazebo]] — Gazebo, TF2, comandos topic, mover el robot, rosbag. ✅
 4. [[Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2]] — RVIZ, composición de mensajes, launch files, preview TP1/TP2. ✅
-5. [[Tutorial 5 - Bayes]] — *(esqueleto)*
+5. [[Tutorial 5 - Bayes]] — Ejercicio del sensor defectuoso (Bayes recursivo + código + plot), fusión de sensores, derivación del filtro. ✅
 6. [[Tutorial 6 - Movimiento, Sensores e Histogramas]] — *(esqueleto)*
 7. [[Tutorial 7 - Filtro de Partículas]] — *(esqueleto)*
 8. [[Tutorial 8 - KF, EKF, UKF]] — *(esqueleto)*

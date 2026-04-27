@@ -89,6 +89,19 @@
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
 
+## [2026-04-27] ingest | M7 Fase 3 — Tutorial 5 (Bayes aplicado)
+- **Fuente**: `Raw/Diapositivas/Tutoriales/Tutorial 5_ Bayes.pdf` (39 slides)
+- **Página reescrita**:
+  - `Tutorial 5 - Bayes.md` (esqueleto → completo): rewrite completo organizado en 6 secciones — enunciado del problema (sensor defectuoso, prior 1%), N=1 paso a paso (Bayes + descomposición de evidencia + cálculo numérico → 0.0294), N=2 con prior actualizado (→ 0.083), generalización recursiva con código Python + plot del posterior vs N (sube de 0.03 a ~1.0 en 10 iteraciones), fusión de sensores (luz + GPS) y derivación final del filtro de Bayes que cierra el tutorial.
+- **Screenshots**: 9 PNGs nuevas en `wiki/7. ROS2 y TPs/Img/` (59 totales en M7).
+- **Meta-updates**:
+  - `Robotica.md`: M7 `En progreso (11/21) → En progreso (12/21)`. Catálogo: descripción de Tutorial 5.
+  - `wiki/7. ROS2 y TPs/ROS2 y TPs.md` (overview): Fase 3 ✅.
+- **Decisiones tomadas autónomamente** (per memoria de autonomía):
+  - El ejercicio del sensor defectuoso queda en Tutorial 5 — **NO** se replica en `[[Regla de Bayes]]` (M4) que ya tiene su ejemplo de la puerta. Tutorial 5 es donde vive el worked example completo con código + plot.
+  - Las slides 29–39 (rederivación del filtro) overlapean con `[[Filtro de Bayes]]` (M4). En lugar de duplicar, Tutorial 5 las menciona y enlaza a M4 (sección de Derivación).
+  - Fusión de sensores quedó como sección dentro del tutorial (no merece página propia: 2 slides, ejemplo simple de Bayes secuencial).
+
 ## [2026-04-27] ingest | M7 Fase 2 — Tutorial 3 + Tutorial 4 (TF2, Launch, RVIZ)
 - **Fuentes**:
   - `Raw/Diapositivas/Tutoriales/Tutorial 3_ Interactuando con Gazebo.pdf` (33 slides)
