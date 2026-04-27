@@ -32,23 +32,35 @@ El conocimiento de $y$ no modifica la probabilidad de $x$.
 
 ## Causal vs. Diagnóstico
 
+![[Bayes - causal vs diagnostico.png]]
+*Razonamiento causal vs. diagnóstico: el sensor da $P(z \mid x)$, queremos $P(x \mid z)$, slide 17.*
+
 En robótica hay dos direcciones de razonamiento:
 
-- **Causal**: $P(z \mid x)$ — dada la posición, ¿qué medición espero? (fácil de obtener)
+- **Causal**: $P(z \mid x)$ — dada la posición, ¿qué medición espero? (fácil de obtener: lo da el modelo de sensor)
 - **Diagnóstico**: $P(x \mid z)$ — dada la medición, ¿dónde estoy? (difícil de calcular directamente)
 
 La **Regla de Bayes** permite convertir conocimiento causal en razonamiento diagnóstico.
 
 ### Ejemplo: puerta
 
+![[Bayes - puerta abierta.png]]
+*El robot observa una puerta y debe decidir si está abierta o cerrada, slide 18.*
+
 Un robot mide si una puerta está abierta o cerrada con un sensor imperfecto:
+
 - $P(z \mid \text{abierta}) = 0.6$
 - $P(z \mid \neg\text{abierta}) = 0.3$
-- $P(\text{abierta}) = P(\neg\text{abierta}) = 0.5$
+- Prior uniforme: $P(\text{abierta}) = P(\neg\text{abierta}) = 0.5$
 
-Aplicando Bayes: $P(\text{abierta} \mid z) = \frac{0.6 \cdot 0.5}{0.6 \cdot 0.5 + 0.3 \cdot 0.5} = \frac{0.3}{0.45} = \frac{2}{3}$
+![[Bayes - ejemplo numerico puerta.png]]
+*Cálculo numérico aplicando Bayes al ejemplo de la puerta, slide 19.*
 
-La medición $z$ eleva la probabilidad de que la puerta esté abierta.
+Aplicando Bayes:
+
+$$P(\text{abierta} \mid z) = \frac{P(z \mid \text{abierta})\,P(\text{abierta})}{P(z)} = \frac{0.6 \cdot 0.5}{0.6 \cdot 0.5 + 0.3 \cdot 0.5} = \frac{0.3}{0.45} = \frac{2}{3}$$
+
+La medición $z$ eleva la probabilidad de que la puerta esté abierta de $0.5$ a $\approx 0.67$.
 
 ## Conexiones
 - [[Regla de Bayes]] — inversión de la condicional

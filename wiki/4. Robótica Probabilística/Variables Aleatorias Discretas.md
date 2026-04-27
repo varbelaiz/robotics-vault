@@ -14,15 +14,17 @@ ultima_actualizacion: 2026-04-26
 
 ## Definición
 
-![[proba - variables aleatorias discretas.png]]
-*Variable aleatoria discreta con función de masa de probabilidad.*
+![[VA discretas - PMF.png]]
+*Variable aleatoria discreta con función de masa de probabilidad, slide 6.*
 
-- $X$ denota una variable aleatoria
+- $X$ denota una **variable aleatoria**
 - $X$ toma un número contable de valores $\{x_1, x_2, \ldots, x_n\}$
 - $P(X = x_i)$ o $P(x_i)$ es la probabilidad de que $X$ tome el valor $x_i$
 - $P(\cdot)$ es la **función de masa de probabilidad** (PMF)
 
-### Normalización  *(05-intro_robo_proba parte 1, pág. 8)*
+Ejemplo: $P(\text{habitación}) = \langle 0.7, 0.2, 0.08, 0.02\rangle$ — una distribución sobre 4 habitaciones.
+
+### Normalización
 
 $$\sum_{i=1}^{n} P(x_i) = 1$$
 

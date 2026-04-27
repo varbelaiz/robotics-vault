@@ -14,8 +14,8 @@ ultima_actualizacion: 2026-04-26
 
 ## Fórmula
 
-![[proba - formula de bayes.png]]
-*La fórmula de Bayes: convierte conocimiento causal en diagnóstico.*
+![[Bayes - formula.png]]
+*La fórmula de Bayes: convierte conocimiento causal en diagnóstico, slide 13.*
 
 $$P(x \mid z) = \frac{P(z \mid x) P(x)}{P(z)}$$
 
@@ -27,8 +27,8 @@ Donde:
 
 ## Normalización
 
-![[proba - normalizacion.png]]
-*El factor de normalización $\eta = 1/P(z)$ asegura que la posterior sume 1.*
+![[Bayes - normalizacion.png]]
+*El factor de normalización $\eta = 1/P(z)$ asegura que la posterior sume 1, slide 14.*
 
 La evidencia se calcula como:
 
@@ -51,24 +51,46 @@ $$P(x \mid y, z) = P(x \mid z)$$
 
 Esto no implica que $P(y \mid x, z) = P(y \mid z)$ ni que $P(x, y \mid z) = P(x \mid z) P(y \mid z)$ automáticamente.
 
-## Combinando evidencia
+## Actualización recursiva: combinando evidencia
 
-¿Cómo incorporar múltiples mediciones $z_1, z_2, \ldots, z_n$?
+¿Cómo incorporar múltiples mediciones $z_1, z_2, \ldots, z_n$? Aplicando Bayes con conocimiento de fondo $z_1, \dots, z_{n-1}$:
 
-Con la **suposición de Markov** ($z_n$ es independiente de $z_1, \ldots, z_{n-1}$ dado $x$):
+$$P(x \mid z_1, \dots, z_n) = \frac{P(z_n \mid x, z_1, \dots, z_{n-1})\,P(x \mid z_1, \dots, z_{n-1})}{P(z_n \mid z_1, \dots, z_{n-1})}$$
 
-$$P(x \mid z_1, z_2) = \eta P(z_2 \mid x) P(x \mid z_1)$$
+> [!info] Suposición de Markov sobre observaciones
+> $z_n$ es **independiente** de $z_1, \dots, z_{n-1}$ una vez que conocemos el estado $x$. El estado es **suficiente** — toda la información de mediciones pasadas ya quedó capturada en él.
 
-### Ejemplo: segunda medición
+Aplicando esa suposición:
+
+$$P(x \mid z_1, \dots, z_n) = \eta\,P(z_n \mid x)\,P(x \mid z_1, \dots, z_{n-1})$$
+
+E iterando hacia atrás hasta llegar al prior $P(x)$:
+
+$$P(x \mid z_1, \dots, z_n) = \eta_{1\dots n} \left[\prod_{i=1\dots n} P(z_i \mid x)\right] P(x)$$
+
+![[Bayes - recursiva derivacion.png]]
+*Derivación de la actualización recursiva con suposición de Markov, slide 21.*
+
+> [!warning] Idea clave
+> El producto de likelihoods $\prod P(z_i \mid x)$ acumula evidencia sobre cada hipótesis $x$, ponderada por el prior. La normalización $\eta$ se aplica al final. Sólo necesitamos guardar el **belief actual**, no toda la historia de mediciones — la suposición de Markov es lo que hace eficiente al filtro.
+
+### Ejemplo: segunda medición de la puerta
+
+Continuamos con el ejemplo anterior: el robot ya tenía $P(\text{abierta} \mid z_1) = 2/3$. Ahora obtiene una segunda medición $z_2$ con likelihood:
 
 - $P(z_2 \mid \text{abierta}) = 0.25$
 - $P(z_2 \mid \neg\text{abierta}) = 0.3$
-- $P(\text{abierta} \mid z_1) = 2/3$
 
-$$P(\text{abierta} \mid z_1, z_2) = \eta \cdot 0.25 \cdot \frac{2}{3} = \eta \cdot \frac{0.5}{3}$$
-$$P(\neg\text{abierta} \mid z_1, z_2) = \eta \cdot 0.3 \cdot \frac{1}{3} = \eta \cdot \frac{0.3}{3}$$
+Aplicando la actualización recursiva:
 
-La segunda medición **disminuye** la probabilidad de que la puerta esté abierta.
+$$P(\text{abierta} \mid z_2, z_1) = \frac{P(z_2 \mid \text{abierta})\,P(\text{abierta} \mid z_1)}{P(z_2 \mid \text{abierta})\,P(\text{abierta} \mid z_1) + P(z_2 \mid \neg\text{abierta})\,P(\neg\text{abierta} \mid z_1)}$$
+
+$$= \frac{\tfrac{1}{4}\cdot\tfrac{2}{3}}{\tfrac{1}{4}\cdot\tfrac{2}{3} + \tfrac{3}{10}\cdot\tfrac{1}{3}} = \frac{\tfrac{1}{6}}{\tfrac{1}{6} + \tfrac{1}{10}} = \frac{5}{8} = 0.625$$
+
+![[Bayes - segunda medicion.png]]
+*La creencia baja de $0.67$ a $0.625$: $z_2$ es más sensible cuando la puerta está cerrada, slide 22.*
+
+Esta vez, $z_2$ **disminuye** la probabilidad de que la puerta esté abierta.
 
 ## Conexiones
 - [[Filtro de Bayes]] — aplica Bayes recursivamente con acciones entre mediciones
@@ -82,4 +104,4 @@ La segunda medición **disminuye** la probabilidad de que la puerta esté abiert
   - pág. 14 → Normalización
   - pág. 15 → Bayes con conocimiento de fondo
   - pág. 16 → Independencia condicional
-  - págs. 20–22 → Combinando evidencia
+  - págs. 20–22 → Actualización recursiva: combinando evidencia

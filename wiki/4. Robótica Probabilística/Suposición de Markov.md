@@ -15,8 +15,8 @@ ultima_actualizacion: 2026-04-26
 
 ## Definición
 
-![[proba - suposicion markov.png]]
-*La suposición de Markov: la observación actual depende solo del estado actual.*
+![[Markov - DBN.png]]
+*Red bayesiana dinámica: la observación $z_t$ depende sólo del estado actual $x_t$, parte 2 slide 32.*
 
 La **suposición de Markov** establece que la observación $z_t$ es independiente de todas las observaciones pasadas $z_1, \ldots, z_{t-1}$ y acciones pasadas $u_1, \ldots, u_{t-1}$, dado el estado actual $x_t$:
 

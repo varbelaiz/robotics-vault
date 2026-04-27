@@ -89,6 +89,17 @@
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
 
+## [2026-04-27] lint | consolidación M4 Robótica Probabilística
+- **Diagnóstico**: tras la doble ingesta de M4 (ingesta del 26-04 con páginas combinadas + bootstrap con esqueletos atómicos) coexistían 14 .md, 11 referencias a imágenes inexistentes (`proba - X.png`) y 16 PNGs huérfanas en `Img/`. El catálogo de [[Robotica]] listaba 11/11 atómicas con `Modelo de Sensor` `[esqueleto]`.
+- **Migración de contenido**:
+  - `Probabilidad - Axiomas y Variables Aleatorias.md` → distribuida entre `Axiomas de Probabilidad`, `Variables Aleatorias Discretas`, `Variables Aleatorias Continuas`, `Probabilidad Conjunta`, `Probabilidad Condicional`.
+  - `Actualización Recursiva Bayesiana.md` → fusionada en `Regla de Bayes` (sección "Actualización recursiva: combinando evidencia").
+  - `Modelado de Acciones.md` → fusionada en `Modelo de Movimiento` (rewrite completo con ejemplo FSM "cerrar puerta", integración del belief, anticipo del filtro).
+- **Imágenes**: re-mapeadas 9 referencias rotas a sus archivos reales (`Bayes - formula.png`, `Markov - DBN.png`, `Filtro Bayes - estructura.png`, etc.). Renombrado `proba-p1-slide-6-06.png` → `VA discretas - PMF.png`. Aprovechadas 4 huérfanas valiosas (`Bayes - causal vs diagnostico`, `Bayes - puerta abierta`, `Bayes - ejemplo numerico puerta`, `Localizacion probabilistica - pasos`). Borradas 6 raw `proba-p1-slide-*.png` duplicadas.
+- **`Modelo de Sensor`** completado como hub explícito a M3 (se documenta su rol como mitad del filtro de Bayes y se enumeran las tres familias de modelos).
+- **Eliminadas** las 3 páginas viejas con wikilinks rotos (`[[_Overview]]`, `[[Home]]`).
+- **Estado final M4**: 12 .md (1 overview + 11 conceptos), 21 imágenes referenciadas, **0 referencias rotas, 0 huérfanas**. Catálogo `Robotica.md`: M4 `En progreso (10/11)` → `Completo (11/11)`.
+
 ## [2026-04-26] bootstrap | construcción del grafo de conceptos completos (M4–M7)
 - **Objetivo**: crear esqueletos de todas las páginas principales extraídas de `Raw/` y establecer el grafo de enlaces cruzados.
 - Páginas creadas M1 (2):

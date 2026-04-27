@@ -14,18 +14,26 @@ ultima_actualizacion: 2026-04-26
 
 ## Los tres axiomas
 
-$P(A)$ indica la probabilidad de que la proposición $A$ es verdadera.
+$P(A)$ indica la probabilidad de que la proposición $A$ sea verdadera.
 
-1. **No negatividad**: $P(A) \geq 0$ para toda proposición $A$
-2. **Normalización**: $P(\text{True}) = 1$ (la certeza tiene probabilidad 1)
+1. **No negatividad**: $0 \leq P(A) \leq 1$
+2. **Normalización**: $P(\text{True}) = 1 \quad P(\text{False}) = 0$
 3. **Aditividad**: $P(A \lor B) = P(A) + P(B) - P(A \land B)$
+
+![[Probabilidad - axiomas.png]]
+*Los tres axiomas de Kolmogorov, slide 3.*
 
 ## Detalle del Axioma 3
 
-![[proba - axioma 3 aditividad.png]]
-*El axioma de aditividad: la probabilidad de la unión de dos eventos.*
+![[Probabilidad - axioma 3 Venn.png]]
+*Visualización del axioma 3 con un diagrama de Venn, slide 4.*
+
+Si sumamos $P(A) + P(B)$ contamos dos veces la intersección, por eso restamos $P(A \land B)$.
 
 Si $A$ y $B$ son **mutuamente excluyentes** ($A \land B = \text{False}$), entonces $P(A \lor B) = P(A) + P(B)$.
+
+> [!info] Derivación útil
+> Aplicando el axioma 3 a $A$ y $\neg A$: $P(\text{True}) = P(A) + P(\neg A) - P(\text{False})$, de donde $P(\neg A) = 1 - P(A)$.
 
 ## Consecuencias
 
@@ -38,5 +46,5 @@ Si $A$ y $B$ son **mutuamente excluyentes** ($A \land B = \text{False}$), entonc
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
-  - pág. 3 → Los tres axiomas
+  - págs. 3, 5 → Los tres axiomas
   - pág. 4 → Detalle del Axioma 3

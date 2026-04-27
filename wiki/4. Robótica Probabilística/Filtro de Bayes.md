@@ -14,8 +14,8 @@ ultima_actualizacion: 2026-04-26
 
 ## Problema
 
-![[proba - filtro bayes estructura.png]]
-*Estructura del filtro de Bayes: entradas y salida.*
+![[Filtro Bayes - estructura.png]]
+*Estructura del filtro de Bayes: dato + sensor + acción + prior → belief, slide 31.*
 
 **Dado**:
 - Una serie de observaciones $z_1, \ldots, z_t$ y acciones $u_1, \ldots, u_t$
@@ -29,14 +29,10 @@ ultima_actualizacion: 2026-04-26
 
 ## Derivación del algoritmo recursivo
 
-![[proba - filtro bayes derivacion 1.png]]
-*Primeros pasos de la derivación del filtro de Bayes.*
+Partiendo de $Bel(x_t) = P(x_t \mid z_{1:t}, u_{1:t})$, se aplican sucesivamente: regla de Bayes (introducir $z_t$ como evidencia), suposición de Markov (eliminar dependencias pasadas), ley de probabilidad total (marginalizar sobre $x_{t-1}$), e independencia condicional. El resultado final es la forma recursiva.
 
-![[proba - filtro bayes derivacion 2.png]]
-*Desarrollo intermedio usando Bayes y Markov.*
-
-![[proba - filtro bayes algoritmo.png]]
-*Algoritmo completo del filtro de Bayes.*
+![[Filtro Bayes - derivacion final.png]]
+*Forma final de la derivación: aparece el término recursivo $Bel(x_{t-1})$, slide 40.*
 
 El filtro tiene dos pasos:
 
@@ -58,6 +54,9 @@ La percepción **reduce** la incertidumbre.
 
 ## Algoritmo
 
+![[Filtro Bayes - algoritmo.png]]
+*Pseudocódigo del filtro de Bayes, slide 41.*
+
 ```
 Filtro_de_Bayes(Bel(x), d):
     η = 0
@@ -72,6 +71,13 @@ Filtro_de_Bayes(Bel(x), d):
             Bel'(x) = Σ_x' P(x | u, x') * Bel(x')
     Retornar Bel'(x)
 ```
+
+## Aplicación: localización probabilística
+
+![[Localizacion probabilistica - pasos.png]]
+*El filtro de Bayes aplicado a localización: el belief sobre la posición del robot evoluciona con cada acción y cada medición, slide 43.*
+
+La localización es la aplicación canónica del filtro de Bayes: el estado $x_t$ es la pose del robot, $u_t$ son los comandos de movimiento (o la odometría), y $z_t$ son las mediciones del lidar/sonar/cámara. El belief inicial puede ser uniforme (localización global) o concentrado (tracking).
 
 ## Usos del filtro de Bayes
 
@@ -100,7 +106,9 @@ El filtro de Bayes es la base de muchas herramientas:
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf`
-  - pág. 31 → Problema
-  - págs. 33–40 → Derivación del algoritmo recursivo
-  - pág. 42 → Usos del filtro de Bayes
-  - pág. 45 → Resumen
+  - slide 31 → Problema
+  - slides 33–40 → Derivación del algoritmo recursivo
+  - slide 41 → Algoritmo
+  - slide 42 → Usos del filtro de Bayes
+  - slide 43 → Aplicación: localización probabilística
+  - slide 45 → Resumen

@@ -14,14 +14,14 @@ ultima_actualizacion: 2026-04-26
 
 ## Definición
 
-![[proba - variables aleatorias continuas.png]]
-*Variable aleatoria continua con función de densidad de probabilidad.*
+![[Variables aleatorias - continua ejemplo.png]]
+*Dos densidades de probabilidad continuas (multimodales), slide 7.*
 
 - $X$ toma valores en un continuo (por ejemplo, $\mathbb{R}$)
 - $p(X = x)$ o $p(x)$ es una **función de densidad de probabilidad** (PDF)
 - $p(x)$ no es una probabilidad en sí, sino una densidad
 
-### Normalización  *(05-intro_robo_proba parte 1, pág. 8)*
+### Normalización
 
 $$\int_{-\infty}^{+\infty} p(x) \, dx = 1$$
 

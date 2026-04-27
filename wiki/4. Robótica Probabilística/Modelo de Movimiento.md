@@ -3,70 +3,119 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
 
 # Modelo de Movimiento
 
-> Cómo incorporar el resultado de una acción al belief del robot: $P(x_t \mid u_t, x_{t-1})$.
+> Cómo incorporar el resultado de una acción $u$ al belief actual: $P(x_t \mid u_t, x_{t-1})$. A diferencia de las mediciones (que **reducen** la incertidumbre), las acciones en general la **incrementan**.
 
-## Motivación
+## 1. Acciones y dinamismo
 
-El mundo es dinámico debido a:
+El mundo es **dinámico** debido a:
 
-1. **Acciones del robot** (moverse, agarrar, soltar)
-2. **Acciones de otros agentes** (personas, otros robots)
-3. **Paso del tiempo** (cambios naturales del entorno)
+1. **Acciones del robot** — girar las ruedas para moverse, usar el manipulador para agarrar.
+2. **Acciones de otros agentes** — personas, otros robots, puertas que se abren/cierran.
+3. **Paso del tiempo** — cambios naturales del entorno.
 
-Las acciones **nunca suceden con absoluta certeza**. A diferencia de las mediciones (que reducen incertidumbre), las acciones en general **incrementan** la incertidumbre.
+Necesitamos una forma de incorporar estos cambios al belief.
 
-## Modelo de transición
+> [!warning] Las acciones nunca son perfectas
+> En contraste con las mediciones, las **acciones en general incrementan la incerteza**. Aunque el robot mande "moverse 1 metro adelante", el resultado real depende del piso, las ruedas, el deslizamiento. Por eso las modelamos probabilísticamente.
 
-Para incorporar el resultado de una acción $u$ al belief actual:
+## 2. El modelo $P(x \mid u, x')$
 
-$$P(x_t \mid u_t, x_{t-1})$$
+Para incorporar el resultado de una acción $u$ al belief actual usamos la **función de densidad de probabilidad condicional**:
 
-Este término especifica la densidad de probabilidad según la cual, ejecutando $u$, el estado cambia de $x_{t-1}$ a $x_t$.
+$$\boxed{P(x \mid u, x')}$$
 
-## Ejemplo: cerrar una puerta
+Este término especifica la densidad según la cual, **ejecutando $u$, el estado cambia de $x'$ a $x$**.
 
-Matriz de transición para $u = \text{"cerrar puerta"}$:
+![[Acciones - modelo Pxux.png]]
+*Notación del modelo de transición $P(x \mid u, x')$, slide 25.*
 
-| Estado anterior \ Estado posterior | abierta | cerrada |
+> [!info] Notación
+> Algunos textos usan $x_t = x$ y $x_{t-1} = x'$. Es la misma idea: el estado **previo** está primado, el **nuevo** sin primar.
+
+## 3. Ejemplo: cerrar una puerta
+
+El robot ejecuta la acción $u = $ "cerrar puerta" pulsando con su brazo:
+
+![[Acciones - cerrar puerta.png]]
+*Robot ejecutando la acción de cerrar la puerta, slide 26.*
+
+El modelo de transición $P(x \mid u, x')$ es una **máquina de estados finitos** con probabilidades en las aristas:
+
+| $x'$ (antes) | $x$ (después) | $P(x \mid u, x')$ |
 |---|---|---|
-| **abierta** | 0.1 | 0.9 |
-| **cerrada** | 0   | 1.0 |
+| abierta | cerrada | 0.9 |
+| abierta | abierta | 0.1 |
+| cerrada | cerrada | 1.0 |
+| cerrada | abierta | 0   |
 
-Si la puerta está abierta, la acción "cerrar" tiene éxito el 90% de las veces.
+Si la puerta está abierta, la acción "cerrar puerta" tiene **éxito el 90% de las veces**.
 
-## Integrando acciones al belief
+![[Acciones - transiciones FSM.png]]
+*Diagrama de transiciones de estado para la acción "cerrar puerta", slide 27.*
+
+## 4. Integrando acciones al belief
+
+Para obtener el belief $\bar{Bel}(x_t)$ después de la acción, **marginalizamos sobre el estado anterior** $x_{t-1}$:
 
 ### Caso continuo
 
-$$\bar{Bel}(x_t) = \int P(x_t \mid u_t, x_{t-1}) Bel(x_{t-1}) \, dx_{t-1}$$
+$$\bar{Bel}(x_t) = \int P(x_t \mid u_t, x_{t-1}) \, Bel(x_{t-1}) \, dx_{t-1}$$
 
 ### Caso discreto
 
-$$\bar{Bel}(x_t) = \sum_{x_{t-1}} P(x_t \mid u_t, x_{t-1}) Bel(x_{t-1})$$
+$$\bar{Bel}(x_t) = \sum_{x_{t-1}} P(x_t \mid u_t, x_{t-1}) \, Bel(x_{t-1})$$
 
-Suposición de independencia: eliminamos $u$ en el segundo factor de la suma.
+![[Acciones - integrando formula.png]]
+*Integración del modelo de transición sobre el estado anterior, slide 28.*
 
-## Resultado
+> [!info] Suposición de independencia
+> Asumimos que $P(x_{t-1} \mid u_t) = P(x_{t-1})$ — el estado anterior no depende de la acción que estamos a punto de ejecutar. Esto permite eliminar la $u$ del segundo factor de la suma.
 
-Después de la acción, la distribución de belief se "esparce": la incertidumbre crece porque el robot no tiene certeza absoluta de dónde quedó.
+## 5. Ejemplo del belief resultante
+
+Continuando con el ejemplo de la puerta, supongamos que el belief antes de la acción es $P(\text{abierta}) = 5/8$, $P(\text{cerrada}) = 3/8$.
+
+$$P(\text{cerrada} \mid u) = P(\text{cerrada} \mid u, \text{abierta})\,P(\text{abierta}) + P(\text{cerrada} \mid u, \text{cerrada})\,P(\text{cerrada})$$
+
+$$= \frac{9}{10} \cdot \frac{5}{8} + 1 \cdot \frac{3}{8} = \frac{15}{16}$$
+
+Análogamente, $P(\text{abierta} \mid u) = 1/16$.
+
+![[Acciones - belief ejemplo.png]]
+*Cálculo del belief resultante después de la acción "cerrar puerta", slide 30.*
+
+> [!warning] Después de la acción, todavía hay incertidumbre
+> Aunque la acción "cerrar puerta" es muy buena (90% de éxito), el belief final no es 100% cerrada — porque arrastramos la incertidumbre del belief previo. Las acciones nunca eliminan la incerteza, sólo la propagan.
+
+## 6. Anticipo: la estructura del filtro de Bayes
+
+Con esto tenemos los dos ingredientes:
+
+- **Modelo del sensor**: $P(z \mid x)$ — cómo las observaciones dependen del estado.
+- **Modelo de acción**: $P(x \mid u, x')$ — cómo el estado evoluciona con las acciones.
+- **Probabilidad a priori** del estado: $P(x)$.
+
+El [[Filtro de Bayes]] es el algoritmo que combina los tres recursivamente para estimar $Bel(x_t) = P(x_t \mid u_1, z_1, \dots, u_t, z_t)$.
 
 ## Conexiones
-- [[Modelo de Movimiento (Velocidad)]] — modelo cinemático basado en velocidad (M2)
-- [[Odometría y Modelo de Movimiento (Odometría)]] — modelo basado en encoders (M2)
-- [[Filtro de Bayes]] — el modelo de movimiento es uno de sus dos ingredientes
-- [[5. Filtros Bayesianos/Filtros Bayesianos|Módulo 5]] — implementaciones concretas
+- [[Filtro de Bayes]] — el modelo de movimiento es uno de sus dos ingredientes (paso de predicción).
+- [[Modelo de Movimiento (Velocidad)]] — instancia concreta basada en velocidades $(v, \omega)$ — M2.
+- [[Odometría y Modelo de Movimiento (Odometría)]] — instancia concreta basada en encoders — M2.
+- [[Modelo de Sensor]] — la otra mitad del filtro (paso de actualización).
+- [[5. Filtros Bayesianos/Filtros Bayesianos|Módulo 5]] — implementaciones concretas (discretos, Kalman, partículas).
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
-  - págs. 23–25 → Motivación
-  - págs. 24–25 → Modelo de transición
-  - págs. 26–27 → Ejemplo: cerrar una puerta
-  - pág. 28 → Integrando acciones al belief
-  - págs. 29–30 → Resultado
+  - slide 23 → 1. Acciones y dinamismo
+  - slide 25 → 2. El modelo $P(x \mid u, x')$
+  - slides 26–27 → 3. Ejemplo: cerrar una puerta
+  - slide 28 → 4. Integrando acciones al belief
+  - slides 29–30 → 5. Ejemplo del belief resultante
+  - slide 31 → 6. Anticipo: la estructura del filtro de Bayes

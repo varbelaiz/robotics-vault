@@ -12,7 +12,7 @@
 | 1   | [[1. Fundamentos/Fundamentos\|Fundamentos]]                                     | Completo    | 8                 | 8     |
 | 2   | [[2. Locomoción/Locomoción\|Locomoción]]                                        | Completo    | 5                 | 5     |
 | 3   | [[3. Sensores y Modelos/Sensores y Modelos\|Sensores y Modelos]]                | Completo    | 5                 | 5     |
-| 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | En progreso | 10                | 11    |
+| 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 11                | 11    |
 | 5   | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]]                | En progreso | 9                 | 9     |
 | 6   | [[6. Mapeo/Mapeo\|Mapeo]]                                                       | Completo    | 6                 | 6     |
 | 7   | [[7. ROS2 y TPs/ROS2 y TPs\|ROS2 y TPs]]                                        | Esqueleto   | 0                 | 21    |
@@ -60,19 +60,19 @@
 - [[Modelo de Campo de Verosimilitud]] — Alternativa eficiente y suave al beam-based.
 - [[Modelo de Detección de Landmarks]] — Modelo cuando se observan marcadores conocidos.
 
-## 4. Robótica Probabilística — En progreso (10/11)
+## 4. Robótica Probabilística — Completo ✅
 - [[Robótica Probabilística|← Robótica Probabilística]] — Axiomas, variables aleatorias, Bayes, Markov, y el filtro de Bayes como base para localización.
 - [[Introducción a la Robótica Probabilística]] — Idea general de representar incertidumbre explícitamente en robótica.
 - [[Axiomas de Probabilidad]] — Fundamentos formales de la teoría de probabilidad.
 - [[Variables Aleatorias Discretas]] — Espacios de estados discretos y distribuciones.
 - [[Variables Aleatorias Continuas]] — Densidades de probabilidad en espacios continuos.
 - [[Probabilidad Conjunta]] — Distribuciones multivariadas y marginalización.
-- [[Probabilidad Condicional]] — Condicionamiento, independencia, y reglas.
-- [[Regla de Bayes]] — Actualización de creencias con evidencia.
+- [[Probabilidad Condicional]] — Condicionamiento, independencia, y razonamiento causal vs. diagnóstico.
+- [[Regla de Bayes]] — Actualización de creencias con evidencia + actualización recursiva con múltiples mediciones.
 - [[Suposición de Markov]] — Dependencia temporal local.
 - [[Filtro de Bayes]] — Algoritmo recursivo de estimación: predict y update.
-- [[Modelo de Movimiento]] — Transición probabilística $P(x_t \mid u_t, x_{t-1})$.
-- [[Modelo de Sensor]] — Observación probabilística $P(z_t \mid x_t, m)$. `[esqueleto]`
+- [[Modelo de Movimiento]] — Transición probabilística $P(x_t \mid u_t, x_{t-1})$ con ejemplo de FSM "cerrar puerta".
+- [[Modelo de Sensor]] — Hub de los modelos de observación $P(z_t \mid x_t, m)$ del Módulo 3.
 
 ## 5. Filtros Bayesianos — En progreso (9/9)
 - [[Filtros Bayesianos|← Filtros Bayesianos]] — Implementaciones del filtro de Bayes: discretos, Kalman, y partículas.
