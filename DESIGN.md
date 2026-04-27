@@ -44,7 +44,8 @@ Robotica/
 │   ├── 4. Robótica Probabilística/
 │   ├── 5. Filtros Bayesianos/
 │   ├── 6. Mapeo/
-│   └── 7. ROS2 y TPs/
+│   ├── 7. ROS2/                       ← framework + 8 tutoriales
+│   └── 8. TPs/                        ← trabajos prácticos
 │       Cada carpeta: _Overview.md + <Concepto>.md + Img/
 ├── Robotica.md                           ← entry point + tabla de estado
 ├── Robotica.md                          ← catálogo plano de todas las páginas

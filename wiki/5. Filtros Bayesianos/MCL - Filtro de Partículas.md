@@ -22,12 +22,9 @@ ultima_actualizacion: 2026-04-26
 
 ## 1. Motivación
 
-El filtro Bayesiano discreto ([[Filtros Discretos]]) es exacto pero su complejidad crece exponencialmente
-con la dimensionalidad del espacio. Para un robot móvil 2D con estado $(x, y, \theta)$,
-una grilla fina puede requerir millones de celdas.
+El filtro Bayesiano discreto ([[Filtros Discretos]]) es exacto pero su complejidad crece exponencialmente con la dimensionalidad del espacio. Para un robot móvil 2D con estado $(x, y, \theta)$, una grilla fina puede requerir millones de celdas.
 
-El **Monte Carlo Localization** (MCL) —también llamado **filtro de partículas**— resuelve esta limitación
-aproximando la distribución continua mediante $N$ muestras ponderadas llamadas **partículas**.
+El **Monte Carlo Localization** (MCL) —también llamado **filtro de partículas**— resuelve esta limitación aproximando la distribución continua mediante $N$ muestras ponderadas llamadas **partículas**.
 
 ![[mcl-context.png]]
 *El problema de localización y por qué se necesita MCL.*

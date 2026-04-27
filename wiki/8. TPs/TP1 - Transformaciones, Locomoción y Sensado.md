@@ -1,12 +1,12 @@
 ---
-modulo: 7. ROS2 y TPs
+modulo: 8. TPs
 estado: completo
 fuentes:
   - Raw/TPs/Enunciado TP1.pdf
 ultima_actualizacion: 2026-04-27
 ---
 
-> [[ROS2 y TPs|← ROS2 y TPs]] | [[Robotica|← Inicio]]
+> [[TPs|← TPs]] | [[Robotica|← Inicio]]
 
 # TP1 — Transformaciones, Locomoción y Sensado
 

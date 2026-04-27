@@ -28,7 +28,8 @@ wiki/                                 ← LLM-owned content, fully managed by Cl
   4. Robótica Probabilística/
   5. Filtros Bayesianos/
   6. Mapeo/
-  7. ROS2 y TPs/
+  7. ROS2/                              ← framework ROS2 (9 conceptos infra) + 8 tutoriales (T1–T8)
+  8. TPs/                               ← trabajos prácticos del curso (TP1, TP2, TP3)
   Each module folder contains:
     <Module name>.md                  ← module narrative + suggested study order (e.g. Locomoción.md)
     <Concept>.md                      ← atomic concept pages
@@ -165,10 +166,10 @@ Sections 4, 5, 6 are **optional** — omit them when empty. **Do not fabricate c
 (lista plana de los .md del módulo)
 ```
 
-### C — TP page (in module 7)
+### C — TP page (in module 8)
 
 ```markdown
-> [[ROS2 y TPs|← ROS2 y TPs]]
+> [[TPs|← TPs]] | [[Robotica|← Inicio]]
 
 # TP2 — (título descriptivo)
 

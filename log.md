@@ -89,6 +89,26 @@
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
 
+## [2026-04-27] refactor | split M7 → M7 (ROS2) + M8 (TPs)
+- **Motivación**: el nombre "ROS2 y TPs" mezclaba dos cosas conceptualmente distintas — el framework + tutoriales (mecánica de ROS2) vs. los entregables del curso (TPs). Trade-off considerado: separación clara vs. coherencia de la secuencia de tutoriales.
+- **Decisión**: opción **B** — separar TPs a M8, dejar tutoriales junto al framework en M7 (la secuencia T1→T8 se mantiene intacta).
+- **Movimientos físicos**:
+  - Carpeta: `wiki/7. ROS2 y TPs/` → `wiki/7. ROS2/`. Overview: `ROS2 y TPs.md` → `ROS2.md`.
+  - Nueva carpeta: `wiki/8. TPs/Img/`.
+  - 3 TPs movidos: `TP1`, `TP2`, `TP3` → `wiki/8. TPs/`.
+  - 4 imágenes movidas: las 4 PNGs de TPs (`TP2 - rviz...`, `TP3 - rviz...`) → `wiki/8. TPs/Img/`.
+- **Wikilinks updates** (4 pasadas con `sed`):
+  - 18 archivos de M7: `[[ROS2 y TPs|...]]` → `[[ROS2|...]]`, frontmatter `modulo: 7. ROS2 y TPs` → `modulo: 7. ROS2`, alias `← ROS2 y TPs` → `← ROS2`, título `# Módulo 7 — ROS2 y TPs` → `# Módulo 7 — ROS2`.
+  - 3 TPs en M8: `modulo: 8. TPs`, back-link `[[TPs|← TPs]]`.
+  - Cross-module refs en M2 + M5: `[[7. ROS2 y TPs/ROS2 y TPs|Módulo 7: ROS2 y TPs]]` → `[[7. ROS2/ROS2|Módulo 7: ROS2]]`.
+- **Páginas nuevas/reescritas**:
+  - `wiki/8. TPs/TPs.md` (overview Template B) — recorrido sugerido + conexiones a todos los M1–M7.
+  - `wiki/7. ROS2/ROS2.md` (overview reescrito) — sin sección de TPs, con énfasis en que los tutoriales aterrizan los modelos teóricos.
+- **Catálogo `Robotica.md`**: tabla de status splitteada en M7 (18 págs) + M8 (4 págs). Sección 7 sin TPs. Nueva sección 8 con TPs.
+- **Documentación**: `CLAUDE.md` (estructura de carpetas + Template C ahora apunta a M8), `DESIGN.md` (árbol de carpetas), `.claude/skills/ingest/SKILL.md` (TP target path).
+- **Verificación**: `0` referencias rotas, `0` huérfanas en M7 y M8.
+- **Mentioned-in-history-only**: `log.md` mantiene los paths históricos (`wiki/7. ROS2 y TPs/Img/`) en las entradas de fases pasadas — son registros append-only de lo que se hizo en cada commit, no se reescriben.
+
 ## [2026-04-27] ingest | M7 Fase 6 — TP1 + TP2 + TP3 (cierre del módulo)
 - **Fuentes**:
   - `Raw/TPs/Enunciado TP1.pdf` (3 págs) — Transformaciones, Locomoción, Sensado

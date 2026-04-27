@@ -1,12 +1,12 @@
 ---
-modulo: 7. ROS2 y TPs
+modulo: 7. ROS2
 estado: completo
 fuentes:
   - Raw/Diapositivas/Tutoriales/Tutorial 8_ KF, EKF, UKF.pdf
 ultima_actualizacion: 2026-04-27
 ---
 
-> [[ROS2 y TPs|← ROS2 y TPs]] | [[Robotica|← Inicio]]
+> [[ROS2|← ROS2]] | [[Robotica|← Inicio]]
 
 # Tutorial 8 — KF, EKF, UKF
 

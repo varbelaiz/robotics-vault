@@ -22,7 +22,7 @@ El [[Filtro de Bayes]] del Módulo 4 es el algoritmo abstracto. Este módulo pro
 - ⬅️ [[4. Robótica Probabilística/Robótica Probabilística|Módulo 4: Probabilidad]] (filtro de Bayes base, modelos)
 - ⬅️ [[1. Fundamentos/Fundamentos|Módulo 1: Fundamentos]] (matrices definidas positivas, Jacobianos)
 - ➡️ [[6. Mapeo/Mapeo|Módulo 6: Mapeo]] (localización dentro de SLAM)
-- ➡️ [[7. ROS2 y TPs/ROS2 y TPs|Módulo 7: ROS2 y TPs]] (Tutorials 7–8, TP3)
+- ➡️ [[7. ROS2/ROS2|Módulo 7: ROS2]] (Tutorials 7–8, TP3)
 
 ## Páginas en este módulo
 - [[Filtros Discretos]]

@@ -114,7 +114,7 @@ Report to Valentino:
 
 When ingesting a TP enunciado from `Raw/TPs/`:
 
-- Create the TP page (**template C** from `CLAUDE.md`) in `wiki/7. ROS2 y TPs/`.
+- Create the TP page (**template C** from `CLAUDE.md`) in `wiki/8. TPs/`.
 - **Also update** the `## En ROS2 / En los TPs` section of **every concept page** the TP uses, adding a wikilink to the TP and a one-line note about how the concept appears in the TP.
 
 ### Apunte del compañero

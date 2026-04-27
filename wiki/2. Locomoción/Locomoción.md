@@ -18,7 +18,7 @@ La cinemática del robot es la base operativa de todo lo que viene: define cómo
 - ⬅️ [[1. Fundamentos/Fundamentos|Módulo 1: Fundamentos]] (matrices de rotación, jacobiano, transformaciones)
 - ➡️ [[3. Sensores y Modelos/Sensores y Modelos|Módulo 3: Sensores]] (los encoders alimentan la odometría)
 - ➡️ [[5. Filtros Bayesianos/Filtros Bayesianos|Módulo 5: Filtros Bayesianos]] (los modelos de movimiento alimentan los filtros)
-- ➡️ [[7. ROS2 y TPs/ROS2 y TPs|Módulo 7: ROS2 y TPs]] (Tutorial 6 implementa estos modelos en ROS2)
+- ➡️ [[7. ROS2/ROS2|Módulo 7: ROS2]] (Tutorial 6 implementa estos modelos en ROS2)
 
 ## Páginas en este módulo
 - [[Locomoción y Tipos de Accionamientos]]

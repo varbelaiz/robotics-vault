@@ -15,7 +15,8 @@
 | 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 11                | 11    |
 | 5   | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]]                | Completo    | 9                 | 9     |
 | 6   | [[6. Mapeo/Mapeo\|Mapeo]]                                                       | Completo    | 6                 | 6     |
-| 7   | [[7. ROS2 y TPs/ROS2 y TPs\|ROS2 y TPs]]                                        | Completo    | 21                | 21    |
+| 7   | [[7. ROS2/ROS2\|ROS2]]                                                          | Completo    | 18                | 18    |
+| 8   | [[8. TPs/TPs\|TPs]]                                                             | Completo    | 4                 | 4     |
 
 > Estados posibles: `Esqueleto` (sin contenido grounded) · `En progreso` (alguna ingesta hecha) · `Completo` (todas las fuentes del módulo ingeridas).
 
@@ -96,8 +97,8 @@
 - [[Features vs Mapas Volumétricos]] — Dos enfoques de representación.
 - [[Exploración]] — Descubrimiento de entornos desconocidos.
 
-## 7. ROS2 y TPs — Completo ✅
-- [[ROS2 y TPs|← ROS2 y TPs]] — Framework ROS2, simulación, tutoriales, y trabajos prácticos.
+## 7. ROS2 — Completo ✅
+- [[ROS2|← ROS2]] — Framework ROS2 + 8 tutoriales que aterrizan los modelos teóricos en código.
 - [[ROS2 - Conceptos Base]] — Middleware distribuido: nodos, topics, mensajes; arquitectura del stack del curso (Humble + Gazebo + Turtlebot3).
 - [[ROS2 - Nodos]] — Unidad de ejecución; patrón timer + callback en vez de `while True` para no bloquear el grafo.
 - [[ROS2 - Topics]] — Canal pub/sub asíncrono y tipado; multiplicidad libre, descubrimiento DDS.
@@ -115,6 +116,9 @@
 - [[Tutorial 6 - Movimiento, Sensores e Histogramas]] — `sample_motion_model_odometry` con ruido, modelo de sensor basado en haz + Bresenham, likelihood field eficiente, filtro discreto (preview TP2).
 - [[Tutorial 7 - Filtro de Partículas]] — MCL paso a paso (predicción + ponderación con landmarks + remuestreo Stochastic Universal Sampling), features y data association.
 - [[Tutorial 8 - KF, EKF, UKF]] — Trick numérico log-likelihoods, derivación KF predict/correct, EKF con Jacobianos + caso de robot 2D donde la linealización falla, UKF con sigma points, TP4 paralelo.
+
+## 8. TPs — Completo ✅
+- [[TPs|← TPs]] — Trabajos prácticos del curso. Cada TP integra varios módulos teóricos con código ROS2.
 - [[TP1 - Transformaciones, Locomoción y Sensado]] — Transformaciones 2D, datos reales (odom.csv + scan.pkl con cuaternión + LIDAR), `diffdrive` con secuencia de comandos.
 - [[TP2 - Modelos Probabilísticos y Filtros Discretos]] — 3 muestreadores de gaussiana (suma de 12, rechazo, Box-Muller), modelo de odometría con ruido + nodo ROS2 visualizado en RVIZ, filtro discreto sobre mundo 1D de 20 celdas.
 - [[TP3 - Filtros de Partículas]] — MCL completo en ROS2: campo de verosimilitud desde OccupancyGrid, sample_motion_model por partícula, update_particles con scan + grid, resampleo con deepcopy, log-likelihood trick.

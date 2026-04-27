@@ -23,11 +23,9 @@ ultima_actualizacion: 2026-04-26
 ## 1. Motivación y problema
 
 El filtro Bayesiano discreto es la formulación práctica más elemental de la localización probabilística.
-Dado un espacio de estado finito (o discretizado), la **creencia** sobre el estado del robot se representa
-como un vector de probabilidades —una por cada celda—, que suma 1.
+Dado un espacio de estado finito (o discretizado), la **creencia** sobre el estado del robot se representa como un vector de probabilidades —una por cada celda—, que suma 1.
 
-El problema de localización en su forma discreta responde a: *"¿En qué celda del mapa se encuentra el robot?"*,
-actualizando la respuesta recursivamente con cada acción y cada observación.
+El problema de localización en su forma discreta responde a: *"¿En qué celda del mapa se encuentra el robot?"*, actualizando la respuesta recursivamente con cada acción y cada observación.
 
 ## 2. Representación y supuestos
 
@@ -40,8 +38,7 @@ La creencia se representa como una **distribución de probabilidad por tramos co
 ![[piecewise-constant-representation.png]]
 *Representación por tramos constante de la creencia.*
 
-Esta representación es exacta cuando el estado es naturalmente discreto (p. ej., un robot que se mueve
-entre habitaciones) y aproximada cuando el espacio es continuo pero se discretiza con una resolución adecuada.
+Esta representación es exacta cuando el estado es naturalmente discreto (p. ej., un robot que se mueve entre habitaciones) y aproximada cuando el espacio es continuo pero se discretiza con una resolución adecuada.
 
 ## 3. Algoritmo Bayesiano discreto
 
@@ -86,11 +83,9 @@ La aplicación más directa es la **localización en cuadrícula**:
 ![[grid-based-localization.png]]
 *Grid-based localization: el robot actualiza su creencia con cada acción y sensor.*
 
-El modelo de movimiento se aplica como una **convolución** sobre la grilla. Si el robot avanza una celda hacia adelante
-con ruido, el kernel de convolución distribuye la probabilidad entre la celda destino y sus vecinas.
+El modelo de movimiento se aplica como una **convolución** sobre la grilla. Si el robot avanza una celda hacia adelante con ruido, el kernel de convolución distribuye la probabilidad entre la celda destino y sus vecinas.
 
-La corrección sensorial multiplica cada celda por su verosimilitud: si el sensor reporta "pared a la izquierda"
-y la celda $(i,j)$ tiene pared a la izquierda, $P(z | c_{i,j})$ es alto; si no tiene pared, es bajo.
+La corrección sensorial multiplica cada celda por su verosimilitud: si el sensor reporta "pared a la izquierda" y la celda $(i,j)$ tiene pared a la izquierda, $P(z | c_{i,j})$ es alto; si no tiene pared, es bajo.
 
 ## 5. Integración con mapas de ocupación
 
@@ -99,9 +94,7 @@ La representación discreta se combina naturalmente con **mapas de ocupación** 
 ![[sonar-occupancy-grid.png]]
 *Mapa de ocupación construido a partir de lecturas sónicas.*
 
-Cada lectura del sonar proyecta una celda libre (donde el haz no encontró obstáculo) y una celda ocupada
-(en el punto de impacto). Acumulando lecturas se construye un mapa probabilístico que puede usarse
-como base para el modelo de sensor en la localización discreta.
+Cada lectura del sonar proyecta una celda libre (donde el haz no encontró obstáculo) y una celda ocupada (en el punto de impacto). Acumulando lecturas se construye un mapa probabilístico que puede usarse como base para el modelo de sensor en la localización discreta.
 
 ## 6. Resumen y limitaciones
 

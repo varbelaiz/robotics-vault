@@ -1,12 +1,12 @@
 ---
-modulo: 7. ROS2 y TPs
+modulo: 7. ROS2
 estado: completo
 fuentes:
   - Raw/Diapositivas/Tutoriales/Tutorial 3_ Interactuando con Gazebo.pdf
 ultima_actualizacion: 2026-04-27
 ---
 
-> [[ROS2 y TPs|← ROS2 y TPs]] | [[Robotica|← Inicio]]
+> [[ROS2|← ROS2]] | [[Robotica|← Inicio]]
 
 # Tutorial 3 — Interactuando con Gazebo
 

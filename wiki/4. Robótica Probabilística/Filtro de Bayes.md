@@ -22,8 +22,7 @@ ultima_actualizacion: 2026-04-26
 - Modelo de sensor: $P(z_t \mid x_t)$
 - Modelo de acción (transición): $P(x_t \mid u_t, x_{t-1})$
 - Probabilidad a priori: $P(x_0)$
-
-**Se desea**:
+Si **Se desea**:
 - Estimar el estado $X$ del sistema en cada paso
 - La probabilidad a posteriori (**belief**): $Bel(x_t) = P(x_t \mid z_{1:t}, u_{1:t})$
 
