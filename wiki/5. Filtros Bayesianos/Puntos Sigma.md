@@ -17,7 +17,7 @@ ultima_actualizacion: 2026-04-26
 - [[Gaussiana Multivariada]]
 - [[Descomposición de Cholesky]]
 
-## 1. Concepto  *(11b-filtro_ukf, págs. 3–7)*
+## 1. Concepto
 
 Los **puntos sigma** son un conjunto pequeño de puntos seleccionados estratégicamente alrededor
 de la media de una Gaussiana, tales que:
@@ -68,7 +68,7 @@ $$\mu_{new} = \sum_{i=0}^{2d} W_i^{(m)} \gamma_i$$
 
 $$\Sigma_{new} = \sum_{i=0}^{2d} W_i^{(c)} (\gamma_i - \mu_{new})(\gamma_i - \mu_{new})^\top$$
 
-## 3. Pesos  *(11b-filtro_ukf, págs. 12–13)*
+## 3. Pesos
 
 ![[ukf-sigma-weights.png]]
 *Pesos para la reconstrucción.*
@@ -95,4 +95,6 @@ los dos primeros momentos.
 - ➡️ [[UKF]] — aplica los sigma points en el filtro completo
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/11b-filtro_ukf-3.pdf` — págs. 3–16
+- `Raw/Diapositivas/Teoricas/11b-filtro_ukf-3.pdf`
+  - págs. 3–7 → 1. Concepto
+  - págs. 12–13 → 3. Pesos

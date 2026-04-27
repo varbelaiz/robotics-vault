@@ -30,7 +30,7 @@ wiki/                                 ← LLM-owned content, fully managed by Cl
   6. Mapeo/
   7. ROS2 y TPs/
   Each module folder contains:
-    _Overview.md                      ← module narrative + suggested study order
+    <Module name>.md                  ← module narrative + suggested study order (e.g. Locomoción.md)
     <Concept>.md                      ← atomic concept pages
     Img/                              ← screenshots of slides
 
@@ -44,10 +44,13 @@ DESIGN.md                             ← design rationale
 ## Hard rules — non-negotiable
 
 ### 1. Grounding
-**Every claim in a concept page must trace back to a specific slide in `Raw/`.** Zero invention. Each section header carries an inline citation to its source slides:
+**Every claim in a concept page must trace back to a specific slide in `Raw/`.** Zero invention. Section-level page references live in `## Fuentes` as sub-bullets under each source entry:
 
 ```markdown
-## 2. Modelo y supuestos  *(Teóricas 10-filtro_de_kalman, págs. 4–7)*
+## Fuentes
+- `Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf`
+  - págs. 4–7 → 2. Modelo y supuestos
+  - págs. 8–11 → 3. Algoritmo
 ```
 
 If a useful fact isn't in `Raw/`:
@@ -78,7 +81,7 @@ fuentes:
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[_Overview|← Filtros Bayesianos]] | [[Robotica|← Inicio]]
+> [[Filtros Bayesianos|← Filtros Bayesianos]] | [[Robotica|← Inicio]]
 
 # Filtro de Kalman
 
@@ -90,25 +93,26 @@ ultima_actualizacion: 2026-04-26
 - [[Algebra Lineal|Matrices y operaciones]]
 - [[Filtros Discretos]] — la versión "discreta" de la misma idea
 
-## 1. Intuición  *(Teóricas 10-filtro_de_kalman, págs. 1–3)*
+## 1. Intuición
+
 (prosa explicativa)
 
 ![[KF predict-update.png]]
 *Ciclo predict/update, slide 9.*
 
-## 2. Modelo y supuestos  *(Teóricas 10-..., págs. 4–7)*
+## 2. Modelo y supuestos
 - Modelo de transición: $x_t = A_t x_{t-1} + B_t u_t + \varepsilon_t$
 - Modelo de observación: $z_t = C_t x_t + \delta_t$
 - Ruidos gaussianos $\varepsilon \sim \mathcal{N}(0, R_t)$, $\delta \sim \mathcal{N}(0, Q_t)$
 
-## 3. Algoritmo  *(Teóricas 10-..., págs. 8–11)*
+## 3. Algoritmo
 ### Predicción
 $$\bar{\mu}_t = A_t \mu_{t-1} + B_t u_t$$
 $$\bar{\Sigma}_t = A_t \Sigma_{t-1} A_t^\top + R_t$$
 ### Actualización
 (...)
 
-## 4. Derivación  *(Teóricas 10-..., págs. 12–18)*
+## 4. Derivación
 (derivación matemática completa, paso a paso)
 
 ## 5. Variantes y conexiones
@@ -121,14 +125,18 @@ $$\bar{\Sigma}_t = A_t \Sigma_{t-1} A_t^\top + R_t$$
 - Usado en [[TP3]] para localización del robot
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf` — págs. 1–18
-- `Raw/Diapositivas/Tutoriales/Tutorial 8_ KF, EKF, UKF.pdf` — págs. 1–12
-- `Raw/Apuntes/Resumen Parcial- Principios de la Robótica Autónoma.pdf` — sección Kalman
+- `Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf`
+  - págs. 1–3 → 1. Intuición
+  - págs. 4–7 → 2. Modelo y supuestos
+  - págs. 8–11 → 3. Algoritmo
+  - págs. 12–18 → 4. Derivación
+- `Raw/Diapositivas/Tutoriales/Tutorial 8_ KF, EKF, UKF.pdf`
+- `Raw/Apuntes/Resumen Parcial- Principios de la Robótica Autónoma.pdf`
 ```
 
 Sections 4, 5, 6 are **optional** — omit them when empty. **Do not fabricate content to fill them.**
 
-### B — Module `_Overview.md`
+### B — Module overview (`Filtros Bayesianos.md`, `Locomoción.md`, etc.)
 
 ```markdown
 > [[Robotica|← Inicio]]
@@ -150,8 +158,8 @@ Sections 4, 5, 6 are **optional** — omit them when empty. **Do not fabricate c
 6. [[EKF]] → [[UKF]]
 
 ## Conecta con
-- ⬅️ [[4. Robótica Probabilística/_Overview|Módulo 4: Probabilidad y Bayes]] (prerequisito)
-- ➡️ [[6. Mapeo/_Overview|Módulo 6: Mapeo]] (consumidor)
+- ⬅️ [[4. Robótica Probabilística/Robótica Probabilística|Módulo 4: Probabilidad y Bayes]] (prerequisito)
+- ➡️ [[6. Mapeo/Mapeo|Módulo 6: Mapeo]] (consumidor)
 
 ## Páginas en este módulo
 (lista plana de los .md del módulo)
@@ -160,7 +168,7 @@ Sections 4, 5, 6 are **optional** — omit them when empty. **Do not fabricate c
 ### C — TP page (in module 7)
 
 ```markdown
-> [[_Overview|← ROS2 y TPs]]
+> [[ROS2 y TPs|← ROS2 y TPs]]
 
 # TP2 — (título descriptivo)
 
@@ -218,7 +226,7 @@ Ingestion is owned by the **`ingest` skill** at `.claude/skills/ingest/SKILL.md`
 2. **Discuss takeaways** with the user.
 3. **Propose change plan**.
 4. **Wait for user approval**.
-5. **Execute** (screenshots → concept pages → `_Overview.md` → `Robotica.md` → `log.md` → commit + push).
+5. **Execute** (screenshots → concept pages → module overview → `Robotica.md` → `log.md` → commit + push).
 6. **Summarize** what was touched.
 
 The skill is **plan-mode-friendly** — phases 1–3 are read-only research suitable for the plan window; phase 4 is the `ExitPlanMode` gate; phases 5–6 execute on approval.
@@ -275,7 +283,7 @@ Updated on every ingestion.
 
 - **LaTeX** for math: `$...$` inline, `$$...$$` block. Obsidian renders natively.
 - **Dates** everywhere: `YYYY-MM-DD`.
-- **Back-link header** mandatory on every page: `> [[_Overview|← <Module>]] | [[Robotica|← Inicio]]`.
+- **Back-link header** mandatory on every page: `> [[<ModuleName>|← <Module>]] | [[Robotica|← Inicio]]` where `<ModuleName>` is the module overview file (e.g. `[[Locomoción|← Locomoción]]`).
 - **Aliases** in wikilinks when prose flow benefits: `[[Regla de Bayes|Bayes]]`.
 - **Don't reformat existing notes wholesale.** The voice and structure are deliberate. Make minimal, targeted edits unless asked for a rewrite.
 - **Image folder is per-module** (`wiki/<module>/Img/`), not vault-wide, to keep the graph clean and avoid collisions.

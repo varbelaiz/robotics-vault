@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Una variable aleatoria que toma un número contable de valores, con una función de masa de probabilidad.
 
-## Definición  *(05-intro_robo_proba parte 1, págs. 6, 8)*
+## Definición
 
 ![[proba - variables aleatorias discretas.png]]
 *Variable aleatoria discreta con función de masa de probabilidad.*
@@ -41,4 +41,5 @@ En robótica, el estado discreto puede ser:
 - [[Mapas de Grilla]] — representación discreta del espacio
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — págs. 6, 8
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - págs. 6, 8 → Definición

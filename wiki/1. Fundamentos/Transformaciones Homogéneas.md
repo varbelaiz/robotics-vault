@@ -16,7 +16,7 @@ ultima_actualizacion: 2026-04-26
 - [[Rotaciones]]
 - [[Matrices]] (producto, inversa)
 
-## 1. Rototraslación  *(Teóricas 01-algebra_lineal, slides 32–33)*
+## 1. Rototraslación
 
 Una rototraslación 2D combina una rotación $R$ y una traslación $\mathbf{d}$:
 
@@ -36,7 +36,7 @@ $$
 ![[Rototraslacion - homogeneas.png]]
 *Forma matricial completa de la rototraslación 2D y su forma homogénea compacta. Slide 33.*
 
-## 2. Transformaciones afines como matrices  *(Teóricas 01-algebra_lineal, slide 34)*
+## 2. Transformaciones afines como matrices
 
 Una transformación afín en 2D o 3D se describe con una matriz que contiene:
 
@@ -51,7 +51,7 @@ $$
 ![[Transformacion afin - composicion matriz.png]]
 *Estructura de una transformación afín: bloque de rotación + vector de traslación. Slide 34.*
 
-## 3. Composición e inversa  *(Teóricas 01-algebra_lineal, slide 35)*
+## 3. Composición e inversa
 
 **Composición** — el producto de dos transformaciones homogéneas es otra transformación homogénea:
 
@@ -73,7 +73,7 @@ $$
 ![[Composicion - sistemas multiples.png]]
 *Diagrama con múltiples sistemas (mundo, cámara fija, robot, cámara sobre robot, objeto) conectados por transformaciones homogéneas. Slide 36.*
 
-## 4. Pose de un robot  *(Teóricas 01-algebra_lineal, slide 37)*
+## 4. Pose de un robot
 
 La **pose** (posición + orientación) de un robot es exactamente una transformación homogénea. Dado un vector posición ${}^W\mathbf{p}$ y una matriz de orientación ${}^W\mathbf{O}_B$ del robot $B$ en el mundo $W$:
 
@@ -86,7 +86,7 @@ La pose **toma elementos en coordenadas del robot y los devuelve en coordenadas 
 ![[Pose de un robot.png]]
 *La pose como transformación homogénea entre el sistema del robot y el sistema del mundo. Slide 37.*
 
-## 5. Combinando transformaciones  *(Teóricas 01-algebra_lineal, slides 38–40)*
+## 5. Combinando transformaciones
 
 Caso de uso típico: el robot tiene un sensor montado encima, y el sensor percibe un objeto. ¿Dónde está el objeto en coordenadas del mundo?
 
@@ -113,4 +113,9 @@ Este patrón **mundo → robot → sensor → objeto** (y sus variantes) aparece
 - Aplicación directa en [[2. Locomoción/Locomoción|locomoción]] (pose del robot que cambia con el tiempo) y [[3. Sensores y Modelos/Sensores y Modelos|sensores]] (coordenadas relativas).
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` — slides 32–40.
+- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf`
+  - slides 32–33 → 1. Rototraslación
+  - slide 34 → 2. Transformaciones afines como matrices
+  - slide 35 → 3. Composición e inversa
+  - slide 37 → 4. Pose de un robot
+  - slides 38–40 → 5. Combinando transformaciones

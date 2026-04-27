@@ -13,7 +13,7 @@ ultima_actualizacion: 2026-04-26
 
 > Framework de middleware para sistemas robóticos con arquitectura distribuida basada en nodos.
 
-## ¿Qué es ROS2?  *(Tutorial 1, págs. 1–8)*
+## ¿Qué es ROS2?
 
 ROS2 (Robot Operating System 2) es un framework que provee herramientas y librerías para construir sistemas robóticos. No es un sistema operativo propiamente dicho, sino un conjunto de herramientas que facilitan la comunicación entre procesos, la gestión de dispositivos, y el manejo de datos en tiempo real.
 
@@ -89,4 +89,5 @@ ros2 topic echo /topic_name
 
 ## Fuentes
 - `Raw/Diapositivas/Tutoriales/Tutorial 1_ Bienvenida e Instalación de ROS2.pdf`
+  - págs. 1–8 → ¿Qué es ROS2?
 - `Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf`

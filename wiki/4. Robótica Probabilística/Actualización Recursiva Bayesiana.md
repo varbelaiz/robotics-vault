@@ -16,12 +16,14 @@ ultima_actualizacion: 2026-04-26
 - [[Regla de Bayes]] — base teórica.
 - [[Probabilidad - Axiomas y Variables Aleatorias]] — independencia condicional.
 
-## 1. El problema  *(Teóricas 05-intro_robo_proba parte 1, slide 20)*
+## 1. El problema
+
 El robot ya estimó $P(\text{abierta} \mid z_1)$ con la primera medición. Ahora obtiene una segunda medición $z_2$. ¿Cómo incorporamos esta nueva información?
 
 En general, **¿cómo estimamos $P(x \mid z_1, \dots, z_n)$?**
 
-## 2. Aplicación recursiva de Bayes con suposición de Markov  *(Teóricas 05-intro_robo_proba parte 1, slide 21)*
+## 2. Aplicación recursiva de Bayes con suposición de Markov
+
 Aplicando Bayes con conocimiento de fondo $z_1, \dots, z_{n-1}$:
 
 $$P(x \mid z_1, \dots, z_n) = \frac{P(z_n \mid x, z_1, \dots, z_{n-1})\,P(x \mid z_1, \dots, z_{n-1})}{P(z_n \mid z_1, \dots, z_{n-1})}$$
@@ -43,7 +45,8 @@ $$P(x \mid z_1, \dots, z_n) = \eta_{1\dots n} \left[\prod_{i=1\dots n} P(z_i \mi
 > [!warning] Idea clave
 > El producto de likelihoods $\prod P(z_i \mid x)$ acumula evidencia sobre cada hipótesis $x$, ponderada por el prior. La normalización $\eta$ se aplica al final.
 
-## 3. Ejemplo: segunda medición de la puerta  *(Teóricas 05-intro_robo_proba parte 1, slide 22)*
+## 3. Ejemplo: segunda medición de la puerta
+
 Continuamos con el ejemplo anterior. El robot ya tenía $P(\text{abierta} \mid z_1) = 2/3$. Ahora obtiene una segunda medición $z_2$ con likelihood:
 
 - $P(z_2 \mid \text{abierta}) = 0.25$
@@ -71,4 +74,7 @@ Esta vez, $z_2$ **disminuye** la probabilidad de que la puerta esté abierta (po
 - [[Modelo de Sensor Basado en Haz]] — una de las formas de obtener $P(z_i \mid x)$.
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — slides 20–22.
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - slide 20 → 1. El problema
+  - slide 21 → 2. Aplicación recursiva de Bayes con suposición de Markov
+  - slide 22 → 3. Ejemplo: segunda medición de la puerta

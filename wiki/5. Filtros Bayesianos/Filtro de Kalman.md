@@ -19,7 +19,7 @@ ultima_actualizacion: 2026-04-26
 - [[Algebra Lineal|Matrices y operaciones]]
 - [[Filtros Discretos]] — la versión discreta de la misma idea
 
-## 1. Introducción  *(10-filtro_de_kalman, págs. 1–3)*
+## 1. Introducción
 
 El filtro de Kalman es el **estimador óptimo** (mínimo error cuadrático medio) para sistemas
 que cumplen dos condiciones:
@@ -32,7 +32,7 @@ que cumplen dos condiciones:
 Bajo estos supuestos, el filtro mantiene la creencia como una única Gaussiana multivariada,
 representada compactamente por solo dos parámetros: la media y la covarianza.
 
-## 2. Modelo del sistema  *(10-filtro_de_kalman, págs. 4–5)*
+## 2. Modelo del sistema
 
 ### Modelo de transición (dinámica)
 
@@ -57,7 +57,7 @@ donde:
 - $C_t$ es la **matriz de observación** (qué parte del estado es observable).
 - $\delta_t \sim \mathcal{N}(0, Q_t)$ es el **ruido de medición** gaussiano.
 
-## 3. Componentes del filtro  *(10-filtro_de_kalman, pág. 10)*
+## 3. Componentes del filtro
 
 ![[kalman-components.png]]
 *Componentes del filtro de Kalman.*
@@ -65,7 +65,7 @@ donde:
 Las matrices $R_t$ (covarianza del ruido de proceso) y $Q_t$ (covarianza del ruido de sensor)
 son parámetros críticos que requieren sintonización. Valores mal calibrados llevan a sobreconfianza o subconfianza.
 
-## 4. Algoritmo — caso 1D intuitivo  *(10-filtro_de_kalman, págs. 11–12)*
+## 4. Algoritmo — caso 1D intuitivo
 
 ### Predicción
 
@@ -96,12 +96,12 @@ El término $K_t$ es la **ganancia de Kalman**. Determina cuánto "confiar" en l
 
 El término $(z_t - C_t \bar{\mu}_t)$ es la **innovación**: la diferencia entre lo medido y lo esperado.
 
-## 5. Algoritmo completo — pseudocódigo  *(10-filtro_de_kalman, pág. 18)*
+## 5. Algoritmo completo — pseudocódigo
 
 ![[kalman-algorithm-pseudocode.png]]
 *Pseudocódigo del filtro de Kalman.*
 
-## 6. Ciclo predict-update visual  *(10-filtro_de_kalman, págs. 22–24)*
+## 6. Ciclo predict-update visual
 
 ![[kalman-predict-cycle.png]]
 *Ciclo de predicción del Kalman.*
@@ -132,4 +132,10 @@ Para $d$ pequeño (típico en robótica: $d = 3$ a $10$), es extremadamente ráp
 - ➡️ [[UKF]] — extensión alternativa vía sigma points
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf` — págs. 1–24
+- `Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf`
+  - págs. 1–3 → 1. Introducción
+  - págs. 4–5 → 2. Modelo del sistema
+  - pág. 10 → 3. Componentes del filtro
+  - págs. 11–12 → 4. Algoritmo — caso 1D intuitivo
+  - pág. 18 → 5. Algoritmo completo — pseudocódigo
+  - págs. 22–24 → 6. Ciclo predict-update visual

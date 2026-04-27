@@ -16,7 +16,8 @@ ultima_actualizacion: 2026-04-26
 - [[Cinemática del Robot Diferencial]] — la idea de ICC y la lógica de derivación se reutilizan.
 - [[Locomoción y Tipos de Accionamientos]] — diferenciar holonómicos de no-holonómicos.
 
-## 1. Dirección tipo Ackermann  *(Teóricas 03-locomocion, slides 24–25)*
+## 1. Dirección tipo Ackermann
+
 La **dirección Ackermann** es la del automóvil convencional: dos ruedas delanteras directrices que giran ángulos distintos para que todas las ruedas pivoten alrededor del mismo ICC.
 
 ![[Ackermann - setup.png]]
@@ -34,7 +35,8 @@ $$ICC = [\,x - R\sin\theta,\; y + R\cos\theta\,]$$
 > [!info] No-holonómico
 > Igual que el diferencial, Ackermann es **no-holonómico**: no puede moverse lateralmente (no se puede estacionar en paralelo sin maniobras).
 
-## 2. Accionamiento síncrono  *(Teóricas 03-locomocion, slides 26–27)*
+## 2. Accionamiento síncrono
+
 En un robot **síncrono**, todas las ruedas giran al unísono y rotan al unísono — un único motor controla la velocidad lineal $V(t)$ y otro controla la orientación $\omega(t)$. La trayectoria es:
 
 $$x(t) = \int_0^t V(t)\cos[\theta(t)]\,dt$$
@@ -49,7 +51,8 @@ Un ejemplo histórico es el **XR4000** (Nomadics), con cuatro ruedas síncronas:
 ![[Sincrono - XR4000.png]]
 *XR4000 con accionamiento síncrono de cuatro ruedas, slide 27.*
 
-## 3. Ruedas Mecanum  *(Teóricas 03-locomocion, slide 28)*
+## 3. Ruedas Mecanum
+
 Las **ruedas Mecanum** tienen rodillos a 45° en su circunferencia. Combinando las velocidades de las cuatro ruedas se puede lograr movimiento omnidireccional:
 
 $$v_y = (v_0 + v_1 + v_2 + v_3)/4$$
@@ -62,13 +65,15 @@ El cuarto término ($v_{\text{error}}$) debe ser cero en operación válida; es 
 ![[Mecanum - ecuaciones.png]]
 *Robot con ruedas Mecanum y sus ecuaciones cinemáticas, slide 28.*
 
-## 4. Plataforma Kuka OmniRob  *(Teóricas 03-locomocion, slide 30)*
+## 4. Plataforma Kuka OmniRob
+
 Plataforma comercial holonómica con ruedas omni:
 
 ![[Kuka OmniRob.png]]
 *Plataforma Kuka OmniRob con accionamiento omnidireccional, slide 30.*
 
-## 5. Omnibot de 3 ruedas  *(Teóricas 03-locomocion, slide 31)*
+## 5. Omnibot de 3 ruedas
+
 Configuración de tres ruedas omni a 120°. La cinemática es:
 
 $${}^{I}\dot{\boldsymbol{\xi}} = R(\theta)^{-1}\,J_{1f}^{-1}\,J_2\,\dot{\boldsymbol{\varphi}}$$
@@ -80,7 +85,8 @@ $$J_{1f} = \begin{bmatrix} \sin\tfrac{\pi}{3} & -\cos\tfrac{\pi}{3} & -l \\ 0 & 
 ![[Omnibot - 3 ruedas.png]]
 *Omnibot de 3 ruedas omnidireccionales a 120°, slide 31.*
 
-## 6. Otros tipos de vehículos  *(Teóricas 03-locomocion, slide 33)*
+## 6. Otros tipos de vehículos
+
 Más allá de las ruedas, otros tipos de plataformas con cinemática propia:
 
 - **Oruga** — tracción por orugas (tanques pequeños, exploración).
@@ -93,4 +99,10 @@ Más allá de las ruedas, otros tipos de plataformas con cinemática propia:
 *Oruga, anfibio, hexápodo, bípedo, drone aéreo, slide 33.*
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf` — slides 24–33.
+- `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf`
+  - slides 24–25 → 1. Dirección tipo Ackermann
+  - slides 26–27 → 2. Accionamiento síncrono
+  - slide 28 → 3. Ruedas Mecanum
+  - slide 30 → 4. Plataforma Kuka OmniRob
+  - slide 31 → 5. Omnibot de 3 ruedas
+  - slide 33 → 6. Otros tipos de vehículos

@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Una variable aleatoria que toma valores en un continuo, con una función de densidad de probabilidad.
 
-## Definición  *(05-intro_robo_proba parte 1, págs. 7, 8)*
+## Definición
 
 ![[proba - variables aleatorias continuas.png]]
 *Variable aleatoria continua con función de densidad de probabilidad.*
@@ -41,4 +41,5 @@ $$P(a \leq X \leq b) = \int_{a}^{b} p(x) \, dx$$
 - [[Filtro de Kalman]] — trabaja con distribuciones gaussianas continuas
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — págs. 7, 8
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - págs. 7, 8 → Definición

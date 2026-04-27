@@ -17,7 +17,7 @@ ultima_actualizacion: 2026-04-26
 - [[Filtro de Kalman]]
 - [[Gaussiana Multivariada]]
 
-## 1. Problema con la linealidad  *(11-filtro_de_kalman_extendido, págs. 1–4)*
+## 1. Problema con la linealidad
 
 El [[Filtro de Kalman]] estándar solo funciona cuando los modelos de transición y observación son lineales.
 Pero en robótica, casi todos los modelos son **no lineales**:
@@ -34,7 +34,7 @@ Pero en robótica, casi todos los modelos son **no lineales**:
 Si el modelo es solo "ligeramente no lineal", la aproximación lineal del Kalman puede funcionar razonablemente.
 Pero si la no linealidad es significativa, se necesita una extensión.
 
-## 2. Distribuciones no Gaussianas  *(11-filtro_de_kalman_extendido, págs. 8–9)*
+## 2. Distribuciones no Gaussianas
 
 ![[ekf-non-gaussian.png]]
 *Cuando la no linealidad distorsiona la Gaussiana.*
@@ -42,7 +42,7 @@ Pero si la no linealidad es significativa, se necesita una extensión.
 Transformaciones no lineales de una Gaussiana producen distribuciones **no Gaussianas**.
 El EKF **asume** que la Gaussiana linealizada es una aproximación aceptable.
 
-## 3. Linearización por Taylor  *(11-filtro_de_kalman_extendido, págs. 12–14)*
+## 3. Linearización por Taylor
 
 La idea del EKF es **linealizar** las funciones no lineales alrededor de la media estimada.
 
@@ -66,7 +66,7 @@ $$F_{ij} = \frac{\partial f_i}{\partial x_j}$$
 El EKF evalúa el Jacobiano en el punto de la **media actual** ($\mu$), no en un punto fijo.
 Esto permite que la linealización se adapte a medida que el robot se mueve.
 
-## 4. EKF — modelo linearizado  *(11-filtro_de_kalman_extendido, págs. 15–16)*
+## 4. EKF — modelo linearizado
 
 ![[ekf-linearized-functions.png]]
 *Funciones linearizadas para el EKF.*
@@ -79,7 +79,7 @@ Se linearizan como:
 - $f(x, u) \approx f(\mu, u) + F (x - \mu)$ donde $F = \partial f / \partial x |_{\mu}$
 - $h(x) \approx h(\mu) + H (x - \mu)$ donde $H = \partial h / \partial x |_{\mu}$
 
-## 5. Algoritmo EKF — Predicción  *(11-filtro_de_kalman_extendido, pág. 27)*
+## 5. Algoritmo EKF — Predicción
 
 ![[ekf-algorithm-prediction.png]]
 *Paso de predicción del EKF.*
@@ -91,7 +91,7 @@ Se linearizan como:
 La diferencia con el KF está en el paso 1 (se usa $f$ no lineal directamente)
 y el paso 2 (se calcula el Jacobiano $F_t$ en lugar de usar la matriz $A_t$ fija).
 
-## 6. Algoritmo EKF — Corrección  *(11-filtro_de_kalman_extendido, pág. 30)*
+## 6. Algoritmo EKF — Corrección
 
 ![[ekf-algorithm-correction.png]]
 *Paso de corrección del EKF.*
@@ -103,7 +103,7 @@ y el paso 2 (se calcula el Jacobiano $F_t$ en lugar de usar la matriz $A_t$ fija
 5. **Actualización del estado:** $\mu_t = \bar{\mu}_t + K_t y$
 6. **Actualización de covarianza:** $\Sigma_t = (I - K_t H_t) \bar{\Sigma}_t$
 
-## 7. Ejemplo: modelo de odometría  *(11-filtro_de_kalman_extendido, págs. 17–19)*
+## 7. Ejemplo: modelo de odometría
 
 El modelo de odometría para un robot diferencial es no lineal:
 
@@ -118,7 +118,7 @@ Los Jacobianos de este modelo:
 ![[ekf-odometry-jacobian-control.png]]
 *Jacobiano del modelo de odometría respecto al control.*
 
-## 8. Ejemplo: modelo de sensor con landmarks  *(11-filtro_de_kalman_extendido, págs. 32–34)*
+## 8. Ejemplo: modelo de sensor con landmarks
 
 Si el robot mide la distancia euclídea a un landmark conocido:
 
@@ -134,7 +134,7 @@ $$H = \begin{bmatrix} \frac{x_x - l_x}{h(x)} & \frac{x_y - l_y}{h(x)} & 0 \end{b
 ![[ekf-correction-innovation.png]]
 *Corrección del EKF: innovación y actualización.*
 
-## 9. Resultados y precisión  *(11-filtro_de_kalman_extendido, págs. 35+)*
+## 9. Resultados y precisión
 
 ![[ekf-result-ground-truth.png]]
 *Resultado del EKF comparado con la trayectoria real.*
@@ -153,4 +153,13 @@ Estas limitaciones motivan el [[UKF]], que evita la linearización usando sigma 
 - ➡️ [[Puntos Sigma]] — base del UKF
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/11-filtro_de_kalman_extendido-3.pdf` — págs. 1–43
+- `Raw/Diapositivas/Teoricas/11-filtro_de_kalman_extendido-3.pdf`
+  - págs. 1–4 → 1. Problema con la linealidad
+  - págs. 8–9 → 2. Distribuciones no Gaussianas
+  - págs. 12–14 → 3. Linearización por Taylor
+  - págs. 15–16 → 4. EKF — modelo linearizado
+  - pág. 27 → 5. Algoritmo EKF — Predicción
+  - pág. 30 → 6. Algoritmo EKF — Corrección
+  - págs. 17–19 → 7. Ejemplo: modelo de odometría
+  - págs. 32–34 → 8. Ejemplo: modelo de sensor con landmarks
+  - págs. 35+ → 9. Resultados y precisión

@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Dos enfoques para representar el mapa: características discretas vs grilla densa.
 
-## 1. Comparación de enfoques  *(12-mapas_de_ocupacion, pág. 7)*
+## 1. Comparación de enfoques
 
 ![[features-vs-volumetric.png]]
 *Features vs mapas volumétricos, pág. 7.*
@@ -35,4 +35,5 @@ ultima_actualizacion: 2026-04-26
 - [[EKF]] — se usa en EKF-SLAM con features
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf` — pág. 7
+- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf`
+  - pág. 7 → 1. Comparación de enfoques

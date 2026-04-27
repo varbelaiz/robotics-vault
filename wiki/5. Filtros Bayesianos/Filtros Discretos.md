@@ -20,7 +20,7 @@ ultima_actualizacion: 2026-04-26
 - [[Modelo de Sensor]]
 - [[Localización]]
 
-## 1. Motivación y problema  *(08-filtros_discretos, págs. 1–2)*
+## 1. Motivación y problema
 
 El filtro Bayesiano discreto es la formulación práctica más elemental de la localización probabilística.
 Dado un espacio de estado finito (o discretizado), la **creencia** sobre el estado del robot se representa
@@ -29,7 +29,7 @@ como un vector de probabilidades —una por cada celda—, que suma 1.
 El problema de localización en su forma discreta responde a: *"¿En qué celda del mapa se encuentra el robot?"*,
 actualizando la respuesta recursivamente con cada acción y cada observación.
 
-## 2. Representación y supuestos  *(08-filtros_discretos, págs. 3–5)*
+## 2. Representación y supuestos
 
 La creencia se representa como una **distribución de probabilidad por tramos constante** (*piecewise constant*):
 
@@ -43,7 +43,7 @@ La creencia se representa como una **distribución de probabilidad por tramos co
 Esta representación es exacta cuando el estado es naturalmente discreto (p. ej., un robot que se mueve
 entre habitaciones) y aproximada cuando el espacio es continuo pero se discretiza con una resolución adecuada.
 
-## 3. Algoritmo Bayesiano discreto  *(08-filtros_discretos, págs. 6–7)*
+## 3. Algoritmo Bayesiano discreto
 
 El filtro discreto sigue la misma estructura predict/correct del filtro Bayesiano general:
 
@@ -76,7 +76,7 @@ donde $\mathbf{Z}_{z_t}$ es un vector diagonal de **verosimilitudes** $P(z_t | c
 El factor $\eta = 1 / \sum_i b(c_i)$ asegura que el vector resultante sume 1. Este factor es la **marginal**
 $P(z_t | u_t, z_{1:t-1})$, es decir, la probabilidad de la observación dadas las acciones y observaciones previas.
 
-## 4. Grid-based localization  *(08-filtros_discretos, págs. 8–10)*
+## 4. Grid-based localization
 
 La aplicación más directa es la **localización en cuadrícula**:
 
@@ -92,7 +92,7 @@ con ruido, el kernel de convolución distribuye la probabilidad entre la celda d
 La corrección sensorial multiplica cada celda por su verosimilitud: si el sensor reporta "pared a la izquierda"
 y la celda $(i,j)$ tiene pared a la izquierda, $P(z | c_{i,j})$ es alto; si no tiene pared, es bajo.
 
-## 5. Integración con mapas de ocupación  *(08-filtros_discretos, págs. 11–12)*
+## 5. Integración con mapas de ocupación
 
 La representación discreta se combina naturalmente con **mapas de ocupación** generados por sensores sónicos:
 
@@ -103,7 +103,7 @@ Cada lectura del sonar proyecta una celda libre (donde el haz no encontró obst�
 (en el punto de impacto). Acumulando lecturas se construye un mapa probabilístico que puede usarse
 como base para el modelo de sensor en la localización discreta.
 
-## 6. Resumen y limitaciones  *(08-filtros_discretos, pág. 12)*
+## 6. Resumen y limitaciones
 
 ![[discrete-filters-summary.png]]
 *Resumen del filtro Bayesiano discreto.*
@@ -128,4 +128,10 @@ y los **filtros Gaussianos** ([[Filtro de Kalman]]).
 - ➡️ [[Filtro de Kalman]] — aproximación Gaussiana para espacios continuos
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/08-filtros_discretos-3.pdf` — págs. 1–12
+- `Raw/Diapositivas/Teoricas/08-filtros_discretos-3.pdf`
+  - págs. 1–2 → 1. Motivación y problema
+  - págs. 3–5 → 2. Representación y supuestos
+  - págs. 6–7 → 3. Algoritmo Bayesiano discreto
+  - págs. 8–10 → 4. Grid-based localization
+  - págs. 11–12 → 5. Integración con mapas de ocupación
+  - pág. 12 → 6. Resumen y limitaciones

@@ -15,7 +15,7 @@ ultima_actualizacion: 2026-04-26
 ## Prerequisitos
 - Ninguno — primer ladrillo del módulo.
 
-## 1. Definición y representación  *(Teóricas 01-algebra_lineal, slide 2)*
+## 1. Definición y representación
 
 Un vector $\mathbf{a}$ es simplemente un arreglo de números:
 
@@ -28,14 +28,14 @@ Geométricamente, un vector representa **un punto en un espacio de dimensión $n
 ![[Vector - definicion.png]]
 *Vector como arreglo de números y como punto en el plano. Slide 2.*
 
-## 2. Operaciones básicas  *(Teóricas 01-algebra_lineal, slide 3)*
+## 2. Operaciones básicas
 
 - **Producto por escalar** — escala la magnitud sin cambiar la dirección.
 - **Suma de vectores** — componente a componente.
 - **Producto interno** — devuelve un escalar (sección 3).
 - **Norma** — devuelve la longitud.
 
-## 3. Producto interno  *(Teóricas 01-algebra_lineal, slide 4)*
+## 3. Producto interno
 
 Dados dos vectores $\mathbf{a}, \mathbf{b}$ del mismo tamaño:
 
@@ -52,7 +52,7 @@ Es **conmutativo** y **devuelve un escalar**.
 
 **Ortogonalidad**: dos vectores son ortogonales sii $\mathbf{a} \cdot \mathbf{b} = 0$.
 
-## 4. (In)Dependencia lineal  *(Teóricas 01-algebra_lineal, slides 5–6)*
+## 4. (In)Dependencia lineal
 
 Un vector $\mathbf{b}$ es **linealmente dependiente** de un conjunto $\{\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n\}$ si existen coeficientes $\{k_i\}$ tales que:
 
@@ -72,4 +72,8 @@ Si **no existen** tales coeficientes, $\mathbf{b}$ es **linealmente independient
 - La independencia lineal es el concepto base para [[Matrices|rango]] de una matriz.
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` — slides 2–6.
+- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf`
+  - slide 2 → 1. Definición y representación
+  - slide 3 → 2. Operaciones básicas
+  - slide 4 → 3. Producto interno
+  - slides 5–6 → 4. (In)Dependencia lineal

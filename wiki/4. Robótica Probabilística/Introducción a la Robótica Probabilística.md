@@ -13,7 +13,7 @@ ultima_actualizacion: 2026-04-26
 
 > Representación explícita de la incertidumbre usando cálculo de probabilidades. "Tratemos de saber lo que no sabemos."
 
-## Idea central  *(05-intro_robo_proba parte 1, pág. 2)*
+## Idea central
 
 La robótica probabilística modela explícitamente la incertidumbre inherente en:
 - **Sensores ruidosos**: mediciones imperfectas, obstáculos inesperados, crosstalk
@@ -43,5 +43,6 @@ Los sistemas robóticos autónomos deben estimar su estado (posición, orientaci
 - [[Filtro de Bayes]] — algoritmo recursivo de estimación
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — págs. 1–6
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf` — pág. 45 (resumen)
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - pág. 2 → Idea central
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf`

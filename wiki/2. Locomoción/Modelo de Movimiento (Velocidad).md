@@ -16,13 +16,15 @@ ultima_actualizacion: 2026-04-26
 - [[Cinemática del Robot Diferencial]] — la idea de ICC reaparece acá.
 - [[Odometría y Modelo de Movimiento (Odometría)]] — modelo paralelo basado en encoders.
 
-## 1. Cuándo usar este modelo  *(Teóricas 06-modelos-de-movimiento, slide 7)*
+## 1. Cuándo usar este modelo
+
 Existen dos modelos de movimiento clásicos:
 
 - **Basado en odometría**: para sistemas equipados con **encoders** en las ruedas.
 - **Basado en velocidad** (dead reckoning): cuando **no hay encoders**. Calcula la nueva pose basándose en las velocidades comandadas y el tiempo transcurrido (e.g. usando una [[IMU - Acelerómetro, Giróscopo, Magnetómetro|IMU]]).
 
-## 2. Setup: control como velocidad  *(Teóricas 06-modelos-de-movimiento, slide 34)*
+## 2. Setup: control como velocidad
+
 El control es:
 $$u = (v, \omega)^T$$
 
@@ -31,7 +33,8 @@ donde $v$ es la velocidad lineal y $\omega$ la velocidad angular. La trayectoria
 ![[Velocidad - modelo setup.png]]
 *El robot se mueve sobre un arco con radio $r = v/\omega$, ICC en $\langle x_c, y_c\rangle$, slide 34.*
 
-## 3. Modelo de ruido (primera versión)  *(Teóricas 06-modelos-de-movimiento, slide 35)*
+## 3. Modelo de ruido (primera versión)
+
 La velocidad medida es la verdadera más ruido proporcional a las velocidades:
 
 $$\hat{v} = v + \varepsilon_{\alpha_1|v| + \alpha_2|\omega|}$$
@@ -43,7 +46,8 @@ $$\hat{\omega} = \omega + \varepsilon_{\alpha_3|v| + \alpha_4|\omega|}$$
 > [!warning] Limitación del modelo de 2 parámetros
 > El círculo $(\hat{v}, \hat{\omega})$ limita la orientación final a un manifold 2D dentro del espacio 3D — no se puede explorar toda la pose final.
 
-## 4. Modelo extendido con tercer parámetro  *(Teóricas 06-modelos-de-movimiento, slides 36–37)*
+## 4. Modelo extendido con tercer parámetro
+
 La solución es agregar un tercer ruido $\hat{\gamma}$ que contempla la **rotación final**:
 
 $$\hat{v} = v + \varepsilon_{\alpha_1|v| + \alpha_2|\omega|}$$
@@ -59,7 +63,8 @@ $$\theta' = \theta + \hat{\omega}\Delta t + \hat{\gamma}\Delta t$$
 ![[Velocidad - modelo 3er parametro.png]]
 *El término $\hat{\gamma}\Delta t$ contempla la rotación final, slide 37.*
 
-## 5. Derivación: parámetros del círculo  *(Teóricas 06-modelos-de-movimiento, slides 38–42)*
+## 5. Derivación: parámetros del círculo
+
 Dadas dos poses $x_{t-1} = (x, y, \theta)^T$ y $x_t = (x', y', \theta')^T$, el ICC está en:
 
 $$\begin{pmatrix} x^* \\ y^* \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} -\lambda\sin\theta \\ \lambda\cos\theta \end{pmatrix}$$
@@ -87,7 +92,8 @@ $$\Delta\theta = \text{atan2}(y' - y^*, x' - x^*) - \text{atan2}(y - y^*, x - x^
 Las velocidades correspondientes son:
 $$v = \frac{\Delta\theta}{\Delta t}r^* \qquad \omega = \frac{\Delta\theta}{\Delta t}$$
 
-## 6. Algoritmo `motion_model_velocity`  *(Teóricas 06-modelos-de-movimiento, slide 44)*
+## 6. Algoritmo `motion_model_velocity`
+
 Cálculo de la probabilidad $p(x_t \mid x_{t-1}, u_t)$:
 
 ```
@@ -110,7 +116,8 @@ motion_model_velocity(x_t, u_t, x_{t-1}):
 ![[Velocidad - motion model algoritmo.png]]
 *Algoritmo `motion_model_velocity`, slide 44.*
 
-## 7. Algoritmo `sample_motion_model_velocity`  *(Teóricas 06-modelos-de-movimiento, slide 45)*
+## 7. Algoritmo `sample_motion_model_velocity`
+
 Para muestrear $x_t$ dado $u_t, x_{t-1}$:
 
 ```
@@ -129,7 +136,8 @@ sample_motion_model_velocity(u_t, x_{t-1}):
 ![[Velocidad - sample motion model algoritmo.png]]
 *Algoritmo `sample_motion_model_velocity`, slide 45.*
 
-## 8. Ejemplos del modelo  *(Teóricas 06-modelos-de-movimiento, slide 46)*
+## 8. Ejemplos del modelo
+
 Como con odometría, la distribución $p(x_t \mid u_t, x_{t-1})$ tiene forma de medialuna, ahora más curvada porque la trayectoria es un arco:
 
 ![[Velocidad - ejemplos sampling.png]]
@@ -141,4 +149,12 @@ Como con odometría, la distribución $p(x_t \mid u_t, x_{t-1})$ tiene forma de 
 - [[Filtro de Kalman]] / [[EKF]] — la versión linealizada se usa como modelo de transición (forward-ref, M5).
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf` — slides 33–48.
+- `Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf`
+  - slide 7 → 1. Cuándo usar este modelo
+  - slide 34 → 2. Setup: control como velocidad
+  - slide 35 → 3. Modelo de ruido (primera versión)
+  - slides 36–37 → 4. Modelo extendido con tercer parámetro
+  - slides 38–42 → 5. Derivación: parámetros del círculo
+  - slide 44 → 6. Algoritmo `motion_model_velocity`
+  - slide 45 → 7. Algoritmo `sample_motion_model_velocity`
+  - slide 46 → 8. Ejemplos del modelo

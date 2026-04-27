@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Unidad básica de ejecución en ROS2: cada nodo es un proceso independiente.
 
-## Definición  *(Tutorial 2, págs. 1–4)*
+## Definición
 
 Un **nodo** es un proceso ejecutable que participa en la red ROS2. Cada nodo:
 - Tiene un nombre único dentro del grafo
@@ -63,3 +63,4 @@ ros2 run pkg nodo --ros-args -r __ns:=/mi_namespace
 
 ## Fuentes
 - `Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf`
+  - págs. 1–4 → Definición

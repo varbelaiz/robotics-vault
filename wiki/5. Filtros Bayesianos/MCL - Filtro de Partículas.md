@@ -20,7 +20,7 @@ ultima_actualizacion: 2026-04-26
 - [[Modelo de Sensor]]
 - [[Localización]]
 
-## 1. Motivación  *(09-filtro-de-particulas-mcl, págs. 1–2)*
+## 1. Motivación
 
 El filtro Bayesiano discreto ([[Filtros Discretos]]) es exacto pero su complejidad crece exponencialmente
 con la dimensionalidad del espacio. Para un robot móvil 2D con estado $(x, y, \theta)$,
@@ -35,7 +35,7 @@ aproximando la distribución continua mediante $N$ muestras ponderadas llamadas 
 Cada partícula representa una hipótesis sobre el estado del robot: "el robot *podría* estar aquí".
 Las partículas cercanas a la posición real acumulan mayor peso; las lejanas, menor peso.
 
-## 2. Representación de la creencia  *(09-filtro-de-particulas-mcl, págs. 3–5)*
+## 2. Representación de la creencia
 
 La creencia se aproxima como una mezcla discreta de deltas de Dirac:
 
@@ -56,7 +56,7 @@ La **varianza** como:
 
 $$\text{Var}(x_t) = \sum_{i=1}^N w^{(i)} \, (x_t^{(i)} - \hat{x}_t)^2$$
 
-## 3. Algoritmo  *(09-filtro-de-particulas-mcl, págs. 21–22)*
+## 3. Algoritmo
 
 ![[particle-filter-algorithm-steps.png]]
 *Pasos del algoritmo de filtro de partículas.*
@@ -87,7 +87,7 @@ y comparándolo con la lectura real $z_t$.
 Seleccionar $N$ nuevas partículas de la población actual, con probabilidad proporcional al peso.
 Las partículas con alto peso se duplican; las de peso bajo desaparecen.
 
-## 4. Resampling  *(09-filtro-de-particulas-mcl, págs. 24–26)*
+## 4. Resampling
 
 ![[systematic-resampling.png]]
 *Algoritmo de resampling sistemático.*
@@ -110,7 +110,7 @@ El resampling soluciona esto al eliminar partículas de bajo peso y duplicar las
 
 Este método es más eficiente que el resampling discreto simple porque solo necesita un número aleatorio.
 
-## 5. Modelo de movimiento  *(09-filtro-de-particulas-mcl, págs. 25–26)*
+## 5. Modelo de movimiento
 
 El modelo de movimiento se compone en dos pasos: rotación y traslación, siguiendo el modelo del
 odómetro del robot.
@@ -133,7 +133,7 @@ donde $\varepsilon_1, \varepsilon_2$ son ruido gaussiano proporcional a los coma
 ![[motion-model-noise.png]]
 *Ruido añadido al modelo de movimiento.*
 
-## 6. Ejemplo de localización práctica  *(09-filtro-de-particulas-mcl, págs. 27+)*
+## 6. Ejemplo de localización práctica
 
 ![[mobile-robot-localization.png]]
 *Localización del robot móvil mediante MCL.*
@@ -171,4 +171,10 @@ El proceso completo en un escenario real:
 - ➡️ [[Filtro de Kalman]] — alternativa Gaussiana para espacios unimodales
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/09-filtro-de-particulas-mcl-4.pdf` — págs. 1–27
+- `Raw/Diapositivas/Teoricas/09-filtro-de-particulas-mcl-4.pdf`
+  - págs. 1–2 → 1. Motivación
+  - págs. 3–5 → 2. Representación de la creencia
+  - págs. 21–22 → 3. Algoritmo
+  - págs. 24–26 → 4. Resampling
+  - págs. 25–26 → 5. Modelo de movimiento
+  - págs. 27+ → 6. Ejemplo de localización práctica

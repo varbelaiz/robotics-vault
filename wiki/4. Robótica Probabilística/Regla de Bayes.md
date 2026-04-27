@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Actualización de creencias al recibir nueva evidencia. El corazón de la robótica probabilística.
 
-## Fórmula  *(05-intro_robo_proba parte 1, pág. 13)*
+## Fórmula
 
 ![[proba - formula de bayes.png]]
 *La fórmula de Bayes: convierte conocimiento causal en diagnóstico.*
@@ -25,7 +25,7 @@ Donde:
 - $P(x \mid z)$: **posterior** — creencia actualizada
 - $P(z)$: **evidencia** — factor de normalización
 
-## Normalización  *(05-intro_robo_proba parte 1, pág. 14)*
+## Normalización
 
 ![[proba - normalizacion.png]]
 *El factor de normalización $\eta = 1/P(z)$ asegura que la posterior sume 1.*
@@ -37,13 +37,13 @@ La evidencia se calcula como:
 
 En la práctica, se calcula $\eta$ para que la distribución resultante esté normalizada.
 
-## Bayes con conocimiento de fondo  *(05-intro_robo_proba parte 1, pág. 15)*
+## Bayes con conocimiento de fondo
 
 Cuando hay variables adicionales (conocimiento de fondo $b$):
 
 $$P(x \mid z, b) = \frac{P(z \mid x, b) P(x \mid b)}{P(z \mid b)}$$
 
-## Independencia condicional  *(05-intro_robo_proba parte 1, pág. 16)*
+## Independencia condicional
 
 Si $X$ e $Y$ son incondicionalmente dependientes, pueden ser **condicionalmente independientes** dado $Z$:
 
@@ -51,7 +51,7 @@ $$P(x \mid y, z) = P(x \mid z)$$
 
 Esto no implica que $P(y \mid x, z) = P(y \mid z)$ ni que $P(x, y \mid z) = P(x \mid z) P(y \mid z)$ automáticamente.
 
-## Combinando evidencia  *(05-intro_robo_proba parte 1, págs. 20–22)*
+## Combinando evidencia
 
 ¿Cómo incorporar múltiples mediciones $z_1, z_2, \ldots, z_n$?
 
@@ -77,4 +77,9 @@ La segunda medición **disminuye** la probabilidad de que la puerta esté abiert
 - [[Filtros Discretos]] — implementación en espacio discreto
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — págs. 13–22
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - pág. 13 → Fórmula
+  - pág. 14 → Normalización
+  - pág. 15 → Bayes con conocimiento de fondo
+  - pág. 16 → Independencia condicional
+  - págs. 20–22 → Combinando evidencia

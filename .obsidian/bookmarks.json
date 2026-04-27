@@ -1,0 +1,363 @@
+{
+  "items": [
+    {
+      "type": "group",
+      "ctime": 1777297719894,
+      "title": "sortspec",
+      "items": [
+        {
+          "type": "group",
+          "title": "wiki",
+          "ctime": 1745798400000,
+          "items": [
+            {
+              "type": "group",
+              "title": "1. Fundamentos",
+              "ctime": 1745798400000,
+              "items": [
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Fundamentos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Introducción a la Robótica Móvil.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Paradigmas de Control de Robots.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Vectores.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Matrices.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Matriz Definida Positiva.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Matriz Jacobiana.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Rotaciones.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/1. Fundamentos/Transformaciones Homogéneas.md"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "title": "2. Locomoción",
+              "ctime": 1745798400000,
+              "items": [
+                {
+                  "type": "file",
+                  "path": "wiki/2. Locomoción/Locomoción.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/2. Locomoción/Locomoción y Tipos de Accionamientos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/2. Locomoción/Cinemática del Robot Diferencial.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/2. Locomoción/Otros Accionamientos - Ackermann, Síncrono, Omni.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/2. Locomoción/Odometría y Modelo de Movimiento (Odometría).md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/2. Locomoción/Modelo de Movimiento (Velocidad).md"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "title": "3. Sensores y Modelos",
+              "ctime": 1745798400000,
+              "items": [
+                {
+                  "type": "file",
+                  "path": "wiki/3. Sensores y Modelos/Sensores y Modelos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/3. Sensores y Modelos/Sensores Internos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/3. Sensores y Modelos/Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/3. Sensores y Modelos/Modelo de Sensor Basado en Haz.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/3. Sensores y Modelos/Modelo de Campo de Verosimilitud.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/3. Sensores y Modelos/Modelo de Detección de Landmarks.md"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "title": "4. Robótica Probabilística",
+              "ctime": 1745798400000,
+              "items": [
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Robótica Probabilística.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Introducción a la Robótica Probabilística.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Axiomas de Probabilidad.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Variables Aleatorias Discretas.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Variables Aleatorias Continuas.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Probabilidad Conjunta.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Probabilidad Condicional.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Regla de Bayes.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Suposición de Markov.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Filtro de Bayes.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Modelo de Movimiento.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Modelo de Sensor.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Actualización Recursiva Bayesiana.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Modelado de Acciones.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Probabilidad - Axiomas y Variables Aleatorias.md"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "title": "5. Filtros Bayesianos",
+              "ctime": 1745798400000,
+              "items": [
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/Filtros Bayesianos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/Filtros Discretos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/MCL - Filtro de Partículas.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/Muestreo por Importancia.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/Gaussiana Multivariada.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/Filtro de Kalman.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/EKF.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/UKF.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/Puntos Sigma.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/5. Filtros Bayesianos/Descomposición de Cholesky.md"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "title": "6. Mapeo",
+              "ctime": 1745798400000,
+              "items": [
+                {
+                  "type": "file",
+                  "path": "wiki/6. Mapeo/Mapeo.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/6. Mapeo/Mapas de Ocupación.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/6. Mapeo/Mapas de Grilla.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/6. Mapeo/Mapeo con Poses Conocidas.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/6. Mapeo/SLAM - Mapeo y Localización Simultánea.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/6. Mapeo/Features vs Mapas Volumétricos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/6. Mapeo/Exploración.md"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "title": "7. ROS2 y TPs",
+              "ctime": 1745798400000,
+              "items": [
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 y TPs.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 - Conceptos Base.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 - Nodos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 - Topics.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 - Mensajes.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 - Publisher.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 - Subscriber.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 - TF2.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/ROS2 - Launch Files.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Gazebo y rviz.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Tutorial 1 - Bienvenida e Instalación de ROS2.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Tutorial 2 - Speaker and Listener.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Tutorial 3 - Interactuando con Gazebo.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Tutorial 5 - Bayes.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Tutorial 6 - Movimiento, Sensores e Histogramas.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Tutorial 7 - Filtro de Partículas.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/Tutorial 8 - KF, EKF, UKF.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/TP1 - Transformaciones, Locomoción y Sensado.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/TP2 - Modelos Probabilísticos y Filtros Discretos.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/7. ROS2 y TPs/TP3 - Filtros de Partículas.md"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

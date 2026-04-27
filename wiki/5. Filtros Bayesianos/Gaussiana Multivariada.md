@@ -19,7 +19,7 @@ ultima_actualizacion: 2026-04-26
 - [[Algebra Lineal|Matrices y operaciones]]
 - [[Regla de Bayes]]
 
-## 1. Definición y notación  *(10-filtro_de_kalman, págs. 3–5)*
+## 1. Definición y notación
 
 La **distribución Gaussiana multivariada** en un espacio $d$-dimensional se escribe:
 
@@ -36,7 +36,7 @@ donde:
 
 La densidad es máxima en $\mathbf{x} = \boldsymbol{\mu}$ y decae exponencialmente con la distancia de Mahalanobis.
 
-## 2. Propiedades clave  *(10-filtro_de_kalman, págs. 6–7)*
+## 2. Propiedades clave
 
 Las Gaussianas tienen propiedades algebraicas cerradas que las hacen ideales para filtrado recursivo:
 
@@ -77,7 +77,7 @@ $$\mathbf{y} \sim \mathcal{N}(\mathbf{A}\boldsymbol{\mu} + \mathbf{b}, \; \mathb
 
 Esta propiedad es el **corazón del paso de predicción del Kalman**.
 
-## 3. Interpretación geométrica  *(10-filtro_de_kalman, pág. 6)*
+## 3. Interpretación geométrica
 
 Los contornos de densidad constante de una Gaussiana multivariada son **elipsoides** en $\mathbb{R}^d$.
 Los ejes del elipsoide están dados por los autovalores y autovectores de $\boldsymbol{\Sigma}$:
@@ -105,4 +105,7 @@ Esta clausura es lo que permite el [[Filtro de Kalman]] ser **óptimo** (no apro
 - ➡️ [[Puntos Sigma]] — método del UKF para propagar Gaussianas sin linealización
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf` — págs. 3–7
+- `Raw/Diapositivas/Teoricas/10-filtro_de_kalman-3.pdf`
+  - págs. 3–5 → 1. Definición y notación
+  - págs. 6–7 → 2. Propiedades clave
+  - pág. 6 → 3. Interpretación geométrica

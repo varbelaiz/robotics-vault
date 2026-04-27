@@ -15,7 +15,7 @@ ultima_actualizacion: 2026-04-26
 ## Prerequisitos
 - *(ninguno — entrada al módulo)*
 
-## 1. Clasificación de sensores  *(Teóricas 04-sensores, slides 2–3)*
+## 1. Clasificación de sensores
 
 Los sensores se clasifican en dos ejes ortogonales:
 
@@ -33,7 +33,8 @@ Los sensores se clasifican en dos ejes ortogonales:
 > [!info] Esta página vs la siguiente
 > Esta página cubre los sensores **propioceptivos** (encoders, IMU) más los **táctiles** (que técnicamente son exteroceptivos pero pasivos y muy locales). La siguiente cubre los exteroceptivos a distancia.
 
-## 2. Encoders ópticos  *(Teóricas 04-sensores, slide 4)*
+## 2. Encoders ópticos
+
 Sensores propioceptivos que miden el giro del rotor por la cantidad de luz que pasa entre un LED y un fotodetector:
 
 - **Encoder incremental** — disco con franjas alternadas; salida pulsada A y B desfasadas para detectar dirección. Cuenta pulsos para medir desplazamiento.
@@ -45,7 +46,8 @@ Sensores propioceptivos que miden el giro del rotor por la cantidad de luz que p
 > [!info] Conexión con M2
 > Los encoders son la base de la [[Odometría y Modelo de Movimiento (Odometría)|odometría]]: sus lecturas alimentan las ecuaciones de cinemática inversa para estimar el desplazamiento del robot.
 
-## 3. Sensores táctiles  *(Teóricas 04-sensores, slide 5)*
+## 3. Sensores táctiles
+
 Miden el **contacto físico** con objetos:
 
 - **Sensor de contacto** — interruptor que se cierra al tocar.
@@ -54,7 +56,8 @@ Miden el **contacto físico** con objetos:
 ![[Sensores tactiles.png]]
 *Sensor de contacto y bumper con resortes y microswitches, slide 5.*
 
-## 4. Magnetómetro  *(Teóricas 04-sensores, slide 6)*
+## 4. Magnetómetro
+
 Mide la intensidad del **campo magnético** mediante el efecto Hall: produce un voltaje proporcional a la intensidad. Tres sensores ortogonales forman un **magnetómetro triaxial** que entrega el vector de campo.
 
 Aplicación típica: brújula digital usando el campo magnético terrestre.
@@ -62,7 +65,8 @@ Aplicación típica: brújula digital usando el campo magnético terrestre.
 ![[Magnetometro.png]]
 *Líneas de campo magnético terrestre, sonda Pioneer, sensor Hall, slide 6.*
 
-## 5. Giróscopo  *(Teóricas 04-sensores, slide 7)*
+## 5. Giróscopo
+
 Mide **velocidades angulares**:
 - Giróscopo mecánico clásico: la magnitud de la precesión es proporcional a la fuerza aplicada e inversamente proporcional a la velocidad de rotación (RPM).
 - Giróscopo MEMS: usa la **fuerza de Coriolis** — fuerza tangencial experimentada por un objeto giratorio en movimiento radial.
@@ -70,7 +74,8 @@ Mide **velocidades angulares**:
 ![[Giroscopo.png]]
 *Giróscopo mecánico y principio MEMS basado en Coriolis, slide 7.*
 
-## 6. Acelerómetro  *(Teóricas 04-sensores, slide 8)*
+## 6. Acelerómetro
+
 Mide aceleración midiendo el cambio en la **capacitancia**:
 - Una masa unida a un resorte se mueve en una dirección.
 - Las placas exteriores fijas forman un capacitor con la masa.
@@ -79,7 +84,8 @@ Mide aceleración midiendo el cambio en la **capacitancia**:
 ![[Acelerometro.png]]
 *Acelerómetro MEMS: masa, resortes, placas fijas formando capacitores C1, C2, slide 8.*
 
-## 7. IMU (Unidad de Medición Inercial)  *(Teóricas 04-sensores, slide 9)*
+## 7. IMU (Unidad de Medición Inercial)
+
 Una **IMU** combina típicamente:
 - 3 giróscopos ortogonales.
 - 3 acelerómetros ortogonales.
@@ -95,7 +101,8 @@ Permite estimar:
 > [!warning] Doble integración → error cuadrático
 > Como la posición se obtiene integrando dos veces el acelerómetro, cualquier **error residual del sensor da error cuadrático en posición**. Por eso la IMU sola no sirve para localización; debe fusionarse con sensores que provean referencias absolutas (GPS, lidar, etc.).
 
-## 8. Tabla resumen  *(Teóricas 04-sensores, slide 28)*
+## 8. Tabla resumen
+
 Clasificación completa: PC = propioceptivo, EC = exteroceptivo, A = activo, P = pasivo.
 
 ![[Sensores - tabla resumen.png]]
@@ -107,4 +114,12 @@ Clasificación completa: PC = propioceptivo, EC = exteroceptivo, A = activo, P =
 - [[Modelo de Movimiento (Velocidad)]] — útil cuando se sustituyen encoders por IMU.
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/04-sensores-3.pdf` — slides 2–9, 28.
+- `Raw/Diapositivas/Teoricas/04-sensores-3.pdf`
+  - slides 2–3 → 1. Clasificación de sensores
+  - slide 4 → 2. Encoders ópticos
+  - slide 5 → 3. Sensores táctiles
+  - slide 6 → 4. Magnetómetro
+  - slide 7 → 5. Giróscopo
+  - slide 8 → 6. Acelerómetro
+  - slide 9 → 7. IMU (Unidad de Medición Inercial)
+  - slide 28 → 8. Tabla resumen

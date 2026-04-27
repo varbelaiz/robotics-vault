@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > La probabilidad de un evento dado que otro evento ha ocurrido.
 
-## Definición  *(05-intro_robo_proba parte 1, pág. 10)*
+## Definición
 
 $P(x \mid y)$ es la probabilidad de $x$ dado $y$:
 
@@ -30,7 +30,7 @@ $$P(x \mid y) = P(x)$$
 
 El conocimiento de $y$ no modifica la probabilidad de $x$.
 
-## Causal vs. Diagnóstico  *(05-intro_robo_proba parte 1, págs. 18–19)*
+## Causal vs. Diagnóstico
 
 En robótica hay dos direcciones de razonamiento:
 
@@ -56,4 +56,6 @@ La medición $z$ eleva la probabilidad de que la puerta esté abierta.
 - [[Modelo de Sensor]] — $P(z \mid x)$ es una probabilidad condicional
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — págs. 10, 18–19
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - pág. 10 → Definición
+  - págs. 18–19 → Causal vs. Diagnóstico

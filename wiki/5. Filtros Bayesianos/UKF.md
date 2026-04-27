@@ -20,7 +20,7 @@ ultima_actualizacion: 2026-04-26
 - [[Descomposición de Cholesky]]
 - [[Gaussiana Multivariada]]
 
-## 1. Motivación  *(11b-filtro_ukf, págs. 1–2)*
+## 1. Motivación
 
 El [[EKF]] lineariza las funciones no lineales con series de Taylor de primer orden. Esto introduce
 errores de truncación que pueden hacer la covarianza inconsistente.
@@ -33,7 +33,7 @@ directamente, y luego reconstruye la media y covarianza a partir de los puntos t
 ![[ukf-kf-ekf-comparison.png]]
 *Comparación: KF (lineal), EKF (linearización), UKF (sigma points).*
 
-## 2. Idea central  *(11b-filtro_ukf, págs. 3–7)*
+## 2. Idea central
 
 El UKF usa la **Unscented Transform** (UT), que se basa en esta observación:
 
@@ -75,7 +75,7 @@ $$\Sigma_{new} = \sum_{i=0}^{2d} W_i^{(c)} (\gamma_i - \mu_{new})(\gamma_i - \mu
 Los pesos $W_i^{(m)}$ y $W_i^{(c)}$ se eligen para que la media y covarianza reconstruidas
 coincidan exactamente con las originales (antes de la transformación).
 
-## 3. Cálculo de la matriz raiz  *(11b-filtro_ukf, págs. 8–11)*
+## 3. Cálculo de la matriz raiz
 
 La matriz raiz $\sqrt{\Sigma}$ se calcula mediante [[Descomposición de Cholesky]]:
 
@@ -90,7 +90,7 @@ $\Sigma = L L^\top$, donde $L$ es triangular inferior. Entonces $\sqrt{\Sigma} =
 Alternativamente, se puede usar la descomposición en autovalores: $\Sigma = V \Lambda V^\top$,
 entonces $\sqrt{\Sigma} = V \sqrt{\Lambda}$.
 
-## 4. Pesos  *(11b-filtro_ukf, págs. 12–13)*
+## 4. Pesos
 
 ![[ukf-sigma-weights.png]]
 *Pesos para la reconstrucción de media y covarianza.*
@@ -102,7 +102,7 @@ $$W_i^{(m)} = \frac{1}{2(d + \lambda)} \quad \text{para } i > 0$$
 $$W_0^{(c)} = \frac{\lambda}{d + \lambda} + (1 - \alpha^2 + \beta)$$
 $$W_i^{(c)} = \frac{1}{2(d + \lambda)} \quad \text{para } i > 0$$
 
-## 5. Resumen de la Unscented Transform  *(11b-filtro_ukf, págs. 14–16)*
+## 5. Resumen de la Unscented Transform
 
 ![[ukf-summary-transform.png]]
 *Resumen del proceso de la Unscented Transform.*
@@ -133,7 +133,7 @@ $$W_i^{(c)} = \frac{1}{2(d + \lambda)} \quad \text{para } i > 0$$
 4. Calcular la covarianza cruzada entre estado y observación.
 5. Calcular la ganancia de Kalman y actualizar $(\mu_t, \Sigma_t)$.
 
-## 7. Comparación EKF vs UKF  *(11b-filtro_ukf, págs. 27–33)*
+## 7. Comparación EKF vs UKF
 
 ![[ukf-vs-ekf-comparison.png]]
 *Comparación directa: EKF vs UKF.*
@@ -167,4 +167,10 @@ El EKF sigue siendo útil cuando:
 - ⬅️ [[Gaussiana Multivariada]] — distribución que se propaga
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/11b-filtro_ukf-3.pdf` — págs. 1–40
+- `Raw/Diapositivas/Teoricas/11b-filtro_ukf-3.pdf`
+  - págs. 1–2 → 1. Motivación
+  - págs. 3–7 → 2. Idea central
+  - págs. 8–11 → 3. Cálculo de la matriz raiz
+  - págs. 12–13 → 4. Pesos
+  - págs. 14–16 → 5. Resumen de la Unscented Transform
+  - págs. 27–33 → 7. Comparación EKF vs UKF

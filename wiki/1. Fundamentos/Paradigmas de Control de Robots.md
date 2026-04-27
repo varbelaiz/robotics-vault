@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Evolución de las arquitecturas de control: jerárquico → reactivo → híbrido, con énfasis en el paradigma basado en comportamientos y los campos potenciales.
 
-## 1. Paradigma Clásico (Jerárquico)  *(02-paradigmas, págs. 1–6)*
+## 1. Paradigma Clásico (Jerárquico)
 
 ![[Paradigmas - clasico jerarquico.png]]
 *Paradigma clásico: Sensar → Planear → Actuar.*
@@ -40,7 +40,7 @@ Cada capa depende de la inferior y produce datos para la superior. El problema: 
 - No tolera fallos bien — si la percepción falla, el plan es inútil
 - Latencia alta: esperar a completar percepción + planificación antes de actuar
 
-## 2. Paradigma Reactivo (Basado en Comportamientos)  *(02-paradigmas, págs. 7–11)*
+## 2. Paradigma Reactivo (Basado en Comportamientos)
 
 ![[Paradigmas - reactivo vertical.png]]
 *Paradigma reactivo: descomposición vertical, Sensar → Actuar directo.*
@@ -60,7 +60,7 @@ Un comportamiento es un mapeo directo de datos de sensores a un patrón de accio
 - Modulares (permiten desarrollo incremental)
 - Emergentes (el comportamiento general surge de la interacción de comportamientos simples)
 
-## 3. Arquitectura de Subsunción  *(02-paradigmas, págs. 12–16)*
+## 3. Arquitectura de Subsunción
 
 Introducida por Rodney Brooks (1986). Los comportamientos son redes de nodos sensado-actuación (AFSM — augmented finite state machines). Los módulos se agrupan en **capas de competencia**, donde una capa superior puede **subsumir** (anular) las inferiores.
 
@@ -83,7 +83,7 @@ Introducida por Rodney Brooks (1986). Los comportamientos son redes de nodos sen
 ![[Paradigmas - nivel2 seguir corredor.png]]
 *Nivel 2: seguir corredor — ir por el medio del pasillo.*
 
-## 4. Campos Potenciales  *(02-paradigmas, págs. 17–28)*
+## 4. Campos Potenciales
 
 Los robots se modelan como partículas bajo la influencia de un **campo potencial** vectorial:
 
@@ -130,7 +130,7 @@ El robot puede quedar atascado cuando las fuerzas atractivas y repulsivas se can
 - ❌ Necesita alta tasa de actualización
 - ❌ Muy dependiente del sintonizado de parámetros
 
-## 5. Paradigma Híbrido  *(02-paradigmas, págs. 29–30)*
+## 5. Paradigma Híbrido
 
 ![[Paradigmas - hibrido.png]]
 *Paradigma híbrido: combina planificación deliberativa con control reactivo.*
@@ -139,7 +139,7 @@ Combina lo mejor de ambos mundos:
 - **Modelo del mundo** para planificación a largo plazo
 - **Control reactivo** para respuesta rápida a eventos inesperados
 
-## 6. ROS como arquitectura de software  *(02-paradigmas, págs. 31–40)*
+## 6. ROS como arquitectura de software
 
 ROS (Robot Operating System) implementa una arquitectura distribuida basada en nodos que refleja el paradigma híbrido:
 
@@ -160,4 +160,10 @@ Ventajas de ROS:
 - [[4. Robótica Probabilística/Robótica Probabilística|Módulo 4]] — el enfoque probabilístico que supera las limitaciones de los paradigmas clásicos
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/02-paradigmas-4.pdf` — págs. 1–40
+- `Raw/Diapositivas/Teoricas/02-paradigmas-4.pdf`
+  - págs. 1–6 → 1. Paradigma Clásico (Jerárquico)
+  - págs. 7–11 → 2. Paradigma Reactivo (Basado en Comportamientos)
+  - págs. 12–16 → 3. Arquitectura de Subsunción
+  - págs. 17–28 → 4. Campos Potenciales
+  - págs. 29–30 → 5. Paradigma Híbrido
+  - págs. 31–40 → 6. ROS como arquitectura de software

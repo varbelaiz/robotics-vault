@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Panorama del campo: problemas, herramientas, historia, y estado actual de la robótica autónoma.
 
-## Objetivo del curso  *(00-introduccion, págs. 4–6)*
+## Objetivo del curso
 
 Introducción a los problemas centrales de la robótica móvil:
 
@@ -39,7 +39,7 @@ El libro de referencia es **"Probabilistic Robotics"** de Thrun, Burgard y Fox.
 11. Planeamiento de trayectorias
 12. Exploración
 
-## Problemas de la robótica  *(00-introduccion, págs. 7–8)*
+## Problemas de la robótica
 
 Los problemas que aborda la robótica se dividen en:
 
@@ -51,7 +51,7 @@ Los problemas que aborda la robótica se dividen en:
 - **Actuación e interacción**: manipulación, agarre, motricidad fina
 - **Razonamiento**: tomar decisiones bajo incertidumbre
 
-## Arquitectura de sistemas robóticos autónomos  *(00-introduccion, pág. 8)*
+## Arquitectura de sistemas robóticos autónomos
 
 ![[Robotica - ciclo percibir-modelar-actuar.png]]
 *Ciclo percibir → modelar → actuar de un sistema robótico autónomo.*
@@ -61,12 +61,12 @@ Un robot autónomo debe:
 2. **Construir un modelo** del entorno y de su propio estado
 3. **Generar acciones** para alcanzar sus objetivos
 
-## Historia  *(00-introduccion, págs. 9–10)*
+## Historia
 
 - **1808–1840**: primeros autómatas mecánicos
 - **1921**: la palabra "robot" aparece por primera vez en la obra de Karl Capek *R.U.R.* (Rossum's Universal Robots), derivada del checo *robota* (esclavo, trabajo forzado)
 
-## Tendencias actuales  *(00-introduccion, págs. 11–18)*
+## Tendencias actuales
 
 Los robots están saliendo de las celdas de fábrica hacia nuevos ámbitos:
 
@@ -82,18 +82,18 @@ Los robots están saliendo de las celdas de fábrica hacia nuevos ámbitos:
 ![[Robotica - domesticos 2010 vs 2024.png]]
 *Evolución de robots domésticos: 2010 vs 2024.*
 
-## Robots que caminan  *(00-introduccion, págs. 22–26)*
+## Robots que caminan
 
 ![[Robotica - Boston Dynamics caminando.png]]
 *Robots bípedos de Boston Dynamics.*
 
 La robótica de locomoción ha avanzado rápidamente desde prototipos académicos hasta robots humanoides funcionales que corren, suben escaleras, y se recuperan de caídas.
 
-## Androides y el _uncanny valley_  *(00-introduccion, págs. 27–28)*
+## Androides y el _uncanny valley_
 
 El efecto del "uncanny valley" describe la respuesta negativa que provocan androides casi humanos: a mayor parecido humano, mayor incomodidad — excepto cuando la similitud es casi perfecta.
 
-## Competencias DARPA  *(00-introduccion, págs. 29–34)*
+## Competencias DARPA
 
 Las competencias DARPA marcaron hitos clave en la navegación autónoma:
 
@@ -102,12 +102,12 @@ Las competencias DARPA marcaron hitos clave en la navegación autónoma:
 - **Robotics Challenge (2015)**: robots humanoides en escenarios de desastre.
 - **Sub-T Challenge (2021)**: navegación en túneles subterráneos.
 
-## Vehículos autónomos comerciales  *(00-introduccion, págs. 33–35)*
+## Vehículos autónomos comerciales
 
 - Google/Waymo: desarrollo continuo desde 2009
 - Cruise y Tesla: servicios de Robotaxi en Austin, TX y San Francisco, CA
 
-## Robótica en UdeSA  *(00-introduccion, págs. 37–38)*
+## Robótica en UdeSA
 
 La cátedra se enmarca en el **Track de Robótica** de la carrera de Ing. en Sistemas (IIA, UdeSA). El laboratorio **LINAR** (Laboratorio de Inteligencia Artificial y Robótica) desarrolla investigación en el área.
 
@@ -122,4 +122,14 @@ Correlatividades:
 - [[3. Sensores y Modelos/Sensores y Modelos|Módulo 3]] — cómo perciben
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf` — págs. 1–38
+- `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf`
+  - págs. 4–6 → Objetivo del curso
+  - págs. 7–8 → Problemas de la robótica
+  - pág. 8 → Arquitectura de sistemas robóticos autónomos
+  - págs. 9–10 → Historia
+  - págs. 11–18 → Tendencias actuales
+  - págs. 22–26 → Robots que caminan
+  - págs. 27–28 → Androides y el _uncanny valley_
+  - págs. 29–34 → Competencias DARPA
+  - págs. 33–35 → Vehículos autónomos comerciales
+  - págs. 37–38 → Robótica en UdeSA

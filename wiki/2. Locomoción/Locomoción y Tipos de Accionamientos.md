@@ -15,7 +15,8 @@ ultima_actualizacion: 2026-04-26
 ## Prerequisitos
 - *(ninguno — esta es la página de entrada al módulo)*
 
-## 1. Tipos de locomoción  *(Teóricas 03-locomocion, slide 2)*
+## 1. Tipos de locomoción
+
 La locomoción en robótica se refiere al movimiento y desplazamiento de robots. Los tipos principales son:
 - **Terrestre**
 - **Acuática**
@@ -26,7 +27,8 @@ La locomoción en robótica se refiere al movimiento y desplazamiento de robots.
 ![[Locomocion - tipos.png]]
 *Ejemplos de cada tipo: Mars rover (terrestre), USV (acuática), cuadrúpedo (terrestre con patas), ASIMO (bípedo), slide 2.*
 
-## 2. Locomoción terrestre  *(Teóricas 03-locomocion, slides 3–4)*
+## 2. Locomoción terrestre
+
 Dentro de la locomoción terrestre, las dos grandes familias son **patas** y **ruedas**.
 
 ![[Locomocion - terrestre.png]]
@@ -47,7 +49,8 @@ El tipo de locomoción depende de:
 ![[Locomocion - patas vs ruedas.png]]
 *Comparación de eficiencia (potencia específica vs velocidad), slide 4.*
 
-## 3. Tipos de accionamiento  *(Teóricas 03-locomocion, slide 6)*
+## 3. Tipos de accionamiento
+
 Los seis accionamientos canónicos para robots con ruedas:
 
 - **Diferencial** — dos ruedas motrices independientes + una rueda de apoyo (castor).
@@ -60,7 +63,8 @@ Los seis accionamientos canónicos para robots con ruedas:
 ![[Accionamientos - tipos.png]]
 *Los seis accionamientos típicos, slide 6.*
 
-## 4. Restricciones holonómicas y no-holonómicas  *(Teóricas 03-locomocion, slides 7–8)*
+## 4. Restricciones holonómicas y no-holonómicas
+
 Una **restricción no-holonómica** limita los **movimientos incrementales** posibles dentro del espacio de configuración del robot, sin reducir el espacio de configuración en sí.
 
 Los robots con accionamiento **diferencial** o **Ackermann** se mueven en trayectorias circulares y **no pueden moverse lateralmente** — son no-holonómicos.
@@ -87,4 +91,8 @@ Los robots con ruedas **omni** o **mecanum** sí pueden moverse lateralmente —
 - [[Odometría y Modelo de Movimiento (Odometría)]] — cómo estimar la pose a partir del giro de las ruedas.
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf` — slides 2–8.
+- `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf`
+  - slide 2 → 1. Tipos de locomoción
+  - slides 3–4 → 2. Locomoción terrestre
+  - slide 6 → 3. Tipos de accionamiento
+  - slides 7–8 → 4. Restricciones holonómicas y no-holonómicas

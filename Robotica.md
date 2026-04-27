@@ -7,15 +7,15 @@
 
 ## Módulos
 
-| # | Módulo | Estado | Páginas completas | Total |
-|---|---|---|---|---|
-| 1 | [[1. Fundamentos/Fundamentos\|Fundamentos]] | Completo | 8 | 8 |
-| 2 | [[2. Locomoción/Locomoción\|Locomoción]] | Completo | 5 | 5 |
-| 3 | [[3. Sensores y Modelos/Sensores y Modelos\|Sensores y Modelos]] | Completo | 5 | 5 |
-| 4 | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | En progreso | 10 | 11 |
-| 5 | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]] | En progreso | 9 | 9 |
-| 6 | [[6. Mapeo/Mapeo\|Mapeo]] | Completo | 6 | 6 |
-| 7 | [[7. ROS2 y TPs/ROS2 y TPs\|ROS2 y TPs]] | Esqueleto | 0 | 21 |
+| #   | Módulo                                                                          | Estado      | Páginas completas | Total |
+| --- | ------------------------------------------------------------------------------- | ----------- | ----------------- | ----- |
+| 1   | [[1. Fundamentos/Fundamentos\|Fundamentos]]                                     | Completo    | 8                 | 8     |
+| 2   | [[2. Locomoción/Locomoción\|Locomoción]]                                        | Completo    | 5                 | 5     |
+| 3   | [[3. Sensores y Modelos/Sensores y Modelos\|Sensores y Modelos]]                | Completo    | 5                 | 5     |
+| 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | En progreso | 10                | 11    |
+| 5   | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]]                | En progreso | 9                 | 9     |
+| 6   | [[6. Mapeo/Mapeo\|Mapeo]]                                                       | Completo    | 6                 | 6     |
+| 7   | [[7. ROS2 y TPs/ROS2 y TPs\|ROS2 y TPs]]                                        | Esqueleto   | 0                 | 21    |
 
 > Estados posibles: `Esqueleto` (sin contenido grounded) · `En progreso` (alguna ingesta hecha) · `Completo` (todas las fuentes del módulo ingeridas).
 

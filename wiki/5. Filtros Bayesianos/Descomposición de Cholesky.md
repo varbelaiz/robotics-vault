@@ -17,7 +17,7 @@ ultima_actualizacion: 2026-04-26
 - [[Algebra Lineal|Matrices y operaciones]]
 - [[Gaussiana Multivariada]]
 
-## 1. Definición  *(11b-filtro_ukf, págs. 8–9)*
+## 1. Definición
 
 La **descomposición de Cholesky** de una matriz simétrica definida positiva $\Sigma \in \mathbb{R}^{d \times d}$
 es una factorización de la forma:
@@ -78,4 +78,5 @@ especialmente en variantes numéricamente estables que mantienen la covarianza f
 - ➡️ [[UKF]] — filtro que depende de esta descomposición
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/11b-filtro_ukf-3.pdf` — págs. 8–11
+- `Raw/Diapositivas/Teoricas/11b-filtro_ukf-3.pdf`
+  - págs. 8–9 → 1. Definición

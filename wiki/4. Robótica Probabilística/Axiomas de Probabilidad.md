@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Los tres axiomas fundamentales de Kolmogorov que sustentan todo el cálculo probabilístico.
 
-## Los tres axiomas  *(05-intro_robo_proba parte 1, pág. 3)*
+## Los tres axiomas
 
 $P(A)$ indica la probabilidad de que la proposición $A$ es verdadera.
 
@@ -20,7 +20,7 @@ $P(A)$ indica la probabilidad de que la proposición $A$ es verdadera.
 2. **Normalización**: $P(\text{True}) = 1$ (la certeza tiene probabilidad 1)
 3. **Aditividad**: $P(A \lor B) = P(A) + P(B) - P(A \land B)$
 
-## Detalle del Axioma 3  *(05-intro_robo_proba parte 1, pág. 4)*
+## Detalle del Axioma 3
 
 ![[proba - axioma 3 aditividad.png]]
 *El axioma de aditividad: la probabilidad de la unión de dos eventos.*
@@ -37,4 +37,6 @@ Si $A$ y $B$ son **mutuamente excluyentes** ($A \land B = \text{False}$), entonc
 - Base para todas las reglas que siguen: [[Probabilidad Condicional]], [[Regla de Bayes]], [[Suposición de Markov]]
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — págs. 3–5
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - pág. 3 → Los tres axiomas
+  - pág. 4 → Detalle del Axioma 3

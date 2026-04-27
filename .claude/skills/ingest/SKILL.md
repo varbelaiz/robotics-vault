@@ -1,6 +1,6 @@
 ---
 name: ingest
-description: Ingest a source PDF from Raw/ into the wiki. Triggers when Valentino asks to ingerir, agregar, procesar, filear, or "meter al wiki" a source from Raw/ — phrases like "ingerí 05-intro_robo_proba", "ingerí Teóricas/03-locomocion", "agregá esta PDF al wiki", "procesá Tutorial 5", "metelo al wiki", "hacé el ingest de TP2". The skill walks the full six-phase workflow (read PDF → discuss takeaways → propose plan → wait approval → execute → summarize), generates concept pages with grounded citations, captures slide screenshots via the slide-screenshot skill, updates _Overview / Home / index / log, and produces a single commit per ingestion. Plan-mode-friendly: phases 1–3 are read-only research suitable for the plan window; phase 4 is the ExitPlanMode gate; phases 5–6 execute on approval.
+description: Ingest a source PDF from Raw/ into the wiki. Triggers when Valentino asks to ingerir, agregar, procesar, filear, or "meter al wiki" a source from Raw/ — phrases like "ingerí 05-intro_robo_proba", "ingerí Teóricas/03-locomocion", "agregá esta PDF al wiki", "procesá Tutorial 5", "metelo al wiki", "hacé el ingest de TP2". The skill walks the full six-phase workflow (read PDF → discuss takeaways → propose plan → wait approval → execute → summarize), generates concept pages with grounded citations, captures slide screenshots via the slide-screenshot skill, updates the module overview file (e.g. Locomoción.md) / Home / index / log, and produces a single commit per ingestion. Plan-mode-friendly: phases 1–3 are read-only research suitable for the plan window; phase 4 is the ExitPlanMode gate; phases 5–6 execute on approval.
 ---
 
 # Ingest Skill
@@ -65,7 +65,7 @@ State **before touching any file**, with exact paths and counts:
 
 - New concept pages to create (full paths in `wiki/<module>/`).
 - Existing pages to update (backlinks, prerequisites, comparison sections).
-- `_Overview.md` updates for affected modules.
+- Module overview file updates (e.g. `Locomoción.md`, `Filtros Bayesianos.md`) for affected modules.
 - `Robotica.md` status changes, `Robotica.md` entries, `log.md` ingest entry.
 - Screenshots planned: a count per page + the slide numbers each comes from.
 - Draft commit message.
@@ -92,8 +92,8 @@ Order matters because later steps reference earlier outputs:
 
 1. **Generate all screenshots first** in a single bash call chained with `&&`. Use `pdftoppm -singlefile` per the **`slide-screenshot` skill** — that skill is the source of truth for the capture command, naming convention, recovery procedure, and image policy.
 2. **Spot-check** 2–4 of the visually complex PNGs via `Read`. Reading every PNG of a large ingestion is overkill — `pdftoppm` is deterministic; if the spot-checks render correctly the rest will too.
-3. **Write the new concept pages** in parallel (one `Write` per page). Use **template A** from `CLAUDE.md` (frontmatter, back-link, prerequisites, intuition + grounded sections, variants, fuentes). Every section header carries an inline citation: `*(Teóricas <PDF short name>, slides X–Y)*`.
-4. **Overwrite the affected `_Overview.md`** files (parallel `Write`). Use **template B** from `CLAUDE.md`.
+3. **Write the new concept pages** in parallel (one `Write` per page). Use **template A** from `CLAUDE.md` (frontmatter, back-link, prerequisites, intuition + grounded sections, variants, fuentes). Section-level page references go in `## Fuentes` as sub-bullets: `  - slides X–Y → N. Nombre de sección`. No inline citations in section headers.
+4. **Overwrite the affected module overview files** (e.g. `Locomoción.md`, `Filtros Bayesianos.md`) (parallel `Write`). Use **template B** from `CLAUDE.md`.
 5. **Edit `Robotica.md`** status (Esqueleto → En progreso, or En progreso → Completo when applicable), **`Robotica.md`** entries (one line per new page under the right module), **`log.md`** ingest entry — all in parallel via `Edit`.
 6. **Stage + commit + push** as one commit per ingestion.
 
@@ -141,7 +141,7 @@ If Valentino asks to ingest something that is not in `Raw/` (e.g. a paper, a vid
 - **Bash CWD persists across calls.** A `cd` in one bash call carries to the next. Either start each ingest-related bash with `cd /Users/varbelaiz/Obsidian/Robotica` or use absolute paths everywhere.
 - **Filenames with spaces or non-ASCII chars** must be quoted in bash. `git add` of paths with spaces sometimes needs the path quoted too.
 - **Forward-references are normal.** Wikilinks to pages that don't exist yet appear as broken in Obsidian and resolve automatically when the target page is created. The lint workflow surfaces them as a category, separate from genuinely broken refs.
-- **Hard rule — grounding.** Every section in a concept page must have an inline citation to a specific slide in `Raw/`. Cero invención. If something isn't in the slides and Valentino wants it added, mark it as `> [!info] Complemento externo` with explicit external source, or ask first.
+- **Hard rule — grounding.** Every section in a concept page must trace to a specific slide in `Raw/`. The citation goes in `## Fuentes` as a sub-bullet (`  - slides X–Y → N. Nombre de sección`), not in the section header. Cero invención. If something isn't in the slides and Valentino wants it added, mark it as `> [!info] Complemento externo` with explicit external source, or ask first.
 - **Single commit per ingestion.** Don't fragment into "screenshots commit" + "pages commit" + "meta commit". One ingestion = one atomic commit makes the history readable and easy to revert.
 
 ## Worked reference
@@ -151,7 +151,7 @@ The Module 1 ingestion of `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` (c
 - **Source**: 41-slide lecture covering vectores → transformaciones homogéneas.
 - **Output**: 6 concept pages in `wiki/1. Fundamentos/` (Vectores, Matrices, Matriz Definida Positiva, Matriz Jacobiana, Rotaciones, Transformaciones Homogéneas).
 - **Screenshots**: 29 PNGs in `wiki/1. Fundamentos/Img/`, ~5 per page on average.
-- **Meta updates**: `_Overview.md` (M1) overwritten with full narrative, `Robotica.md` status flipped Esqueleto → En progreso, `Robotica.md` entries added under M1, `log.md` ingest entry appended.
+- **Meta updates**: `Fundamentos.md` (module overview) overwritten with full narrative, `Robotica.md` status flipped Esqueleto → En progreso, `Robotica.md` entries added under M1, `log.md` ingest entry appended.
 - **Forward-refs**: `[[EKF]]`, `[[Filtro de Kalman]]`, `[[MCL - Filtro de Partículas]]` left as broken wikilinks for upcoming ingestions to resolve.
 - **Commit**: single `a92dcd4` with a structured message documenting the partition rationale.
 

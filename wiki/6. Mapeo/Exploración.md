@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Estrategias para que un robot descubra y cubra sistemáticamente un entorno desconocido.
 
-## 1. Idea general  *(programa del curso)*
+## 1. Idea general
 
 - El robot parte sin conocimiento del entorno
 - Debe decidir hacia dónde moverse para **maximizar la información** ganada
@@ -27,4 +27,4 @@ ultima_actualizacion: 2026-04-26
 - [[Mapeo con Poses Conocidas]] — en exploración, las poses se estiman en tiempo real
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf` — pág. 5 (programa del curso)
+- `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf`

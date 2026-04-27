@@ -13,7 +13,7 @@ ultima_actualizacion: 2026-04-26
 
 > Estimar simultáneamente el mapa del entorno y la posición del robot.
 
-## 1. El problema  *(12-mapas_de_ocupacion, págs. 3–6 + programa)*
+## 1. El problema
 
 - **Mapeo con poses conocidas** es el caso simplificado donde el robot sabe exactamente dónde está
 - En el caso real, el robot **no conoce su posición** — debe estimarla junto con el mapa
@@ -31,5 +31,6 @@ ultima_actualizacion: 2026-04-26
 - [[Features vs Mapas Volumétricos]] — elección de representación afecta el enfoque
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf` — pág. 5 (programa del curso)
-- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf` — contexto del mapeo
+- `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf`
+- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf`
+  - págs. 3–6 + programa → 1. El problema

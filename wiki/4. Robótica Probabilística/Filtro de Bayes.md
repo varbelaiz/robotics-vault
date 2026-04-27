@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Algoritmo recursivo para estimar el estado (belief) de un sistema dinámico dado observaciones y acciones.
 
-## Problema  *(05-intro_robo_proba parte 2, pág. 31)*
+## Problema
 
 ![[proba - filtro bayes estructura.png]]
 *Estructura del filtro de Bayes: entradas y salida.*
@@ -27,7 +27,7 @@ ultima_actualizacion: 2026-04-26
 - Estimar el estado $X$ del sistema en cada paso
 - La probabilidad a posteriori (**belief**): $Bel(x_t) = P(x_t \mid z_{1:t}, u_{1:t})$
 
-## Derivación del algoritmo recursivo  *(05-intro_robo_proba parte 2, págs. 33–40)*
+## Derivación del algoritmo recursivo
 
 ![[proba - filtro bayes derivacion 1.png]]
 *Primeros pasos de la derivación del filtro de Bayes.*
@@ -73,7 +73,7 @@ Filtro_de_Bayes(Bel(x), d):
     Retornar Bel'(x)
 ```
 
-## Usos del filtro de Bayes  *(05-intro_robo_proba parte 2, pág. 42)*
+## Usos del filtro de Bayes
 
 El filtro de Bayes es la base de muchas herramientas:
 
@@ -83,7 +83,7 @@ El filtro de Bayes es la base de muchas herramientas:
 - **Redes Bayesianas Dinámicas** — modelos gráficos temporales
 - **POMDPs** — procesos de decisión bajo incertidumbre
 
-## Resumen  *(05-intro_robo_proba parte 2, pág. 45)*
+## Resumen
 
 - La regla de Bayes permite calcular probabilidades que de otra forma serían complejas
 - Con la suposición de Markov, la actualización recursiva es eficiente
@@ -99,4 +99,8 @@ El filtro de Bayes es la base de muchas herramientas:
 - [[MCL - Filtro de Partículas]] — versión con representación por muestras
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf` — págs. 31–45
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf`
+  - pág. 31 → Problema
+  - págs. 33–40 → Derivación del algoritmo recursivo
+  - pág. 42 → Usos del filtro de Bayes
+  - pág. 45 → Resumen

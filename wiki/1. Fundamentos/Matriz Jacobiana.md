@@ -16,7 +16,7 @@ ultima_actualizacion: 2026-04-26
 - [[Matrices]]
 - Derivadas parciales (cálculo)
 
-## 1. Definición  *(Teóricas 01-algebra_lineal, slide 23)*
+## 1. Definición
 
 Dada una función vectorial $f : \mathbb{R}^n \to \mathbb{R}^m$:
 
@@ -38,7 +38,7 @@ $$
 ![[Matriz Jacobiana - definicion.png]]
 *Definición formal de la Jacobiana de una función vectorial. Slide 23.*
 
-## 2. Interpretación  *(Teóricas 01-algebra_lineal, slide 24)*
+## 2. Interpretación
 
 Geométricamente, la Jacobiana **es la orientación del plano tangente** a la función vectorial en un punto dado.
 
@@ -52,4 +52,6 @@ Es la **generalización del gradiente** de una función escalar — cuando $m = 
 - La aproximación lineal habilita seguir aplicando todo el aparato del [[Filtro de Kalman]] al caso no lineal.
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` — slides 23–24.
+- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf`
+  - slide 23 → 1. Definición
+  - slide 24 → 2. Interpretación

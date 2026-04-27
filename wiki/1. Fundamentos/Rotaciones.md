@@ -16,7 +16,7 @@ ultima_actualizacion: 2026-04-26
 - [[Matrices]]
 - [[Vectores]] (norma, producto interno)
 
-## 1. Matriz ortogonal  *(Teóricas 01-algebra_lineal, slide 25)*
+## 1. Matriz ortogonal
 
 Una matriz $Q$ es **ortogonal** sii sus vectores columna (o fila) forman una **base ortonormal**:
 
@@ -33,7 +33,7 @@ Como transformación lineal, una matriz ortogonal **preserva la norma** de los v
 ![[Matriz ortogonal.png]]
 *Definición y propiedades de las matrices ortogonales. Slide 25.*
 
-## 2. Matriz de rotación 2D  *(Teóricas 01-algebra_lineal, slides 26–29)*
+## 2. Matriz de rotación 2D
 
 Una **matriz de rotación** es una matriz **ortogonal con determinante $+1$** (las ortogonales con determinante $-1$ son reflexiones).
 
@@ -60,7 +60,7 @@ $$
 ![[Rotacion 2D - ejemplo pi medios.png]]
 *Resolución completa del ejemplo $\theta = \pi/2$. Slide 29.*
 
-## 3. Rotaciones 3D  *(Teóricas 01-algebra_lineal, slides 30–31)*
+## 3. Rotaciones 3D
 
 Para rotar alrededor de cada uno de los **ejes principales** $x$, $y$, $z$:
 
@@ -94,4 +94,7 @@ Esta no conmutatividad es la razón principal por la que las [[Transformaciones 
 - Centrales para [[2. Locomoción/Locomoción|locomoción]] (orientación del robot) y [[3. Sensores y Modelos/Sensores y Modelos|sensores]] (cambio de sistema sensor → robot).
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` — slides 25–31.
+- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf`
+  - slide 25 → 1. Matriz ortogonal
+  - slides 26–29 → 2. Matriz de rotación 2D
+  - slides 30–31 → 3. Rotaciones 3D

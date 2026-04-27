@@ -13,7 +13,7 @@ ultima_actualizacion: 2026-04-26
 
 > El estado actual resume toda la historia pasada. Condición clave para la recursividad en filtros bayesianos.
 
-## Definición  *(05-intro_robo_proba parte 1, pág. 21; parte 2, pág. 32)*
+## Definición
 
 ![[proba - suposicion markov.png]]
 *La suposición de Markov: la observación actual depende solo del estado actual.*
@@ -26,7 +26,7 @@ De forma similar, el estado futuro solo depende del estado actual y la acción a
 
 $$P(x_t \mid x_{t-1}, x_{t-2}, \ldots, u_t, u_{t-1}, \ldots) = P(x_t \mid x_{t-1}, u_t)$$
 
-## Suposiciones subyacentes  *(05-intro_robo_proba parte 2, pág. 32)*
+## Suposiciones subyacentes
 
 Para que la suposición de Markov sea válida se requiere:
 
@@ -49,5 +49,7 @@ Esto hace posible el **filtro recursivo**.
 - [[MCL - Filtro de Partículas]] — también asume Markov
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — pág. 21
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf` — pág. 32
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - pág. 21; parte 2, pág. 32 → Definición
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf`
+  - pág. 32 → Suposiciones subyacentes

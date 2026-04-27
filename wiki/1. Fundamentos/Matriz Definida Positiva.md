@@ -15,7 +15,7 @@ ultima_actualizacion: 2026-04-26
 ## Prerequisitos
 - [[Matrices]] (en particular determinante, autovalores, traza)
 
-## 1. Definición  *(Teóricas 01-algebra_lineal, slide 21)*
+## 1. Definición
 
 Una matriz $M$ es **definida positiva**, notado $M > 0$, sii:
 
@@ -35,7 +35,7 @@ $$
 ![[Matriz definida positiva - definicion.png]]
 *Definición formal y ejemplo con la matriz identidad. Slide 21.*
 
-## 2. Propiedades  *(Teóricas 01-algebra_lineal, slide 22)*
+## 2. Propiedades
 
 Toda matriz definida positiva cumple:
 
@@ -52,4 +52,6 @@ Toda matriz definida positiva cumple:
 - La descomposición de Cholesky habilita el **muestreo eficiente** de gaussianas multivariadas (útil en [[MCL - Filtro de Partículas|Monte Carlo Localization]]).
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` — slides 21–22.
+- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf`
+  - slide 21 → 1. Definición
+  - slide 22 → 2. Propiedades

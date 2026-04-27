@@ -15,7 +15,7 @@ ultima_actualizacion: 2026-04-26
 ## Prerequisitos
 - [[Vectores]]
 
-## 1. Definición  *(Teóricas 01-algebra_lineal, slide 7)*
+## 1. Definición
 
 Una matriz $\mathbf{A}$ de tamaño $n \times m$ es un arreglo de números con dos índices:
 
@@ -36,7 +36,7 @@ $$
 ![[Matriz - definicion.png]]
 *Matriz $n \times m$ con su convención de índices. Slide 7.*
 
-## 2. Matriz como colección de vectores  *(Teóricas 01-algebra_lineal, slides 8–9)*
+## 2. Matriz como colección de vectores
 
 Una misma matriz puede mirarse como:
 
@@ -51,7 +51,7 @@ Esta dualidad es fundamental para entender los productos.
 ![[Matriz - vectores fila.png]]
 *Matriz vista como colección de vectores fila. Slide 9.*
 
-## 3. Operaciones matriciales  *(Teóricas 01-algebra_lineal, slide 10)*
+## 3. Operaciones matriciales
 
 - Multiplicación por un escalar.
 - **Suma** — conmutativa, asociativa.
@@ -60,7 +60,7 @@ Esta dualidad es fundamental para entender los productos.
 - **Inversión** — sólo para matrices cuadradas de rango completo (sección 7).
 - **Transposición**.
 
-## 4. Producto matriz-vector  *(Teóricas 01-algebra_lineal, slides 11–12)*
+## 4. Producto matriz-vector
 
 Dadas $\mathbf{A}$ ($n \times m$) y $\mathbf{b}$ ($m \times 1$), $\mathbf{Ab}$ es un vector de tamaño $n \times 1$. Hay **dos interpretaciones equivalentes**:
 
@@ -84,7 +84,7 @@ $$
 ![[Producto matriz-vector geometrico.png]]
 *Interpretación geométrica: $\mathbf{Ab}$ como suma vectorial de las columnas escaladas. Slide 12.*
 
-## 5. Producto de matrices  *(Teóricas 01-algebra_lineal, slides 13–14)*
+## 5. Producto de matrices
 
 $\mathbf{C} = \mathbf{AB}$ extiende naturalmente el producto matriz-vector. Cada elemento $c_{ij}$ es el producto interno entre la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{B}$. Equivalentemente, **cada columna de $\mathbf{C}$ es la transformación de la columna correspondiente de $\mathbf{B}$ según $\mathbf{A}$**:
 
@@ -97,7 +97,7 @@ $$
 
 **Importante**: el producto de matrices **no es conmutativo** ($\mathbf{AB} \neq \mathbf{BA}$ en general).
 
-## 6. Rango  *(Teóricas 01-algebra_lineal, slide 15)*
+## 6. Rango
 
 El **rango** de una matriz es el **número máximo de filas (o columnas) linealmente independientes**. Equivalentemente, es la **dimensión de la imagen** de la transformación $f(\mathbf{x}) = \mathbf{A}\mathbf{x}$.
 
@@ -108,7 +108,7 @@ Para una matriz $A$ de $m \times n$:
 
 Se calcula por **eliminación gaussiana** y contando filas distintas de cero.
 
-## 7. Inversa  *(Teóricas 01-algebra_lineal, slide 16)*
+## 7. Inversa
 
 Si $\mathbf{A}$ es **cuadrada y de rango completo**, entonces existe una **única** matriz $\mathbf{A}^{-1}$ tal que:
 
@@ -120,7 +120,7 @@ Por construcción, la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{A}^{
 - **Ortogonales** si $i \neq j$.
 - Su producto interno vale **1** si $i = j$.
 
-## 8. Traza  *(Teóricas 01-algebra_lineal, slide 17)*
+## 8. Traza
 
 Sólo definida para **matrices cuadradas**. Es la **suma de la diagonal principal**:
 
@@ -136,7 +136,7 @@ Es un **operador lineal** con propiedades útiles:
 - **Invariante a la transposición**: $\text{tr}(A) = \text{tr}(A^T)$.
 - Para vectores: $\text{tr}(\mathbf{a}^T \mathbf{b}) = \text{tr}(\mathbf{a} \mathbf{b}^T)$.
 
-## 9. Determinante  *(Teóricas 01-algebra_lineal, slides 18–20)*
+## 9. Determinante
 
 Sólo definido para **matrices cuadradas**. La inversa $\mathbf{A}^{-1}$ existe **sii $\det(\mathbf{A}) \neq 0$**.
 
@@ -179,4 +179,13 @@ $$
 - [[Transformaciones Homogéneas]] — extiende rotación + traslación.
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` — slides 7–20.
+- `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf`
+  - slide 7 → 1. Definición
+  - slides 8–9 → 2. Matriz como colección de vectores
+  - slide 10 → 3. Operaciones matriciales
+  - slides 11–12 → 4. Producto matriz-vector
+  - slides 13–14 → 5. Producto de matrices
+  - slide 15 → 6. Rango
+  - slide 16 → 7. Inversa
+  - slide 17 → 8. Traza
+  - slides 18–20 → 9. Determinante

@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Problema simplificado: dado el trayecto exacto del robot, estimar el mapa del entorno.
 
-## 1. El problema general del mapeo  *(12-mapas_de_ocupacion, págs. 3–6)*
+## 1. El problema general del mapeo
 
 ![[mapas-motivation.png]]
 *¿Cómo es el entorno?, pág. 3.*
@@ -27,7 +27,7 @@ ultima_actualizacion: 2026-04-26
 - Dadas las **mediciones** $z_{1:t}$ y las **poses** $x_{1:t}$ conocidas
 - Se desea calcular: $P(m \mid z_{1:t}, x_{1:t})$
 
-## 2. Modelo inverso de sensor — Sonar  *(12-mapas_de_ocupacion, págs. 35–43)*
+## 2. Modelo inverso de sensor — Sonar
 
 Para actualizar las celdas se necesita un **modelo inverso de sensor**.
 
@@ -62,7 +62,7 @@ Para actualizar las celdas se necesita un **modelo inverso de sensor**.
 ![[mapas-slide-43.png]]
 *Modelo resultante completo, pág. 43.*
 
-## 3. Resultado — Mapa con Sonar  *(12-mapas_de_ocupacion, págs. 44–45)*
+## 3. Resultado — Mapa con Sonar
 
 ![[incremental-grid-update.png]]
 *Actualización incremental de grillas, pág. 44.*
@@ -70,7 +70,7 @@ Para actualizar las celdas se necesita un **modelo inverso de sensor**.
 ![[sonar-occupancy-map-result.png]]
 *Mapa resultante con ultrasonido, pág. 45.*
 
-## 4. Modelo para LIDAR  *(12-mapas_de_ocupacion, págs. 47–50)*
+## 4. Modelo para LIDAR
 
 ![[lidar-inverse-model.png]]
 *Modelo inverso para LIDAR, pág. 47.*
@@ -89,7 +89,7 @@ Para actualizar las celdas se necesita un **modelo inverso de sensor**.
 ![[freiburg-map.png]]
 *Mapa de Freiburg, pág. 50.*
 
-## 5. Resumen  *(12-mapas_de_ocupacion, pág. 66)*
+## 5. Resumen
 
 - Los mapas de grilla son un modelo muy usado
 - Las grillas de ocupación discretizan el espacio en celdas independientes
@@ -102,4 +102,9 @@ Para actualizar las celdas se necesita un **modelo inverso de sensor**.
 - [[SLAM - Mapeo y Localización Simultánea]] — extensión a poses desconocidas
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf` — págs. 1–66
+- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf`
+  - págs. 3–6 → 1. El problema general del mapeo
+  - págs. 35–43 → 2. Modelo inverso de sensor — Sonar
+  - págs. 44–45 → 3. Resultado — Mapa con Sonar
+  - págs. 47–50 → 4. Modelo para LIDAR
+  - pág. 66 → 5. Resumen

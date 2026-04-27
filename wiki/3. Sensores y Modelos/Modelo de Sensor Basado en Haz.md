@@ -16,7 +16,8 @@ ultima_actualizacion: 2026-04-26
 - [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — qué es un sensor de proximidad (sonar/lidar).
 - [[Regla de Bayes]] — base teórica del modelo (forward-ref, M4).
 
-## 1. El problema  *(Teóricas 07-modelos_de_sensores, slide 3)*
+## 1. El problema
+
 Dado un robot en pose $x$ con un mapa $m$ del entorno, ¿cuál es la probabilidad de obtener una medición $z$? Es decir:
 
 $$P(z \mid x, m)$$
@@ -28,7 +29,8 @@ Esta probabilidad es el **modelo de observación** que consume cualquier filtro 
 
 **Método**: tratar de **explicar la medición** con un modelo probabilístico de las causas físicas.
 
-## 2. Modelo basado en haz: independencia  *(Teóricas 07-modelos_de_sensores, slides 4–5)*
+## 2. Modelo basado en haz: independencia
+
 Un barrido $z$ consiste de $K$ mediciones individuales:
 $$z = \{z_1, z_2, \dots, z_K\}$$
 
@@ -41,7 +43,8 @@ Para cada $z_k$ hay que hacer **ray-casting** desde $(x, m)$ para calcular la di
 ![[Beam - ray casting.png]]
 *Para cada haz individual, comparar la medición con la distancia esperada por ray-casting, slide 5.*
 
-## 3. Causas físicas del error  *(Teóricas 07-modelos_de_sensores, slide 6)*
+## 3. Causas físicas del error
+
 El error en una medición de distancia se debe a cuatro causas:
 
 1. **Haz reflejado en obstáculos** (medición correcta con ruido).
@@ -52,7 +55,7 @@ El error en una medición de distancia se debe a cuatro causas:
 ![[Beam - errores medicion.png]]
 *Las cuatro causas físicas del error en mediciones de distancia, slide 6.*
 
-## 4. Las cuatro densidades  *(Teóricas 07-modelos_de_sensores, slides 8–9)*
+## 4. Las cuatro densidades
 
 **Hit** — distribución gaussiana centrada en la distancia esperada $z_{exp}$ por el ray-casting:
 
@@ -76,7 +79,8 @@ $$P_{rand}(z \mid x, m) = \eta\,\frac{1}{z_{max}}$$
 ![[Beam - max y rand.png]]
 *Densidades de max (rango máximo) y rand (lectura aleatoria), slide 9.*
 
-## 5. Mezcla de densidades  *(Teóricas 07-modelos_de_sensores, slide 10)*
+## 5. Mezcla de densidades
+
 La densidad final $P(z \mid x, m)$ es una **mezcla ponderada** con pesos $\alpha_{hit}, \alpha_{unexp}, \alpha_{max}, \alpha_{rand}$ que suman 1:
 
 $$P(z \mid x, m) = \begin{pmatrix}\alpha_{hit} \\ \alpha_{unexp} \\ \alpha_{max} \\ \alpha_{rand}\end{pmatrix}^T \cdot \begin{pmatrix} P_{hit}(z \mid x, m) \\ P_{unexp}(z \mid x, m) \\ P_{max}(z \mid x, m) \\ P_{rand}(z \mid x, m) \end{pmatrix}$$
@@ -84,7 +88,8 @@ $$P(z \mid x, m) = \begin{pmatrix}\alpha_{hit} \\ \alpha_{unexp} \\ \alpha_{max}
 ![[Beam - mezcla densidades.png]]
 *Mezcla de las cuatro densidades en una distribución resultante, slide 10.*
 
-## 6. Aprendiendo los parámetros  *(Teóricas 07-modelos_de_sensores, slides 11–13)*
+## 6. Aprendiendo los parámetros
+
 Los pesos $\alpha_i$ y los parámetros de cada densidad ($b$, $\lambda$) se aprenden de **datos reales**.
 
 Se recolectan datos crudos del sensor para distancias esperadas conocidas:
@@ -100,7 +105,8 @@ usando hill-climbing, gradient descent o algoritmos genéticos. El último pará
 ![[Beam - resultados aproximacion.png]]
 *Aproximación del modelo a datos reales (laser y sonar) para distancias 300 cm y 400 cm, slide 13.*
 
-## 7. Resultado: $p(z \mid x, m)$ sobre el mapa  *(Teóricas 07-modelos_de_sensores, slides 14–15)*
+## 7. Resultado: $p(z \mid x, m)$ sobre el mapa
+
 Aplicando el modelo a un escaneo completo en un mapa, se obtiene una **distribución sobre poses**: las poses compatibles con la medición tienen probabilidad alta.
 
 ![[Beam - ejemplo Pzxm.png]]
@@ -109,7 +115,8 @@ Aplicando el modelo a un escaneo completo en un mapa, se obtiene una **distribuc
 ![[Beam - aproximacion 3D.png]]
 *Modelos completos para laser y sonar como funciones 2D de distancia esperada y medida, slide 15.*
 
-## 8. Resumen y limitaciones  *(Teóricas 07-modelos_de_sensores, slide 20)*
+## 8. Resumen y limitaciones
+
 - Supone **independencia entre haces** (no estrictamente cierto, pero útil).
 - Modela explícitamente las causas físicas y mezcla sus densidades.
 - Implementación: aprender parámetros de datos reales, hacer ray-casting para distancias esperadas, posiblemente usar modelos distintos para distintos ángulos al obstáculo.
@@ -124,4 +131,12 @@ Aplicando el modelo a un escaneo completo en un mapa, se obtiene una **distribuc
 - [[MCL - Filtro de Partículas]] — el principal consumidor (forward-ref, M5).
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf` — slides 1–20.
+- `Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf`
+  - slide 3 → 1. El problema
+  - slides 4–5 → 2. Modelo basado en haz: independencia
+  - slide 6 → 3. Causas físicas del error
+  - slides 8–9 → 4. Las cuatro densidades
+  - slide 10 → 5. Mezcla de densidades
+  - slides 11–13 → 6. Aprendiendo los parámetros
+  - slides 14–15 → 7. Resultado: $p(z \mid x, m)$ sobre el mapa
+  - slide 20 → 8. Resumen y limitaciones

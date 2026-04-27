@@ -18,7 +18,7 @@ ultima_actualizacion: 2026-04-26
 - [[Regla de Bayes]]
 - [[Filtros Discretos]]
 
-## 1. Problema y motivación  *(09-filtro-de-particulas-mcl, págs. 7–8)*
+## 1. Problema y motivación
 
 En el filtro Bayesiano, el paso de corrección requiere evaluar:
 
@@ -35,7 +35,7 @@ de una distribución propuesta $p(x_t)$ (fácil) y asignamos **pesos de importan
 
 $$w_i = \frac{b(x_t^{(i)})}{p(x_t^{(i)})} \propto \frac{P(z_t | x_t^{(i)}) \, b'(x_t^{(i)})}{p(x_t^{(i)})}$$
 
-## 2. Rejection Sampling vs Importance Sampling  *(09-filtro-de-particulas-mcl, págs. 8–9)*
+## 2. Rejection Sampling vs Importance Sampling
 
 ### Rejection Sampling
 
@@ -65,7 +65,7 @@ donde $\delta$ es la delta de Dirac.
 ![[weighted-samples-math.png]]
 *Matemática de las muestras ponderadas.*
 
-## 3. Propiedades  *(09-filtro-de-particulas-mcl, págs. 10–13)*
+## 3. Propiedades
 
 La calidad de la aproximación depende de la elección de la distribución propuesta:
 
@@ -101,4 +101,7 @@ Esta elección es natural porque el motion model ya se sabe evaluar y muestrear 
 - ➡️ [[Puntos Sigma]] — el UKF usa un "muestreo determinista" análogo (sigma points)
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/09-filtro-de-particulas-mcl-4.pdf` — págs. 7–13
+- `Raw/Diapositivas/Teoricas/09-filtro-de-particulas-mcl-4.pdf`
+  - págs. 7–8 → 1. Problema y motivación
+  - págs. 8–9 → 2. Rejection Sampling vs Importance Sampling
+  - págs. 10–13 → 3. Propiedades

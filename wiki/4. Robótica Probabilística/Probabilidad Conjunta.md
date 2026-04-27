@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > La probabilidad de que dos (o más) eventos ocurran simultáneamente.
 
-## Definición  *(05-intro_robo_proba parte 1, pág. 9)*
+## Definición
 
 $P(X = x \text{ e } Y = y) = P(x, y)$ es la probabilidad conjunta de $x$ e $y$.
 
@@ -24,7 +24,7 @@ $$P(x, y) = P(x) \cdot P(y)$$
 
 La probabilidad conjunta es el producto de las marginales.
 
-## Marginalización  *(05-intro_robo_proba parte 1, pág. 12)*
+## Marginalización
 
 ### Caso discreto
 
@@ -36,7 +36,7 @@ $$p(x) = \int P(x, y) \, dy$$
 
 La marginalización permite obtener la distribución de una variable a partir de la distribución conjunta.
 
-## Ley de la Probabilidad Total  *(05-intro_robo_proba parte 1, pág. 11)*
+## Ley de la Probabilidad Total
 
 Combinación de la regla de probabilidad total y marginalización:
 
@@ -49,4 +49,7 @@ Combinación de la regla de probabilidad total y marginalización:
 - [[Filtro de Bayes]] — usa marginalización en el paso de predicción
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf` — págs. 9, 11, 12
+- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
+  - pág. 9 → Definición
+  - pág. 12 → Marginalización
+  - pág. 11 → Ley de la Probabilidad Total

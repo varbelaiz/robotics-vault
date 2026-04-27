@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Canal de comunicación asíncrono basado en pub/sub entre [[ROS2 - Nodos]].
 
-## Modelo de comunicación  *(Tutorial 2, págs. 1–4)*
+## Modelo de comunicación
 
 Un **topic** es un canal nominal por el cual fluyen mensajes de uno o más publishers hacia uno o más subscribers. El modelo es **fire-and-forget** (sin garantía de entrega):
 
@@ -57,3 +57,4 @@ ros2 topic echo /scan
 
 ## Fuentes
 - `Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf`
+  - págs. 1–4 → Modelo de comunicación

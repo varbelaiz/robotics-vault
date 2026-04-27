@@ -16,7 +16,8 @@ ultima_actualizacion: 2026-04-26
 - [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — sensores que pueden detectar landmarks.
 - [[Modelo de Sensor Basado en Haz]] o [[Modelo de Campo de Verosimilitud]] — alternativas para sensores de distancia.
 
-## 1. Tipos de landmarks  *(Teóricas 07-modelos_de_sensores, slides 27–28)*
+## 1. Tipos de landmarks
+
 **Otros modelos** de sensores de proximidad:
 - **Macheo de mapas** (sonar, laser): generar pequeños mapas locales con los datos del sensor y machearlos contra un modelo global.
 - **Características o features** (sonar, laser, visión): extraer features (puertas, pasillos, esquinas) de los datos.
@@ -32,13 +33,15 @@ El sensor provee:
 - **orientación** al landmark, o
 - **distancia y orientación**.
 
-## 2. Ejemplo: Sony Aibo  *(Teóricas 07-modelos_de_sensores, slide 29)*
+## 2. Ejemplo: Sony Aibo
+
 En la liga RoboCup con perros Sony Aibo, los **postes de colores** alrededor de la cancha funcionan como landmarks pasivos. El robot detecta su pose por triangulación con los postes visibles.
 
 ![[Landmarks - Sony Aibo.png]]
 *Cancha de RoboCup con postes coloreados como landmarks; Sony Aibo, slide 29.*
 
-## 3. Modelo probabilístico  *(Teóricas 07-modelos_de_sensores, slide 30)*
+## 3. Modelo probabilístico
+
 Dado el landmark $i$ con posición conocida $(m_x(i), m_y(i))$ en el mapa, la pose actual $x = \langle x, y, \theta\rangle$ y una observación $z = \langle i, d, \alpha\rangle$ (índice del landmark, distancia medida, orientación medida), las **distancia y orientación esperadas** son:
 
 $$\hat{d} = \sqrt{(m_x(i) - x)^2 + (m_y(i) - y)^2}$$
@@ -60,7 +63,8 @@ landmark_detection_model(z, x, m):
 ![[Landmarks - algoritmo.png]]
 *Algoritmo `landmark_detection_model`, slide 30.*
 
-## 4. Distribuciones $P(z \mid x, m)$  *(Teóricas 07-modelos_de_sensores, slide 31)*
+## 4. Distribuciones $P(z \mid x, m)$
+
 La forma de la distribución resultante depende de **qué provee el sensor**:
 
 - **Sólo distancia**: anillo ancho alrededor del landmark.
@@ -80,4 +84,8 @@ La forma de la distribución resultante depende de **qué provee el sensor**:
 - [[EKF]] — feature-based EKF SLAM consume landmarks (forward-ref, M5).
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf` — slides 27–31.
+- `Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf`
+  - slides 27–28 → 1. Tipos de landmarks
+  - slide 29 → 2. Ejemplo: Sony Aibo
+  - slide 30 → 3. Modelo probabilístico
+  - slide 31 → 4. Distribuciones $P(z \mid x, m)$

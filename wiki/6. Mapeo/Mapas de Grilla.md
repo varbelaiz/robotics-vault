@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Discretización del mundo en una estructura rígida de celdas ocupadas/libres.
 
-## 1. Concepto básico  *(12-mapas_de_ocupacion, págs. 8–10)*
+## 1. Concepto básico
 
 ![[grid-map-discretization.png]]
 *Discretización en celdas, pág. 8.*
@@ -26,7 +26,7 @@ ultima_actualizacion: 2026-04-26
 ![[mapas-motivation.png]]
 *Ejemplo de mapa de grilla, pág. 9.*
 
-## 2. Suposiciones  *(12-mapas_de_ocupacion, págs. 11–14)*
+## 2. Suposiciones
 
 ### Suposición 1 — Celdas binarias
 
@@ -48,4 +48,6 @@ ultima_actualizacion: 2026-04-26
 - [[Mapeo con Poses Conocidas]] — usa grillas como estructura base
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf` — págs. 8–14
+- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf`
+  - págs. 8–10 → 1. Concepto básico
+  - págs. 11–14 → 2. Suposiciones

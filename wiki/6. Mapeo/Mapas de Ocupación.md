@@ -12,7 +12,7 @@ ultima_actualizacion: 2026-04-26
 
 > Estimación probabilística de qué celdas del entorno están ocupadas, usando un filtro de Bayes binario.
 
-## 1. Representación probabilística  *(12-mapas_de_ocupacion, págs. 13–17)*
+## 1. Representación probabilística
 
 Cada celda es una **variable aleatoria binaria** que modela la ocupación:
 
@@ -34,7 +34,7 @@ $$P(m \mid z_{1:t}, x_{1:t}) = \prod_{i=1}^{N} P(m_i \mid z_{1:t}, x_{1:t})$$
 
 Esto permite estimar cada celda **por separado**.
 
-## 2. Filtro de Bayes Binario  *(12-mapas_de_ocupacion, págs. 18–25)*
+## 2. Filtro de Bayes Binario
 
 Para cada celda, se aplica un filtro de Bayes de estado estático:
 
@@ -44,7 +44,7 @@ Para cada celda, se aplica un filtro de Bayes de estado estático:
 - **Estado estático**: la celda no cambia con el tiempo
 - Se actualiza recursivamente con cada medición
 
-## 3. Notación Log Odds  *(12-mapas_de_ocupacion, págs. 26–32)*
+## 3. Notación Log Odds
 
 El cociente de probabilidades se transforma a **log odds**:
 
@@ -67,7 +67,7 @@ $$l = \log \frac{P(o)}{1 - P(o)}$$
 ![[log-odds-algorithm.png]]
 *Algoritmo de mapa de ocupación en log odds, pág. 32.*
 
-## 4. Algoritmo de Mapa de Ocupación  *(12-mapas_de_ocupacion, págs. 33–34)*
+## 4. Algoritmo de Mapa de Ocupación
 
 - Desarrollado a mediados de los 80' por **Moravec y Elfes**
 - Originalmente para ultrasonidos ruidosos
@@ -76,7 +76,7 @@ $$l = \log \frac{P(o)}{1 - P(o)}$$
 ![[incremental-grid-update.png]]
 *Ejemplo de actualización incremental, pág. 44.*
 
-## 5. Mapa de Maximum Likelihood  *(12-mapas_de_ocupacion, pág. 46)*
+## 5. Mapa de Maximum Likelihood
 
 ![[maximum-likelihood-map.png]]
 *Mapa de maximum likelihood, pág. 46.*
@@ -90,4 +90,9 @@ $$l = \log \frac{P(o)}{1 - P(o)}$$
 - [[Features vs Mapas Volumétricos]] — alternativa de representación
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf` — págs. 1–46
+- `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf`
+  - págs. 13–17 → 1. Representación probabilística
+  - págs. 18–25 → 2. Filtro de Bayes Binario
+  - págs. 26–32 → 3. Notación Log Odds
+  - págs. 33–34 → 4. Algoritmo de Mapa de Ocupación
+  - pág. 46 → 5. Mapa de Maximum Likelihood
