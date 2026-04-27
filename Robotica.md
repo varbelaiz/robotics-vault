@@ -15,7 +15,7 @@
 | 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 11                | 11    |
 | 5   | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]]                | En progreso | 9                 | 9     |
 | 6   | [[6. Mapeo/Mapeo\|Mapeo]]                                                       | Completo    | 6                 | 6     |
-| 7   | [[7. ROS2 y TPs/ROS2 y TPs\|ROS2 y TPs]]                                        | En progreso | 13                | 21    |
+| 7   | [[7. ROS2 y TPs/ROS2 y TPs\|ROS2 y TPs]]                                        | En progreso | 15                | 21    |
 
 > Estados posibles: `Esqueleto` (sin contenido grounded) · `En progreso` (alguna ingesta hecha) · `Completo` (todas las fuentes del módulo ingeridas).
 
@@ -96,7 +96,7 @@
 - [[Features vs Mapas Volumétricos]] — Dos enfoques de representación.
 - [[Exploración]] — Descubrimiento de entornos desconocidos.
 
-## 7. ROS2 y TPs — En progreso (13/21)
+## 7. ROS2 y TPs — En progreso (15/21)
 - [[ROS2 y TPs|← ROS2 y TPs]] — Framework ROS2, simulación, tutoriales, y trabajos prácticos.
 - [[ROS2 - Conceptos Base]] — Middleware distribuido: nodos, topics, mensajes; arquitectura del stack del curso (Humble + Gazebo + Turtlebot3).
 - [[ROS2 - Nodos]] — Unidad de ejecución; patrón timer + callback en vez de `while True` para no bloquear el grafo.
@@ -113,6 +113,8 @@
 - [[Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2]] — RVIZ a fondo, composición de mensajes, escribir launch files, preview de TP1 y TP2.
 - [[Tutorial 5 - Bayes]] — Ejercicio canónico del sensor defectuoso (Bayes recursivo de N=1 a N=10, código + plot), fusión de sensores y rederivación del filtro.
 - [[Tutorial 6 - Movimiento, Sensores e Histogramas]] — `sample_motion_model_odometry` con ruido, modelo de sensor basado en haz + Bresenham, likelihood field eficiente, filtro discreto (preview TP2).
+- [[Tutorial 7 - Filtro de Partículas]] — MCL paso a paso (predicción + ponderación con landmarks + remuestreo Stochastic Universal Sampling), features y data association.
+- [[Tutorial 8 - KF, EKF, UKF]] — Trick numérico log-likelihoods, derivación KF predict/correct, EKF con Jacobianos + caso de robot 2D donde la linealización falla, UKF con sigma points, TP4 paralelo.
 - [[Tutorial 3 - Interactuando con Gazebo]] — Simulación, TF, y RViz2.
 - [[Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2]] — Visualización y preparación para TPs.
 - [[Tutorial 5 - Bayes]] — Ejercicios de probabilidad y Bayes.

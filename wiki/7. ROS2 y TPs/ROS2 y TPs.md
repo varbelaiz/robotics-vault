@@ -10,7 +10,7 @@ Todo el curso culmina en código real. Los tutoriales introducen las herramienta
 
 ## Estado actual
 
-**Fases 1–4 ingestadas (2026-04-27)**: Tutoriales 1–6 + 9 conceptos de infra core con contenido grounded. T6 aterriza M2/M3/M5 (modelo de odometría, beam + Bresenham + likelihood field, filtro discreto). Quedan T7–T8 (partículas, Kalman) y los TPs.
+**Fases 1–5 ingestadas (2026-04-27)**: Tutoriales 1–8 + 9 conceptos de infra core con contenido grounded. Los 8 tutoriales del módulo están completos. Sólo quedan los TPs (Fase 6).
 
 | Fase | Tutoriales | Estado |
 |---|---|---|
@@ -18,7 +18,7 @@ Todo el curso culmina en código real. Los tutoriales introducen las herramienta
 | 2 | T3 + T4 | ✅ Completa |
 | 3 | T5 | ✅ Completa |
 | 4 | T6 | ✅ Completa |
-| 5 | T7 + T8 | Pendiente |
+| 5 | T7 + T8 | ✅ Completa |
 | 6 | TP1 + TP2 + TP3 | Pendiente |
 
 ## Recorrido sugerido
@@ -43,8 +43,8 @@ Todo el curso culmina en código real. Los tutoriales introducen las herramienta
 4. [[Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2]] — RVIZ, composición de mensajes, launch files, preview TP1/TP2. ✅
 5. [[Tutorial 5 - Bayes]] — Ejercicio del sensor defectuoso (Bayes recursivo + código + plot), fusión de sensores, derivación del filtro. ✅
 6. [[Tutorial 6 - Movimiento, Sensores e Histogramas]] — `sample_motion_model_odometry`, modelo de sensor basado en haz + Bresenham, likelihood field, filtro de histograma. ✅
-7. [[Tutorial 7 - Filtro de Partículas]] — *(esqueleto)*
-8. [[Tutorial 8 - KF, EKF, UKF]] — *(esqueleto)*
+7. [[Tutorial 7 - Filtro de Partículas]] — MCL paso a paso (predicción + actualización con landmarks + remuestreo SUS), preview features. ✅
+8. [[Tutorial 8 - KF, EKF, UKF]] — log-likelihood trick para MCL, derivación KF predict/correct desde la dinámica, EKF con Jacobianos, UKF con sigma points, TP4 paralelo. ✅
 
 ### TPs
 

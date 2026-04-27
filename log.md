@@ -89,6 +89,23 @@
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
 
+## [2026-04-27] ingest | M7 Fase 5 — Tutorial 7 + Tutorial 8 (MCL + Kalman family)
+- **Fuentes**:
+  - `Raw/Diapositivas/Tutoriales/Tutorial 7_ Filtro de Partículas.pdf` (74 slides)
+  - `Raw/Diapositivas/Tutoriales/Tutorial 8_ KF, EKF, UKF.pdf` (79 slides)
+- **Páginas reescritas**:
+  - `Tutorial 7 - Filtro de Partículas.md` (esqueleto → completo): rewrite organizado en 8 secciones — definición conceptual del filtro no paramétrico, las tres fases (predicción/actualización/remuestreo), predicción detallada con sample_motion_model, actualización con ejemplo landmarks (gaussiana sobre $z - \check{z}$), normalización, remuestreo (thresholding vs Stochastic Universal Sampling con ejemplo paso a paso completo), preview de features y data association.
+  - `Tutorial 8 - KF, EKF, UKF.md` (esqueleto → completo): rewrite organizado en 7 secciones — truco numérico log-likelihoods + max-shift para evitar underflow en MCL, KF visión general (predict/correct loop), modelo lineal-gaussiano y derivación paso a paso del predict desde $x_t = A_t x_{t-1} + B_t u_t + \varepsilon_t$, algoritmo KF + derivación update via producto de gaussianas, EKF con Taylor + Jacobianos + caso de robot 2D donde la linealización falla catastróficamente (scatter circular), UKF con sigma points + tabla comparativa EKF vs UKF, TP4 con dos arquitecturas (odometría rápida vs paralelo).
+- **Screenshots**: 31 PNGs nuevas en `wiki/7. ROS2 y TPs/Img/` (105 totales en M7) — 14 de T7, 17 de T8.
+- **Meta-updates**:
+  - `Robotica.md`: M7 `En progreso (13/21) → En progreso (15/21)`. Catálogo: descripciones de Tutorial 7 y Tutorial 8.
+  - `wiki/7. ROS2 y TPs/ROS2 y TPs.md` (overview): Fase 5 ✅. **Los 8 tutoriales del módulo están completos** — sólo quedan los TPs.
+- **Decisiones tomadas autónomamente**:
+  - Las slides 9–28 de T7 sobre features/landmarks (extracción del lidar, ICP, nearest neighbour) se mantuvieron como sección "preview" dentro del tutorial — no merecen página propia porque el TP3 usa likelihood field, no features explícitas.
+  - El truco log-likelihoods de T8 (slides 4–15, técnico para MCL) quedó como sección dentro de Tutorial 8, sin crear página propia — es un truco de implementación numérica.
+  - La derivación paso a paso del KF predict (slides 21–50 de T8) se preservó en el tutorial pedagógicamente — aunque la teoría completa esté en `[[Filtro de Kalman]]` de M5, esta derivación didáctica ayuda a entender de dónde salen las matrices A, Q.
+  - El caso del robot 2D con yaw incierto (slides 64–75 de T8) se incluyó completo porque expone el modo de falla del EKF — es lo más valioso del tutorial.
+
 ## [2026-04-27] ingest | M7 Fase 4 — Tutorial 6 (Movimiento, Sensores, Histogramas)
 - **Fuente**: `Raw/Diapositivas/Tutoriales/Tutorial 6_ Movimiento, Sensores e Histogramas.pdf` (36 páginas, 37 slides — slide 7 saltado en numeración)
 - **Página reescrita**:
