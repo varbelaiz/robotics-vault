@@ -89,6 +89,20 @@
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
 
+## [2026-04-27] ingest | M7 Fase 4 — Tutorial 6 (Movimiento, Sensores, Histogramas)
+- **Fuente**: `Raw/Diapositivas/Tutoriales/Tutorial 6_ Movimiento, Sensores e Histogramas.pdf` (36 páginas, 37 slides — slide 7 saltado en numeración)
+- **Página reescrita**:
+  - `Tutorial 6 - Movimiento, Sensores e Histogramas.md` (esqueleto → completo): rewrite organizado en 3 secciones — modelo de movimiento con odometría (deltas $\delta_{rot1}, \delta_{trans}, \delta_{rot2}$, ruido, `sample_motion_model_odometry` paso a paso), modelo de sensor (mezcla beam-based de 4 componentes + algoritmo Bresenham para ray-casting con visualización paso a paso + likelihood field como alternativa precomputada), y discretización del espacio (filtro discreto, modelo de movimiento 25/50/25 del TP2).
+- **Screenshots**: 15 PNGs nuevas en `wiki/7. ROS2 y TPs/Img/` (74 totales en M7).
+  - Recovery: hubo offset de página por slide saltado (slide 7 no existe). Re-extraídas todas las páginas con mapping corregido (slide N para N≥8 = página N-1).
+- **Meta-updates**:
+  - `Robotica.md`: M7 `En progreso (12/21) → En progreso (13/21)`. Catálogo: descripción de Tutorial 6.
+  - `wiki/7. ROS2 y TPs/ROS2 y TPs.md` (overview): Fase 4 ✅.
+- **Decisiones tomadas autónomamente**:
+  - **Bresenham** se mantuvo como sección dentro del Tutorial 6 (no merece página propia: algoritmo gráfico clásico, no concepto teórico de la materia, su uso en robótica es justo el ray-casting que aparece en el modelo basado en haz).
+  - Las secciones del modelo de odometría y del beam/likelihood enlazan a `[[Odometría y Modelo de Movimiento (Odometría)]]` (M2), `[[Modelo de Sensor Basado en Haz]]` y `[[Modelo de Campo de Verosimilitud]]` (M3) en vez de duplicar la teoría.
+  - El modelo discreto 25/50/25 quedó como preview de TP2 dentro del Tutorial 6 (cuando se ingeste el enunciado del TP2 en Fase 6, se referenciará desde ahí).
+
 ## [2026-04-27] ingest | M7 Fase 3 — Tutorial 5 (Bayes aplicado)
 - **Fuente**: `Raw/Diapositivas/Tutoriales/Tutorial 5_ Bayes.pdf` (39 slides)
 - **Página reescrita**:
