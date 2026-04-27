@@ -20,8 +20,9 @@ La robótica moderna es esencialmente **álgebra lineal aplicada a sistemas con 
 4. [[Matrices]] — operaciones, productos, rango, inversa, traza, determinante.
 5. [[Matriz Definida Positiva]] — pieza para covarianzas en filtros.
 6. [[Matriz Jacobiana]] — pieza para linealización en EKF.
-7. [[Rotaciones]] — ortogonales, 2D, 3D, no conmutatividad.
-8. [[Transformaciones Homogéneas]] — rototraslación, pose, composición.
+7. [[Rotaciones]] — ortogonales, 2D, 3D, no conmutatividad, comparación de representaciones.
+8. [[Cuaterniones]] — representación 3D estándar en robótica (sin gimbal lock, ideal para control).
+9. [[Transformaciones Homogéneas]] — rototraslación, pose, composición.
 
 ## Conecta con
 - ➡️ [[2. Locomoción/Locomoción|Módulo 2: Locomoción]] (poses del robot que cambian en el tiempo).
@@ -38,4 +39,5 @@ La robótica moderna es esencialmente **álgebra lineal aplicada a sistemas con 
 - [[Matriz Definida Positiva]]
 - [[Matriz Jacobiana]]
 - [[Rotaciones]]
+- [[Cuaterniones]]
 - [[Transformaciones Homogéneas]]

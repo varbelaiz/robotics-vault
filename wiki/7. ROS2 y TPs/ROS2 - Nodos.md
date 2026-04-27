@@ -3,23 +3,57 @@ modulo: 7. ROS2 y TPs
 estado: completo
 fuentes:
   - Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[ROS2 y TPs|← ROS2 y TPs]] | [[Robotica|← Inicio]]
 
 # ROS2 - Nodos
 
-> Unidad básica de ejecución en ROS2: cada nodo es un proceso independiente.
+> Un **nodo** es un proceso ejecutable independiente que participa en el grafo ROS2: corre lógica, publica y suscribe a topics, expone servicios. Es la unidad mínima de modularidad.
 
-## Definición
+## Prerequisitos
+- [[ROS2 - Conceptos Base]] — qué es ROS2 y por qué.
 
-Un **nodo** es un proceso ejecutable que participa en la red ROS2. Cada nodo:
-- Tiene un nombre único dentro del grafo
-- Puede publicar, suscribir, o hacer ambas cosas simultáneamente
-- Comunica con otros nodos a través de topics, servicios, o acciones
+## 1. Idea del nodo
 
-### Estructura mínima de un nodo Python  *(Tutorial 2, págs. 5–8)*
+Cada nodo:
+- Tiene un **nombre único** dentro del grafo.
+- Puede **publicar y/o suscribirse** a topics.
+- Tiene un **ciclo de vida** (init → spin → shutdown).
+- **No bloquea** el grafo: ROS espera que cada nodo ocupe el menor tiempo posible.
+
+### El problema del `while True`
+
+Pensemos en un "talker" — un nodo que publica mensajes cada segundo. La solución ingenua sería:
+
+![[Talker - nodo continuo.png]]
+*Un nodo `talker` publica continuamente al topic `chatter`, slide 4.*
+
+```python
+import time
+while True:
+    time.sleep(1)
+    publish()
+```
+
+Pero este nodo **está ocupado el 100% del tiempo** desde el punto de vista de ROS:
+
+![[Talker - while True bloqueante.png]]
+*Si el nodo bloquea con `while True + sleep`, no puede escuchar otros tópicos ni correr otros procesos, slide 7.*
+
+ROS quiere lo contrario: que el nodo ocupe el menor tiempo posible, dejando el resto del CPU libre.
+
+### La solución: `wall_timer` con callback
+
+ROS provee un **timer** que dispara una función callback periódicamente:
+
+![[Talker - wall timer pattern.png]]
+*Pattern del wall_timer: cada 1 segundo se ejecuta el callback, que llama a publish(). Entre callbacks el nodo está libre, slide 10.*
+
+Ahora el nodo está ocupado **sólo unas milésimas cada segundo**, en vez de bloquear continuo.
+
+## 2. Estructura mínima en Python
 
 ```python
 import rclpy
@@ -28,39 +62,48 @@ from rclpy.node import Node
 class MiNode(Node):
     def __init__(self):
         super().__init__('mi_nodo')
+        # crear publishers, subscribers, timers, etc.
 
-def main(args=None):
-    rclpy.init(args=args)
+def main():
+    rclpy.init()
     nodo = MiNode()
-    rclpy.spin(nodo)
-    nodo.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(nodo)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        nodo.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
 ```
 
-Cada nodo requiere:
-1. `rclpy.init()` — inicializa la librería
-2. `Node()` — crea la instancia
-3. `rclpy.spin()` — mantiene el nodo activo, procesando callbacks
-4. `shutdown()` — limpieza
+Las cuatro fases obligatorias:
 
-### Nomenclatura  *(Tutorial 2, págs. 9–10)*
+1. `rclpy.init()` — inicializa la librería ROS para Python.
+2. `Node(...)` — crea la instancia, registra el nombre en el grafo.
+3. `rclpy.spin(nodo)` — bucle que mantiene el nodo procesando callbacks.
+4. `destroy_node()` + `rclpy.shutdown()` — limpieza ordenada.
 
-Los nodos pueden tener **namespaces** y **nombres remapeados**:
+## 3. Roles del nodo
 
-```bash
-# Remapear nombre al ejecutar
-ros2 run pkg nodo --ros-args -r __node:=nuevo_nombre
+Un mismo nodo puede combinar varios roles simultáneamente:
 
-# Namespace para aislar
-ros2 run pkg nodo --ros-args -r __ns:=/mi_namespace
-```
+- **[[ROS2 - Publisher|Publisher]]** — emite mensajes a un topic.
+- **[[ROS2 - Subscriber|Subscriber]]** — recibe mensajes de un topic.
+- **Timer** — dispara callbacks en intervalos fijos.
+- **Service / Action** — RPC sincrónico/asincrónico (fuera del alcance de la cursada base).
 
 ## Conexiones
-- [[ROS2 - Conceptos Base]] — componente del framework
-- [[ROS2 - Topics]] — canales de comunicación entre nodos
-- [[ROS2 - Publisher]] — rol del nodo como emisor
-- [[ROS2 - Subscriber]] — rol del nodo como receptor
+- [[ROS2 - Conceptos Base]] — el nodo es uno de los 3 conceptos centrales.
+- [[ROS2 - Topics]] — canales por los que el nodo se comunica.
+- [[ROS2 - Publisher]] — rol emisor de un nodo.
+- [[ROS2 - Subscriber]] — rol receptor de un nodo.
+- [[Tutorial 2 - Speaker and Listener]] — primer ejemplo práctico (talker + listener).
 
 ## Fuentes
 - `Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf`
-  - págs. 1–4 → Definición
+  - slides 4–7 → 1.1 El problema del `while True`
+  - slides 9–12 → 1.2 La solución: `wall_timer` con callback
+  - slides 13–20 → 2. Estructura mínima en Python

@@ -89,6 +89,39 @@
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
 
+## [2026-04-27] ingest | M7 Fase 1 — Tutorial 1 + Tutorial 2 + ROS2 infra
+- **Fuentes**:
+  - `Raw/Diapositivas/Tutoriales/Tutorial 1_ Bienvenida e Instalación de ROS2.pdf` (46 slides)
+  - `Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf` (63 slides)
+- **Páginas reescritas en M7 (8 con contenido grueso)**:
+  - `ROS2 - Conceptos Base.md` (T1 slides 11–28: por qué ROS, qué es ROS, stack del curso)
+  - `ROS2 - Nodos.md` (T2 slides 4–20: el problema del `while True`, patrón wall_timer + callback)
+  - `ROS2 - Topics.md` (T1 slide 20 + T2 slides 28–32: modelo pub/sub, topics típicos del curso)
+  - `ROS2 - Mensajes.md` (T2 slides 13, 34: tipos de mensaje, paquetes std_msgs/geometry_msgs/etc.)
+  - `ROS2 - Publisher.md` (T2 slides 13–19: API + patrón timer + callback)
+  - `ROS2 - Subscriber.md` (T2 slides 31–39: callback reactivo, no usa timer, queue_size)
+  - `Gazebo y rviz.md` (T1 slides 27–28: intro a la dupla simulador + visualizador; queda `en-progreso`)
+  - `Tutorial 1 - Bienvenida e Instalación de ROS2.md` (rewrite completo: por qué ROS, stack, instalación Robostack/crudo por OS)
+  - `Tutorial 2 - Speaker and Listener.md` (rewrite completo: workspace + paquete, talker, listener, correr ambos, anticipo de TP1)
+- **Esqueleto en M7 (2, con `[!warning] Pendiente`)**:
+  - `ROS2 - TF2.md` (pendiente T3 en Fase 2)
+  - `ROS2 - Launch Files.md` (pendiente T4 en Fase 2)
+- **Página nueva en M1**:
+  - `Cuaterniones.md` (T2 slides 41–60: por qué los cuaterniones, idea geométrica, PRO/CON, workflow Euler↔cuaternión, conexión con ROS2/TF2 y TP1)
+- **Páginas editadas en M1**:
+  - `Rotaciones.md` — sección nueva "Representaciones de orientación 3D" con tabla comparativa y link a `[[Cuaterniones]]`
+  - `Fundamentos.md` (overview) — agregado Cuaterniones al recorrido y lista
+- **Screenshots capturadas**: 23 PNGs en `wiki/7. ROS2 y TPs/Img/` + 8 nuevas en `wiki/1. Fundamentos/Img/` (31 total).
+  - Recovery: el primer batch de M1 tuvo offset de 2-3 páginas (build slides en T2 corren la numeración). Re-extraídas pages 48, 51, 52, 60; renombradas las correctas.
+- **Meta-updates**:
+  - `Robotica.md`: M1 `Completo (8/8) → Completo (9/9)`. M7 `Esqueleto (0/21) → En progreso (8/21)`. Catálogo de M1 (+Cuaterniones) y M7 (descripciones expandidas).
+  - `wiki/7. ROS2 y TPs/ROS2 y TPs.md` (overview): tabla de fases, marcas de ✅ y `[esqueleto]`.
+- **Forward-references** que resolverán en fases siguientes: `[[Tutorial 3-8]]`, `[[TP1-3]]`, contenido detallado de TF2 y Launch Files.
+- **Decisiones tomadas autónomamente** (per memoria de autonomía):
+  - Cuaterniones a M1 (no a M7) — encaja con Rotaciones/Transformaciones Homogéneas, es teoría pura.
+  - Rotaciones recibió sólo una sección extra, no rewrite completo.
+  - TF2 y Launch Files quedan esqueleto con callout `[!warning] Pendiente — se completa con Tutorial X (Fase 2)`.
+
 ## [2026-04-27] lint | consolidación M4 Robótica Probabilística
 - **Diagnóstico**: tras la doble ingesta de M4 (ingesta del 26-04 con páginas combinadas + bootstrap con esqueletos atómicos) coexistían 14 .md, 11 referencias a imágenes inexistentes (`proba - X.png`) y 16 PNGs huérfanas en `Img/`. El catálogo de [[Robotica]] listaba 11/11 atómicas con `Modelo de Sensor` `[esqueleto]`.
 - **Migración de contenido**:

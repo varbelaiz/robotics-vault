@@ -3,70 +3,87 @@ modulo: 7. ROS2 y TPs
 estado: completo
 fuentes:
   - Raw/Diapositivas/Tutoriales/Tutorial 1_ Bienvenida e Instalación de ROS2.pdf
-  - Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[ROS2 y TPs|← ROS2 y TPs]] | [[Robotica|← Inicio]]
 
 # ROS2 - Conceptos Base
 
-> Framework de middleware para sistemas robóticos con arquitectura distribuida basada en nodos.
+> ROS2 (Robot Operating System 2) es un **middleware** distribuido para sistemas robóticos: en vez de ser un OS, provee herramientas, librerías y un protocolo de comunicación que abstraen la complejidad de programar un robot real.
 
-## ¿Qué es ROS2?
+## 1. ¿Por qué ROS?
 
-ROS2 (Robot Operating System 2) es un framework que provee herramientas y librerías para construir sistemas robóticos. No es un sistema operativo propiamente dicho, sino un conjunto de herramientas que facilitan la comunicación entre procesos, la gestión de dispositivos, y el manejo de datos en tiempo real.
+Un robot autónomo típico **tiene**: procesador/CPU, ruedas, sensores. Y **quiere**: un algoritmo de control que en todo momento lea sensores, interprete, decida, ejecute movimiento, mida cómo se movió, calcule el mejor camino, y se comunique con una PC externa para monitoreo.
 
-Versiones relevantes:
-- **Humble Hawksbill** — LTS (Long Term Support), versión usada en esta cursada
-- **Foxy Fitzroy** — LTS anterior
+![[ROS - implicaciones complejidad.png]]
+*Lo que el código tiene que manejar: interrupciones por sensores, procesamiento, comunicación con hardware, networking, slide 13.*
 
-### Arquitectura  *(Tutorial 2, págs. 1–4)*
+Sin ROS, esto implica:
+- **Threading manual** para no bloquear el algoritmo principal mientras se leen sensores.
+- **Comunicación entre computadoras** vía red (a destiempo).
+- **Flujo de datos** sensores↔procesador↔actuadores.
 
-ROS2 se basa en un patrón de **comunicación distribuida** donde cada proceso funciona como un **nodo** independiente:
+![[ROS - lo que ROS resuelve.png]]
+*ROS se encarga del threading, la comunicación de red, y el flujo de datos, slide 14.*
 
-```
-[ Nodo Publisher ] --(topic)--> [ Nodo Subscriber ]
-```
+## 2. ¿Qué es ROS?
 
-Los componentes fundamentales son:
+> **Robot Operating System** — no es un OS sino un middleware con herramientas y librerías.
 
-| Componente | Descripción |
+ROS provee:
+
+- **Threading automático** para procesos a destiempo sin bloqueo.
+- **Comunicación entre computadoras** vía red.
+- **Flujo de datos** entre sensores, actuadores y procesador.
+- **Simulación física** de robots y entornos (Gazebo).
+- **Visualización** de datos del robot (RVIZ).
+- **Grabación** integrada (rosbag) para replay y análisis offline.
+- **Paquetes pre-armados** por terceros.
+- **Aislamiento** de paquetes para modificaciones.
+- **Abstracción de lenguaje** (Python y C++).
+- **Comunidad activa**.
+
+![[ROS - features que provee.png]]
+*Features que ROS ofrece, slide 18.*
+
+### Arquitectura
+
+Tres componentes nucleares:
+
+| Componente | Rol |
 |---|---|
-| [[ROS2 - Nodos]] | Unidad de ejecución (proceso) |
-| [[ROS2 - Topics]] | Canal de comunicación asíncrono pub/sub |
-| [[ROS2 - Mensajes]] | Tipos de datos estructurados |
-| [[ROS2 - Publisher]] | Nodo que emite mensajes a un topic |
-| [[ROS2 - Subscriber]] | Nodo que recibe mensajes de un topic |
+| [[ROS2 - Nodos]] | Proceso ejecutable que corre lógica |
+| [[ROS2 - Topics]] | Canal de comunicación entre nodos |
+| [[ROS2 - Mensajes]] | Datos estructurados que viajan por los topics |
 
-### Workspace y construcción  *(Tutorial 1, págs. 9–14)*
+![[ROS - arquitectura nodes topics.png]]
+*Modelo: nodos publican y suscriben a topics; los topics no son sólo punto-a-punto sino que admiten 1-a-N, N-a-1, N-a-N, slide 20.*
 
-Todo proyecto ROS2 vive dentro de un **workspace**:
+### Ejemplo real
 
-```
-mi_ws/
-├── src/              ← código fuente (paquetes)
-├── build/            ← artifacts de compilación
-├── install/          ← instalación resultante
-└── log/              ← logs de construcción
-```
+Un robot perro corriendo ROS:
 
-Pasos para construir:
-```bash
-# Crear workspace
-mkdir -p mi_ws/src
-cd mi_ws
+![[ROS - ejemplo robot perro.png]]
+*Múltiples nodos en computadora a bordo (State Machine, Dyna real Interface, Motors, Joy Node, IMU) más nodos en computadora externa (Teleoperator, Listener), comunicándose por topics tipados, slide 21.*
 
-# Construir todos los paquetes en src/
-colcon build
+Más allá de los tres conceptos centrales, ROS2 incluye **servicios, acciones, rosbag, nodos composables, QoS, parámetros, RTO, URDF, capa DDS y variantes, memory allocation, ROS2 tracing, simuladores**, etc. — pero para este curso alcanza con dominar nodos + topics + mensajes.
 
-# Sourcear el entorno
-source install/setup.bash
-```
+## 3. El stack del curso
 
-El comando `colcon build` compila y enlaza todos los paquetes. El `source install/setup.bash` exporta las variables de entorno necesarias para encontrar ejecutables, mensajes, etc.
+ROS2 tiene varias distribuciones LTS. La materia usa:
 
-### Comandos útiles  *(Tutorial 1, págs. 15–18)*
+![[ROS - stack del curso.png]]
+*Versión Humble Hawksbill + simulador Gazebo + paquetes Turtlebot3, slide 25.*
+
+| Pieza | Rol |
+|---|---|
+| **ROS2 Humble Hawksbill** | Distribución LTS, compatible con Ubuntu 22.04 |
+| **Gazebo** | Simulador físico del robot y el entorno |
+| **Turtlebot3** | Robot diferencial pequeño, modelo `burger`, paquetes provistos por Open Robotics |
+| **RVIZ** | Visor 3D para ver lo que "ve" el robot (pose, lidar, mapas) |
+
+### Comandos básicos
 
 ```bash
 # Listar nodos activos
@@ -75,19 +92,31 @@ ros2 node list
 # Listar topics
 ros2 topic list
 
-# Ver tipo de mensaje de un topic
-ros2 topic info /topic_name
+# Ver el tipo de mensaje de un topic
+ros2 topic info /scan
 
-# Ver publicaciones en tiempo real
-ros2 topic echo /topic_name
+# Escuchar mensajes en tiempo real
+ros2 topic echo /scan
+
+# Correr un nodo de un paquete
+ros2 run <pkg_name> <executable>
+
+# Lanzar un launch file
+ros2 launch <pkg_name> <launch_file>.py
 ```
 
-## Conexiones con el curso
-- [[Tutorial 1 - Bienvenida e Instalación de ROS2]] — instalación práctica
-- [[Tutorial 2 - Speaker and Listener]] — primer programa pub/sub
-- [[Tutorial 3 - Interactuando con Gazebo]] — simulación
+## Conexiones
+- [[ROS2 - Nodos]] — unidad de ejecución.
+- [[ROS2 - Topics]] — canal pub/sub.
+- [[ROS2 - Mensajes]] — payload tipado.
+- [[ROS2 - Publisher]] — lado emisor.
+- [[ROS2 - Subscriber]] — lado receptor.
+- [[Gazebo y rviz]] — simulación + visualización.
+- [[ROS2 - Launch Files]] — arranque múltiple.
+- [[Tutorial 1 - Bienvenida e Instalación de ROS2]] — instalación práctica.
 
 ## Fuentes
 - `Raw/Diapositivas/Tutoriales/Tutorial 1_ Bienvenida e Instalación de ROS2.pdf`
-  - págs. 1–8 → ¿Qué es ROS2?
-- `Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf`
+  - slides 11–14 → 1. ¿Por qué ROS?
+  - slides 16–22 → 2. ¿Qué es ROS?
+  - slides 25–28 → 3. El stack del curso

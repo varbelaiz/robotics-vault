@@ -88,8 +88,25 @@ $R_x(\theta) \cdot R_y(\theta) \neq R_y(\theta) \cdot R_x(\theta)$ en general. A
 
 Esta no conmutatividad es la razón principal por la que las [[Transformaciones Homogéneas]] son tan importantes — encapsulan el orden correctamente.
 
-## 4. Variantes y conexiones
+## 4. Representaciones de orientación 3D
+
+La matriz de rotación es una de **tres** formas estándar de representar una orientación 3D. Las tres aparecen en robótica con compromisos distintos:
+
+![[Rotaciones - 3 representaciones.png]]
+*Las tres representaciones lado a lado: Ángulos de Euler, Matriz de Rotación, Cuaterniones, slide 48 del Tutorial 2.*
+
+| Representación | Parámetros | Pros | Cons |
+|---|---|---|---|
+| **Ángulos de Euler** (Roll, Pitch, Yaw) | 3 | Intuitivo, mínimo | Gimbal lock, singularidades, EKF/jacobianos sufren |
+| **Matriz de Rotación** | 9 | Sin singularidades, sin gimbal lock | 9 números para 3 GdL, drift numérico (perdida de ortogonalidad), redundante |
+| [[Cuaterniones]] | 4 | Sin singularidades, compacto, **ideal para control y EKF**, jacobianos suaves | Poco intuitivo, requiere normalizar |
+
+> [!info] En la práctica
+> ROS2 publica orientaciones como **cuaterniones** (`geometry_msgs/Quaternion`). Para razonar como humano se convierte cuaternión → euler en la frontera. Detalle completo en [[Cuaterniones]].
+
+## 5. Variantes y conexiones
 - Componiendo rotación + traslación se obtienen [[Transformaciones Homogéneas]].
+- [[Cuaterniones]] — alternativa estándar en robótica para control.
 - Caso particular de [[Matrices|matrices ortogonales]] con $\det = +1$.
 - Centrales para [[2. Locomoción/Locomoción|locomoción]] (orientación del robot) y [[3. Sensores y Modelos/Sensores y Modelos|sensores]] (cambio de sistema sensor → robot).
 
@@ -98,3 +115,5 @@ Esta no conmutatividad es la razón principal por la que las [[Transformaciones 
   - slide 25 → 1. Matriz ortogonal
   - slides 26–29 → 2. Matriz de rotación 2D
   - slides 30–31 → 3. Rotaciones 3D
+- `Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf`
+  - slide 48 → 4. Representaciones de orientación 3D (tabla comparativa)

@@ -9,13 +9,13 @@
 
 | #   | Módulo                                                                          | Estado      | Páginas completas | Total |
 | --- | ------------------------------------------------------------------------------- | ----------- | ----------------- | ----- |
-| 1   | [[1. Fundamentos/Fundamentos\|Fundamentos]]                                     | Completo    | 8                 | 8     |
+| 1   | [[1. Fundamentos/Fundamentos\|Fundamentos]]                                     | Completo    | 9                 | 9     |
 | 2   | [[2. Locomoción/Locomoción\|Locomoción]]                                        | Completo    | 5                 | 5     |
 | 3   | [[3. Sensores y Modelos/Sensores y Modelos\|Sensores y Modelos]]                | Completo    | 5                 | 5     |
 | 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 11                | 11    |
 | 5   | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]]                | En progreso | 9                 | 9     |
 | 6   | [[6. Mapeo/Mapeo\|Mapeo]]                                                       | Completo    | 6                 | 6     |
-| 7   | [[7. ROS2 y TPs/ROS2 y TPs\|ROS2 y TPs]]                                        | Esqueleto   | 0                 | 21    |
+| 7   | [[7. ROS2 y TPs/ROS2 y TPs\|ROS2 y TPs]]                                        | En progreso | 8                 | 21    |
 
 > Estados posibles: `Esqueleto` (sin contenido grounded) · `En progreso` (alguna ingesta hecha) · `Completo` (todas las fuentes del módulo ingeridas).
 
@@ -41,7 +41,8 @@
 - [[Matrices]] — Operaciones, productos, rango, inversa, traza, determinante.
 - [[Matriz Definida Positiva]] — Análoga al "número positivo"; covarianzas en filtros.
 - [[Matriz Jacobiana]] — Generalización del gradiente; linealización en EKF.
-- [[Rotaciones]] — Matrices ortogonales; rotaciones 2D y 3D, no conmutatividad.
+- [[Rotaciones]] — Matrices ortogonales; rotaciones 2D y 3D, no conmutatividad, comparación de representaciones.
+- [[Cuaterniones]] — Representación de rotaciones 3D con 4 números; sin gimbal lock; estándar en robótica de control.
 - [[Transformaciones Homogéneas]] — Rototraslación; pose del robot; composición.
 
 ## 2. Locomoción — Completo ✅
@@ -95,19 +96,19 @@
 - [[Features vs Mapas Volumétricos]] — Dos enfoques de representación.
 - [[Exploración]] — Descubrimiento de entornos desconocidos.
 
-## 7. ROS2 y TPs — Esqueleto (0/21)
+## 7. ROS2 y TPs — En progreso (8/21)
 - [[ROS2 y TPs|← ROS2 y TPs]] — Framework ROS2, simulación, tutoriales, y trabajos prácticos.
-- [[ROS2 - Conceptos Base]] — Introducción al framework: nodos, topics, mensajes, servicios.
-- [[ROS2 - Nodos]] — Unidad básica de ejecución en ROS2.
-- [[ROS2 - Topics]] — Canales de comunicación pub/sub asíncrona.
-- [[ROS2 - Mensajes]] — Tipos de datos estructurados en ROS2.
-- [[ROS2 - Publisher]] — Lado emisor de la comunicación.
-- [[ROS2 - Subscriber]] — Lado receptor de la comunicación.
-- [[ROS2 - TF2]] — Transformaciones de coordenadas entre frames.
-- [[ROS2 - Launch Files]] — Archivos para arranque múltiple de nodos.
-- [[Gazebo y rviz]] — Simulación física y visualización 3D.
-- [[Tutorial 1 - Bienvenida e Instalación de ROS2]] — Instalación y primeros pasos en ROS2.
-- [[Tutorial 2 - Speaker and Listener]] — Pub/sub básico en Python.
+- [[ROS2 - Conceptos Base]] — Middleware distribuido: nodos, topics, mensajes; arquitectura del stack del curso (Humble + Gazebo + Turtlebot3).
+- [[ROS2 - Nodos]] — Unidad de ejecución; patrón timer + callback en vez de `while True` para no bloquear el grafo.
+- [[ROS2 - Topics]] — Canal pub/sub asíncrono y tipado; multiplicidad libre, descubrimiento DDS.
+- [[ROS2 - Mensajes]] — Tipos estructurados; `std_msgs`, `geometry_msgs`, `sensor_msgs`, `nav_msgs`, `tf2_msgs`.
+- [[ROS2 - Publisher]] — Lado emisor; `create_publisher` + timer con callback.
+- [[ROS2 - Subscriber]] — Lado receptor reactivo; `create_subscription` + callback de evento.
+- [[ROS2 - TF2]] — Transformaciones entre frames. `[esqueleto, pendiente Fase 2]`
+- [[ROS2 - Launch Files]] — Arranque múltiple. `[esqueleto, pendiente Fase 2]`
+- [[Gazebo y rviz]] — Simulación física + visualización 3D (intro de T1; detalle pendiente).
+- [[Tutorial 1 - Bienvenida e Instalación de ROS2]] — Instalación de Humble + Gazebo + Turtlebot3 (Robostack y ROS2 crudo).
+- [[Tutorial 2 - Speaker and Listener]] — Pub/sub básico + workspace + paquete + anticipo de TP1 (rotaciones 3D).
 - [[Tutorial 3 - Interactuando con Gazebo]] — Simulación, TF, y RViz2.
 - [[Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2]] — Visualización y preparación para TPs.
 - [[Tutorial 5 - Bayes]] — Ejercicios de probabilidad y Bayes.
