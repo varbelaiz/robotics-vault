@@ -4,7 +4,7 @@ estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
@@ -50,6 +50,6 @@ Esto hace posible el **filtro recursivo**.
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
-  - pág. 21; parte 2, pág. 32 → Definición
+  - pág. 21 → Primera aparición ("Suposición de Markov" como tag dentro de la actualización recursiva bayesiana)
 - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf`
-  - pág. 32 → Suposiciones subyacentes
+  - pág. 32 → Definición formal (DBN + 2 ecuaciones) y suposiciones subyacentes

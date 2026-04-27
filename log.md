@@ -8,6 +8,21 @@
 
 ---
 
+## [2026-04-27] audit+lint | M4 — integración de Derivación del Filtro de Bayes + lint cosmético
+- **Disparador**: pedido de Valentino de auditar el resto de archivos en `Robótica Probabilística`.
+- **Auditoría de cobertura**:
+  - PDF 05 parte 1 (31 slides) → 100% cubierto (verificado en audit anterior).
+  - PDF 05 parte 2 (15 págs, slides 31–45 con cover) → 100% cubierto entre `Filtro de Bayes.md` (slides 31, 41–43, 45), `Suposición de Markov.md` (slide 32) y `Derivación del Filtro de Bayes.md` (slides 34–40).
+- **Hallazgo principal**: `Derivación del Filtro de Bayes.md` existía completa pero **untracked** y **huérfana** — no estaba integrada en el overview ni cross-linkeada desde `Filtro de Bayes.md`. Su contenido ya estaba listado en el catálogo de `Robotica.md` pero no en `Robótica Probabilística.md` (overview del módulo) ni en `Páginas en este módulo`.
+- **Cambios**:
+  - `Robótica Probabilística.md`: agregado paso 10 al *Recorrido sugerido* y entrada en *Páginas en este módulo*. M4 ahora 12/12.
+  - `Filtro de Bayes.md`: cross-link a `Derivación del Filtro de Bayes` en sec *Conexiones* + nota inline al final de la subsección de derivación. Fix typo "Si **Se desea**" → "**Se desea**".
+  - `Introducción a la Robótica Probabilística.md`: limpieza de `fuentes:` (sólo cita pág. 2 de parte 1; se quitó parte 2 que aparecía sin sección concreta — la página no la consume directamente).
+  - `Suposición de Markov.md`: refinada la cita a parte 1 pág. 21 (es la primera aparición como tag, no la diapositiva propia) y a parte 2 pág. 32 (definición formal con DBN).
+- **Decisiones**:
+  - El catálogo de `Robotica.md` listaba 12 páginas en M4 pero la tabla de estado mostraba 11/11 — *no* lo corrijo ahora porque la página untracked aún debe commiteársela; se ajusta en este mismo commit a 12/12.
+  - No toqué `Modelo de Sensor.md` (es deliberadamente landing page hacia M3) ni capturé los slides 11/12 (Ley prob total / Marginalización) — las fórmulas LaTeX en `Probabilidad Conjunta.md` ya las muestran sin pérdida.
+
 ## [2026-04-27] audit+ingest | M2 — gap de PDF 06 (slides 5, 6, 14, 17–22, 25–27, 47)
 - **Disparador**: Valentino observó que `wiki/4. Robótica Probabilística/Modelo de Movimiento.md` no citaba `06-modelos-de-movimiento_con_modelo_velocidad-3.pdf` y pidió auditar gaps.
 - **Auditoría**:

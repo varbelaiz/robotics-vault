@@ -22,13 +22,14 @@ ultima_actualizacion: 2026-04-26
 - Modelo de sensor: $P(z_t \mid x_t)$
 - Modelo de acción (transición): $P(x_t \mid u_t, x_{t-1})$
 - Probabilidad a priori: $P(x_0)$
-Si **Se desea**:
+
+**Se desea**:
 - Estimar el estado $X$ del sistema en cada paso
 - La probabilidad a posteriori (**belief**): $Bel(x_t) = P(x_t \mid z_{1:t}, u_{1:t})$
 
 ## Derivación del algoritmo recursivo
 
-Partiendo de $Bel(x_t) = P(x_t \mid z_{1:t}, u_{1:t})$, se aplican sucesivamente: regla de Bayes (introducir $z_t$ como evidencia), suposición de Markov (eliminar dependencias pasadas), ley de probabilidad total (marginalizar sobre $x_{t-1}$), e independencia condicional. El resultado final es la forma recursiva.
+Partiendo de $Bel(x_t) = P(x_t \mid z_{1:t}, u_{1:t})$, se aplican sucesivamente: regla de Bayes (introducir $z_t$ como evidencia), suposición de Markov (eliminar dependencias pasadas), ley de probabilidad total (marginalizar sobre $x_{t-1}$), e independencia condicional. El resultado final es la forma recursiva. La derivación paso a paso vive en [[Derivación del Filtro de Bayes]].
 
 ![[Filtro Bayes - derivacion final.png]]
 *Forma final de la derivación: aparece el término recursivo $Bel(x_{t-1})$, slide 40.*
@@ -95,6 +96,7 @@ El filtro de Bayes es la base de muchas herramientas:
 - Los filtros de Bayes estiman el estado de un sistema dinámico de forma recursiva
 
 ## Conexiones
+- [[Derivación del Filtro de Bayes]] — derivación paso a paso de las ecuaciones de predicción y actualización
 - [[Regla de Bayes]] — base matemática
 - [[Suposición de Markov]] — condición de independencia temporal
 - [[Modelo de Movimiento]] — $P(x_t \mid u_t, x_{t-1})$

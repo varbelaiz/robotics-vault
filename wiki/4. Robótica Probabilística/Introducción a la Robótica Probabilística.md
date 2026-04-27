@@ -3,8 +3,7 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf
-  - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
@@ -44,5 +43,4 @@ Los sistemas robóticos autónomos deben estimar su estado (posición, orientaci
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`
-  - pág. 2 → Idea central
-- `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf`
+  - pág. 2 → Idea central — *"Tratemos de saber lo que no sabemos"*

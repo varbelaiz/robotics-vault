@@ -12,7 +12,7 @@
 | 1   | [[1. Fundamentos/Fundamentos\|Fundamentos]]                                     | Completo    | 9                 | 9     |
 | 2   | [[2. Locomoción/Locomoción\|Locomoción]]                                        | Completo    | 6                 | 6     |
 | 3   | [[3. Sensores y Modelos/Sensores y Modelos\|Sensores y Modelos]]                | Completo    | 5                 | 5     |
-| 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 11                | 11    |
+| 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 12                | 12    |
 | 5   | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]]                | Completo    | 9                 | 9     |
 | 6   | [[6. Mapeo/Mapeo\|Mapeo]]                                                       | Completo    | 6                 | 6     |
 | 7   | [[7. ROS2/ROS2\|ROS2]]                                                          | Completo    | 18                | 18    |
