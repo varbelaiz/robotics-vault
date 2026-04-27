@@ -4,7 +4,7 @@ estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/03-locomocion-3.pdf
   - Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Locomoción|← Locomoción]] | [[Robotica|← Inicio]]
@@ -84,16 +84,9 @@ Los parámetros $\alpha_1, \dots, \alpha_4$ caracterizan el ruido del robot y de
 ![[Odometria - modelo de ruido.png]]
 *Modelo de ruido: cada delta medida es la verdadera más ruido cuya varianza depende de las deltas, slide 12.*
 
-## 6. Distribuciones típicas: normal y triangular
+## 6. Distribuciones típicas y operación `prob`
 
-El ruido $\varepsilon_{\sigma^2}$ se modela típicamente con una **distribución normal** o **triangular** centradas en cero:
-
-| | Normal | Triangular |
-|---|---|---|
-| $\varepsilon_{\sigma^2}(x) = $ | $\dfrac{1}{\sqrt{2\pi\sigma^2}} e^{-\tfrac{1}{2}\tfrac{x^2}{\sigma^2}}$ | $\dfrac{\sqrt{6\sigma^2} - \|x\|}{6\sigma^2}$ si $\|x\| \le \sqrt{6\sigma^2}$, sino $0$ |
-
-![[Odometria - distribuciones normal y triangular.png]]
-*Las dos distribuciones canónicas para modelar ruido, slide 13.*
+El ruido $\varepsilon_{\sigma^2}$ se modela típicamente con una **normal** o **triangular** centradas en cero. La función `prob(a, b)` que aparece en el algoritmo de la sección 7 es justamente la **evaluación puntual** de esa densidad — ver [[Muestreo de Distribuciones]] para los algoritmos `prob_normal_distribution` y `prob_triangular_distribution`.
 
 ## 7. Algoritmo `motion_model_odometry`
 
@@ -129,19 +122,9 @@ Aplicando el modelo repetidamente para pequeños desplazamientos, la proyección
 ![[Odometria - distribucion medialuna.png]]
 *La distribución $p(x' \mid u, x)$ tiene forma de medialuna por el acoplamiento entre rotación y traslación, slide 16.*
 
-## 9. Muestreo: rejection sampling
+## 9. Operación `sample`
 
-Para representar la distribución con muestras (necesario para [[MCL - Filtro de Partículas]], M5), una técnica general es **muestreo con rechazo**:
-
-1. Muestrear $x$ de una uniforme en $[-b, b]$.
-2. Muestrear $c$ entre $[0, \max f]$.
-3. Si $f(x) > c$, **conservar** la muestra; sino, **descartarla**.
-
-![[Rejection sampling - visual.png]]
-*Idea visual del muestreo con rechazo: el punto $x'$ está bajo $f$, se acepta; el punto $x$ está arriba, se rechaza, slide 24.*
-
-> [!info] Distribuciones simples
-> Para muestrear una **normal** con media 0 y varianza $\sigma^2$ se puede usar el truco del teorema central del límite (sumar 12 uniformes y normalizar). Para una **triangular**, sumar 2 uniformes y escalar.
+Para representar la distribución con muestras (necesario para [[MCL - Filtro de Partículas]], M5) la `sample(b)` que aparece en el algoritmo de la próxima sección genera valores que siguen $\varepsilon_{b^2}$. Los algoritmos concretos (suma de 12 uniformes para normal, suma de 2 para triangular, rejection sampling para casos generales) viven en [[Muestreo de Distribuciones]].
 
 ## 10. Algoritmo `sample_motion_model` (odometría)
 
@@ -188,6 +171,7 @@ donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre.
 
 ## 13. Variantes y conexiones
 - [[Modelo de Movimiento (Velocidad)]] — alternativa cuando no hay encoders, basada en $u = (v, \omega)$.
+- [[Muestreo de Distribuciones]] — algoritmos `prob` y `sample` que `motion_model_odometry` y `sample_motion_model` invocan.
 - [[MCL - Filtro de Partículas]] — el principal consumidor de `sample_motion_model` (forward-ref, M5).
 - [[Filtro de Kalman]] — usa el modelo gaussiano linealizado (forward-ref, M5).
 - [[Filtros Discretos]] — consumen `motion_model_odometry` para la actualización de predicción (forward-ref, M5).
@@ -200,10 +184,8 @@ donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre.
   - slide 9 → 3. Fuentes de error de robots con ruedas
   - slide 10 → 4. Modelo de odometría: parametrización
   - slide 12 → 5. Modelo de ruido para la odometría
-  - slides 13–14 → 6. Distribuciones típicas: normal y triangular
-  - slide 15 → 7. Algoritmo `motion_model_odometry`
+  - slide 15 → 7. Algoritmo `motion_model_odometry` (delega `prob` a [[Muestreo de Distribuciones]])
   - slide 16 → 8. La distribución resultante: medialuna
-  - slides 23–25 → 9. Muestreo: rejection sampling
-  - slide 28 → 10. Algoritmo `sample_motion_model` (odometría)
+  - slide 28 → 10. Algoritmo `sample_motion_model` (delega `sample` a [[Muestreo de Distribuciones]])
   - slides 29–30 → 11. Ejemplos del modelo
   - slide 31 → 12. Modelo consistente con mapas

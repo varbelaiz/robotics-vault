@@ -10,7 +10,7 @@
 | #   | Módulo                                                                          | Estado      | Páginas completas | Total |
 | --- | ------------------------------------------------------------------------------- | ----------- | ----------------- | ----- |
 | 1   | [[1. Fundamentos/Fundamentos\|Fundamentos]]                                     | Completo    | 9                 | 9     |
-| 2   | [[2. Locomoción/Locomoción\|Locomoción]]                                        | Completo    | 5                 | 5     |
+| 2   | [[2. Locomoción/Locomoción\|Locomoción]]                                        | Completo    | 6                 | 6     |
 | 3   | [[3. Sensores y Modelos/Sensores y Modelos\|Sensores y Modelos]]                | Completo    | 5                 | 5     |
 | 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 11                | 11    |
 | 5   | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]]                | Completo    | 9                 | 9     |
@@ -53,6 +53,7 @@
 - [[Otros Accionamientos - Ackermann, Síncrono, Omni]] — Ackermann, síncrono, mecanum, vehículos especiales.
 - [[Odometría y Modelo de Movimiento (Odometría)]] — Dead reckoning + modelo probabilístico basado en encoders.
 - [[Modelo de Movimiento (Velocidad)]] — Modelo probabilístico cuando el control viene como $(v, \omega)$.
+- [[Muestreo de Distribuciones]] — Hub de las operaciones `prob` y `sample` (normal/triangular/rejection); base de los modelos de movimiento y del filtro de partículas.
 
 ## 3. Sensores y Modelos — Completo ✅
 - [[Sensores y Modelos|← Sensores y Modelos]] — Mapa del módulo: hardware sensorial + modelos probabilísticos $p(z\|x,m)$.
@@ -75,6 +76,7 @@
 - [[Filtro de Bayes]] — Algoritmo recursivo de estimación: predict y update.
 - [[Modelo de Movimiento]] — Transición probabilística $P(x_t \mid u_t, x_{t-1})$ con ejemplo de FSM "cerrar puerta".
 - [[Modelo de Sensor]] — Hub de los modelos de observación $P(z_t \mid x_t, m)$ del Módulo 3.
+- [[Derivación del Filtro de Bayes]] — Derivación paso a paso: Bayes + Markov + probabilidad total → ecuaciones de predicción y actualización.
 
 ## 5. Filtros Bayesianos — En progreso (9/9)
 - [[Filtros Bayesianos|← Filtros Bayesianos]] — Implementaciones del filtro de Bayes: discretos, Kalman, y partículas.

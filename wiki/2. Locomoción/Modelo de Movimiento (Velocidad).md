@@ -3,7 +3,7 @@ modulo: 2. Locomoción
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Locomoción|← Locomoción]] | [[Robotica|← Inicio]]
@@ -143,8 +143,17 @@ Como con odometría, la distribución $p(x_t \mid u_t, x_{t-1})$ tiene forma de 
 ![[Velocidad - ejemplos sampling.png]]
 *Distribuciones $p(x' \mid u, x)$ vs muestras correspondientes para distintos ruidos en el modelo de velocidad, slide 46.*
 
-## 9. Variantes y conexiones
+## 9. Modelo consistente con mapas
+
+Igual que con odometría, el modelo $p(x_t \mid u_t, x_{t-1})$ por sí solo ignora los obstáculos del entorno: una muestra puede caer dentro de una pared. Si conocemos un mapa $m$, la aproximación es la misma:
+
+$$p(x' \mid u, x, m) = \eta \, p(x' \mid m) \, p(x' \mid u, x)$$
+
+donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre. Para la imagen y el detalle ver [[Odometría y Modelo de Movimiento (Odometría)#12. Modelo consistente con mapas|Odometría → sec. 12]] — la slide 47 reutiliza la misma figura que la slide 31.
+
+## 10. Variantes y conexiones
 - [[Odometría y Modelo de Movimiento (Odometría)]] — modelo paralelo cuando hay encoders.
+- [[Muestreo de Distribuciones]] — algoritmos `prob` y `sample` que `motion_model_velocity` y `sample_motion_model_velocity` invocan.
 - [[MCL - Filtro de Partículas]] — usa `sample_motion_model_velocity` cuando el robot reporta velocidades (forward-ref, M5).
 - [[Filtro de Kalman]] / [[EKF]] — la versión linealizada se usa como modelo de transición (forward-ref, M5).
 
@@ -155,6 +164,7 @@ Como con odometría, la distribución $p(x_t \mid u_t, x_{t-1})$ tiene forma de 
   - slide 35 → 3. Modelo de ruido (primera versión)
   - slides 36–37 → 4. Modelo extendido con tercer parámetro
   - slides 38–42 → 5. Derivación: parámetros del círculo
-  - slide 44 → 6. Algoritmo `motion_model_velocity`
-  - slide 45 → 7. Algoritmo `sample_motion_model_velocity`
+  - slide 44 → 6. Algoritmo `motion_model_velocity` (delega `prob` a [[Muestreo de Distribuciones]])
+  - slide 45 → 7. Algoritmo `sample_motion_model_velocity` (delega `sample` a [[Muestreo de Distribuciones]])
   - slide 46 → 8. Ejemplos del modelo
+  - slide 47 → 9. Modelo consistente con mapas

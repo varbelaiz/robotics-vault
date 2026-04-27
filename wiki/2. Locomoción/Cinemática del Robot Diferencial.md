@@ -3,7 +3,8 @@ modulo: 2. Locomoción
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/03-locomocion-3.pdf
-ultima_actualizacion: 2026-04-26
+  - Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Locomoción|← Locomoción]] | [[Robotica|← Inicio]]
@@ -25,6 +26,25 @@ En este módulo trabajamos con **modelos cinemáticos** — basta con saber cóm
 
 ## 2. Pose 2D del robot
 
+### Del 3D al planar
+
+La configuración general de un robot en 3D se describe con **6 parámetros**: las 3 coordenadas cartesianas $(x, y, z)$ más 3 ángulos. Los ángulos pueden ser **intrínsecos** (rotaciones sobre los ejes locales del cuerpo, p. ej. Euler clásicos) o **extrínsecos** (rotaciones sobre los ejes globales fijos, p. ej. Roll-Pitch-Yaw).
+
+![[Coordenadas - 3D Euler RPY.png]]
+*Configuración 3D: misma rotación con ángulos intrínsecos (Euler) vs extrínsecos (RPY), PDF 06 slide 5.*
+
+> [!info] Cuándo importa la distinción
+> Para robots aéreos o brazos manipuladores, el orden de las rotaciones cambia el resultado — por eso conviene representar la orientación con [[Cuaterniones]] o matrices, no con tuplas de ángulos. Ver [[Rotaciones]] (M1) para la justificación detallada.
+
+### Restricción a la superficie plana
+
+Por simplicidad, este módulo (y todo el curso de robótica móvil) trabaja con robots que operan sobre **una superficie plana**. El espacio de estados se reduce de 6 a **3 dimensiones** $(x, y, \theta)$:
+
+![[Coordenadas - planar xytheta.png]]
+*Pose planar de un robot móvil: dos coordenadas y un ángulo, PDF 06 slide 6.*
+
+### Notación del curso
+
 Para un robot que opera sobre una superficie plana, su **pose** se describe con tres parámetros:
 
 $${}^{I}\boldsymbol{\xi} = \begin{bmatrix} x \\ y \\ \theta \end{bmatrix}$$
@@ -32,7 +52,7 @@ $${}^{I}\boldsymbol{\xi} = \begin{bmatrix} x \\ y \\ \theta \end{bmatrix}$$
 donde $(x, y)$ es la posición del punto de referencia $\boldsymbol{p}$ del chasis del robot en el marco de referencia global $\{X_I, Y_I\}$, y $\theta$ es la orientación del marco local del robot $\{X_R, Y_R\}$ respecto del global.
 
 ![[Cinematica - pose 2D.png]]
-*Marco global $\{X_I, Y_I\}$, marco local del robot $\{X_R, Y_R\}$ y la pose ${}^{I}\boldsymbol{\xi} = (x, y, \theta)$, slide 10.*
+*Marco global $\{X_I, Y_I\}$, marco local del robot $\{X_R, Y_R\}$ y la pose ${}^{I}\boldsymbol{\xi} = (x, y, \theta)$, PDF 03 slide 10.*
 
 ## 3. Mapeo entre marcos: matriz de rotación
 
@@ -153,7 +173,7 @@ $$\theta(t) = \tfrac{1}{l}\int_0^t [v_r(t) - v_l(t)]\,dt$$
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf`
   - slide 9 → 1. Cinemática vs dinámica
-  - slides 10–11 → 2. Pose 2D del robot
+  - slides 10–11 → 2. Pose 2D del robot — *Notación del curso*
   - slides 12–13 → 3. Mapeo entre marcos: matriz de rotación
   - slide 14 → 4. Cinemática directa: planteo
   - slides 15–16 → 5. Derivación: velocidad de traslación
@@ -161,3 +181,6 @@ $$\theta(t) = \tfrac{1}{l}\int_0^t [v_r(t) - v_l(t)]\,dt$$
   - slide 18 → 7. Resultado final
   - slides 19–20 → 8. Trayectorias e ICC
   - slides 22–23 → 9. Cinemática directa con ICC
+- `Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf`
+  - slide 5 → 2. Pose 2D del robot — *Del 3D al planar*
+  - slide 6 → 2. Pose 2D del robot — *Restricción a la superficie plana*

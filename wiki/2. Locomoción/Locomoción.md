@@ -13,6 +13,7 @@ La cinemática del robot es la base operativa de todo lo que viene: define cómo
 3. [[Otros Accionamientos - Ackermann, Síncrono, Omni]] — Ackermann, síncrono, mecanum, vehículos especiales.
 4. [[Odometría y Modelo de Movimiento (Odometría)]] — dead reckoning + modelo probabilístico basado en encoders.
 5. [[Modelo de Movimiento (Velocidad)]] — modelo probabilístico cuando el control viene como $(v, \omega)$.
+6. [[Muestreo de Distribuciones]] — operaciones `prob` y `sample` que ambos modelos invocan; base del filtro de partículas.
 
 ## Conecta con
 - ⬅️ [[1. Fundamentos/Fundamentos|Módulo 1: Fundamentos]] (matrices de rotación, jacobiano, transformaciones)
@@ -26,3 +27,4 @@ La cinemática del robot es la base operativa de todo lo que viene: define cómo
 - [[Otros Accionamientos - Ackermann, Síncrono, Omni]]
 - [[Odometría y Modelo de Movimiento (Odometría)]]
 - [[Modelo de Movimiento (Velocidad)]]
+- [[Muestreo de Distribuciones]]

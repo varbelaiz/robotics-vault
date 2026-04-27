@@ -8,6 +8,31 @@
 
 ---
 
+## [2026-04-27] audit+ingest | M2 — gap de PDF 06 (slides 5, 6, 14, 17–22, 25–27, 47)
+- **Disparador**: Valentino observó que `wiki/4. Robótica Probabilística/Modelo de Movimiento.md` no citaba `06-modelos-de-movimiento_con_modelo_velocidad-3.pdf` y pidió auditar gaps.
+- **Auditoría**:
+  - PDF 05 (`05-intro_robo_proba-parte_1.pdf`, 31 slides) → 100% cubierta entre las 11 páginas de M4. La cita exclusiva de PDF 05 en `Modelo de Movimiento.md` (M4) es **correcta** porque esa página es el modelo abstracto (FSM puerta, slides 23–31). Las instancias concretas viven en M2.
+  - PDF 06 (48 slides) → ~85% cubierta. Gaps reales: slides 5–6 (sistemas de coordenadas 3D/planar), 14 (algoritmos formales `prob_normal_distribution`/`prob_triangular_distribution`), 17–22 (representación por muestras + `sample_normal_distribution`/`sample_triangular_distribution`), 25–27 (algoritmo formal `sample_distribution` + ejemplos `abs(x)`, `cos(x)`), 47 (modelo consistente con mapas para velocidad).
+- **Páginas creadas**:
+  - `wiki/2. Locomoción/Muestreo de Distribuciones.md` — hub de las operaciones `prob` y `sample` (normal/triangular/rejection). Cubre slides 13, 14, 17–27 de PDF 06. Pensada como referencia única para `Odometría`, `Velocidad`, `MCL`, `TP2`.
+- **Páginas editadas**:
+  - `Odometría y Modelo de Movimiento (Odometría).md`: secciones 6 (distribuciones) y 9 (rejection sampling) reemplazadas por punteros al hub. Frontmatter actualizado a 2026-04-27. Cita de slides 13, 23–25 movida al hub.
+  - `Modelo de Movimiento (Velocidad).md`: agregada sec 9 "Modelo consistente con mapas" (slide 47, reutiliza imagen de `Odometría` sec 12). Sección "Variantes y conexiones" renumerada a sec 10. Frontmatter 2026-04-27.
+  - `Cinemática del Robot Diferencial.md`: sec 2 ampliada con preámbulo "Del 3D al planar" (slide 5: Euler vs RPY, link a [[Cuaterniones]]/[[Rotaciones]]) + "Restricción a la superficie plana" (slide 6). Frontmatter incluye PDF 06 como segunda fuente.
+  - `Locomoción.md`: agregado paso 6 al recorrido y entrada en lista de páginas.
+  - `Robotica.md`: M2 → 6/6 páginas, catálogo extendido con `Muestreo de Distribuciones`.
+- **Capturas nuevas** (11 PNGs en `wiki/2. Locomoción/Img/`):
+  - `Coordenadas - 3D Euler RPY.png` (slide 5), `Coordenadas - planar xytheta.png` (slide 6)
+  - `Muestreo - prob algoritmos.png` (slide 14), `Muestreo - densidad muestras.png` (slide 18)
+  - `Muestreo - sample normal algoritmo.png` (slide 19), `Muestreo - histograma normal.png` (slide 20)
+  - `Muestreo - sample triangular algoritmo.png` (slide 21), `Muestreo - histograma triangular.png` (slide 22)
+  - `Muestreo - sample distribution algoritmo.png` (slide 25), `Muestreo - ejemplo abs.png` (slide 26), `Muestreo - ejemplo cos.png` (slide 27)
+- **Decisiones**:
+  - Hub centralizado en M2 (no M5) porque sus consumidores principales son `Odometría` y `Velocidad` — ambos viven en M2. `MCL` lo referencia hacia atrás vía wikilink.
+  - Preámbulo de coordenadas se sumó a `Cinemática del Robot Diferencial.md` (no a `Locomoción.md` ni a una página nueva): ya tiene la sección "Pose 2D" que era el lugar natural.
+  - `Modelo de Movimiento.md` (M4) **no** se tocó. Su scope abstracto es correcto y ya tiene cross-link a las instancias en su sección "Conexiones".
+- **No se hizo** (saltable): slides 32 y 48 (resúmenes) — no aportan contenido docente nuevo.
+
 ## [2026-04-26] bootstrap | inicialización del wiki
 - Creados meta files: `Robotica.md`, `Robotica.md`, `log.md`
 - Creados esqueletos de los 7 módulos (`_Overview.md` + `Img/`)
@@ -258,3 +283,9 @@
   - `Robotica.md` (M4–M7: Esqueleto → En progreso)
 - **Próximo paso**: ingesta de contenido grounded por PDF usando la skill `ingest`.
 - Plan-mode-friendly por construcción: fases 1–3 read-only para el plan window, phase 4 es el ExitPlanMode gate, fases 5–6 ejecutan tras aprobación.
+
+## [2026-04-27] consulta | Derivación del Filtro de Bayes
+- Usuario pidió derivación completa de las ecuaciones de predicción y actualización
+- Explicación en chat: Bayes → Markov → probabilidad total → ecuaciones finales
+- Creada nueva página `wiki/4. Robótica Probabilística/Derivación del Filtro de Bayes.md`
+- Actualizado catálogo en `Robotica.md`
