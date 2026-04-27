@@ -3,6 +3,7 @@ modulo: 7. ROS2 y TPs
 estado: completo
 fuentes:
   - Raw/Diapositivas/Tutoriales/Tutorial 2_ Speaker and Listener-2.pdf
+  - Raw/Diapositivas/Tutoriales/Tutorial 4_ msgs, rviz, launch y TP1_TP2.pdf
 ultima_actualizacion: 2026-04-27
 ---
 
@@ -44,9 +45,55 @@ El `import` declara qué tipo se va a usar; el `String()` instancia un mensaje v
 > [!info] Mismo tipo en publisher y subscriber
 > Si un [[ROS2 - Publisher]] manda un `std_msgs/String` y el [[ROS2 - Subscriber]] declara que escucha `std_msgs/Int32`, **no se conectan** — el descubrimiento DDS los emparejará sólo cuando coincidan.
 
-## 3. Crear mensajes propios
+## 3. Composición jerárquica
 
-Cuando los tipos del ecosistema no alcanzan, se define un paquete `<mi_paquete>_msgs` con archivos `.msg` propios. Esto se cubre en [[Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2]].
+Los mensajes complejos están **construidos a partir de otros mensajes**. Esto se ve clarísimo con `nav_msgs/Odometry`, que es el corazón del [[TP1 - Transformaciones, Locomoción y Sensado|TP1]]:
+
+![[Mensajes - nav msgs Odometry.png]]
+*`nav_msgs/Odometry`: header + child_frame_id + pose (con covarianza) + twist (con covarianza), slide 10 de T4.*
+
+Su estructura:
+
+```
+nav_msgs/Odometry
+├── std_msgs/Header header              # timestamp + frame_id
+├── string child_frame_id                # frame del twist
+├── geometry_msgs/PoseWithCovariance pose
+│   ├── geometry_msgs/Pose pose
+│   │   ├── geometry_msgs/Point position    # x, y, z (m)
+│   │   └── geometry_msgs/Quaternion orientation  # x, y, z, w
+│   └── float64[36] covariance
+└── geometry_msgs/TwistWithCovariance twist
+    ├── geometry_msgs/Twist twist
+    │   ├── geometry_msgs/Vector3 linear   # x, y, z (m/s)
+    │   └── geometry_msgs/Vector3 angular  # x, y, z (rad/s)
+    └── float64[36] covariance
+```
+
+![[Mensajes - Pose Point Quaternion.png]]
+*Pose se descompone en Point (x,y,z) + Quaternion (x,y,z,w). El quaternion default es (0,0,0,1) = sin rotación, slide 15 de T4.*
+
+> [!info] La rotación viene como cuaternión
+> `geometry_msgs/Quaternion` tiene los 4 floats. Para razonar como humano (yaw escalar) hay que convertir — ver [[Cuaterniones]].
+
+### Path = array de PoseStamped
+
+![[Mensajes - Path PoseStamped.png]]
+*`nav_msgs/Path` = header + array de `PoseStamped`. Cada PoseStamped es header + Pose, slide 17 de T4.*
+
+```
+nav_msgs/Path
+├── std_msgs/Header header
+└── geometry_msgs/PoseStamped[] poses
+    ├── std_msgs/Header header
+    └── geometry_msgs/Pose pose
+```
+
+Esta composición permite que un `Path` se renderice en RVIZ como una secuencia de poses navegables.
+
+## 4. Crear mensajes propios
+
+Cuando los tipos del ecosistema no alcanzan, se define un paquete `<mi_paquete>_msgs` con archivos `.msg` propios. La declaración usa la misma sintaxis de composición ("nombre tipo" por línea, con primitivos `int32`, `float64`, `string`, `bool`, etc., o referencias a otros paquetes). Esto se profundiza en tutoriales más avanzados; en TPs del curso alcanza con los tipos del ecosistema base.
 
 ## Conexiones
 - [[ROS2 - Conceptos Base]] — uno de los 3 conceptos nucleares.

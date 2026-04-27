@@ -89,6 +89,27 @@
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
 
+## [2026-04-27] ingest | M7 Fase 2 — Tutorial 3 + Tutorial 4 (TF2, Launch, RVIZ)
+- **Fuentes**:
+  - `Raw/Diapositivas/Tutoriales/Tutorial 3_ Interactuando con Gazebo.pdf` (33 slides)
+  - `Raw/Diapositivas/Tutoriales/Tutorial 4_ msgs, rviz, launch y TP1_TP2.pdf` (31 slides)
+- **Páginas reescritas en M7**:
+  - `ROS2 - TF2.md` (esqueleto → completo): T3 slides 7–14 — frames mapa/robot/sensor, dinámicas vs. estáticas, árbol con `view_frames`, topics `/tf` + `/tf_static`, API `Buffer + TransformListener`.
+  - `ROS2 - Launch Files.md` (esqueleto → completo): T4 slides 19–23 — `generate_launch_description()`, `Node(...)`, package.xml `<exec_depend>ros2launch</exec_depend>`, setup.py `data_files`, build + run.
+  - `Gazebo y rviz.md` (en-progreso → completo): T1 slides 27–28 + T3 slide 2 + T4 slides 3–8 — Gazebo en detalle, RVIZ inicializar, displays, status OK/Error, views + frames.
+  - `Tutorial 3 - Interactuando con Gazebo.md` (esqueleto → completo): rewrite con rqt_graph, TF intro, comandos `topic list/echo/pub`, teleop_keyboard, código `Commander` (timer aleatorio) + `Recorder` (subscribe + atexit).
+  - `Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2.md` (esqueleto → completo): rewrite con RVIZ detallado, composición jerárquica de mensajes, launch files, preview TP1 (LIDAR transformado, recorrido) + TP2 (muestreo, modelo odométrico, filtro discreto).
+- **Páginas editadas en M7**:
+  - `ROS2 - Mensajes.md` — sección nueva "Composición jerárquica" con desglose de Odometry, Pose, Point, Quaternion, Path, PoseStamped (T4 slides 10–17).
+- **Screenshots capturadas**: 27 PNGs en `wiki/7. ROS2 y TPs/Img/` (50 totales en M7 ahora).
+- **Meta-updates**:
+  - `Robotica.md`: M7 `En progreso (8/21) → En progreso (11/21)`. Catálogo M7: descripciones expandidas para 4 páginas (TF2, Launch Files, Gazebo y rviz, Mensajes) + 2 tutoriales.
+  - `wiki/7. ROS2 y TPs/ROS2 y TPs.md` (overview): Fase 2 marcada ✅, descripciones de T3/T4 e infra concepts ampliadas.
+- **Decisiones tomadas autónomamente** (per memoria de autonomía):
+  - `rosbag` no merece página propia — se menciona inline en Tutorial 3 como alternativa al `Recorder + atexit`.
+  - URDF / `robot_description` no tiene página — aparecen como "comp existente" en Gazebo y TF2 sin profundizar (se agregaría en una fase futura si surge necesidad).
+  - El preview TP1/TP2 se mantuvo en `Tutorial 4` (no se vuelca a las páginas de TPs todavía — eso se ataca en Fase 6 cuando se ingieran los enunciados).
+
 ## [2026-04-27] ingest | M7 Fase 1 — Tutorial 1 + Tutorial 2 + ROS2 infra
 - **Fuentes**:
   - `Raw/Diapositivas/Tutoriales/Tutorial 1_ Bienvenida e Instalación de ROS2.pdf` (46 slides)
