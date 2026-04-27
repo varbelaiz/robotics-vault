@@ -6,7 +6,7 @@ fuentes:
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[_Overview|← Fundamentos]] | [[Home|← Inicio]]
+> [[Fundamentos|← Fundamentos]] | [[Robotica|← Inicio]]
 
 # Rotaciones
 
@@ -91,7 +91,7 @@ Esta no conmutatividad es la razón principal por la que las [[Transformaciones 
 ## 4. Variantes y conexiones
 - Componiendo rotación + traslación se obtienen [[Transformaciones Homogéneas]].
 - Caso particular de [[Matrices|matrices ortogonales]] con $\det = +1$.
-- Centrales para [[2. Locomoción/_Overview|locomoción]] (orientación del robot) y [[3. Sensores y Modelos/_Overview|sensores]] (cambio de sistema sensor → robot).
+- Centrales para [[2. Locomoción/Locomoción|locomoción]] (orientación del robot) y [[3. Sensores y Modelos/Sensores y Modelos|sensores]] (cambio de sistema sensor → robot).
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` — slides 25–31.

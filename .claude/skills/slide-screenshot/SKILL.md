@@ -19,7 +19,7 @@ The skill should run silently as part of writing the page; Valentino does not ne
 Do NOT invoke this skill when:
 
 - Valentino is only asking conceptually without writing to the wiki ("explicame X", "ayudame a entender Y").
-- The work is on `Home.md`, `index.md`, `log.md`, `_Overview.md`, `CLAUDE.md`, or `DESIGN.md` — those are meta files and do not get inline screenshots.
+- The work is on `Robotica.md`, `Robotica.md`, `log.md`, `_Overview.md`, `CLAUDE.md`, or `DESIGN.md` — those are meta files and do not get inline screenshots.
 - He is editing existing pages without adding new content (typos, link fixes, etc.).
 - He explicitly says "sin screenshots" / "no agregues imágenes".
 

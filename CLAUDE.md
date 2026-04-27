@@ -34,8 +34,7 @@ wiki/                                 ← LLM-owned content, fully managed by Cl
     <Concept>.md                      ← atomic concept pages
     Img/                              ← screenshots of slides
 
-Home.md                               ← entry point + status table for all modules
-index.md                              ← flat catalog of every wiki page
+Robotica.md                              ← entry point: status table + flat catalog of every wiki page
 log.md                                ← append-only operations log
 CLAUDE.md                             ← this file
 DESIGN.md                             ← design rationale
@@ -63,7 +62,7 @@ Always use `[[Target|alias]]`. Never markdown links between vault pages. Externa
 Read-only. The PDFs there are the source of truth.
 
 ### 4. No empty-placeholder concept pages
-Create a concept page only when there is grounded content for it. Empty placeholders pollute `index.md` and the graph view.
+Create a concept page only when there is grounded content for it. Empty placeholders pollute `Robotica.md` and the graph view.
 
 ## Page templates
 
@@ -79,7 +78,7 @@ fuentes:
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[_Overview|← Filtros Bayesianos]] | [[Home|← Inicio]]
+> [[_Overview|← Filtros Bayesianos]] | [[Robotica|← Inicio]]
 
 # Filtro de Kalman
 
@@ -132,7 +131,7 @@ Sections 4, 5, 6 are **optional** — omit them when empty. **Do not fabricate c
 ### B — Module `_Overview.md`
 
 ```markdown
-> [[Home|← Inicio]]
+> [[Robotica|← Inicio]]
 
 # Módulo 5 — Filtros Bayesianos
 
@@ -219,7 +218,7 @@ Ingestion is owned by the **`ingest` skill** at `.claude/skills/ingest/SKILL.md`
 2. **Discuss takeaways** with the user.
 3. **Propose change plan**.
 4. **Wait for user approval**.
-5. **Execute** (screenshots → concept pages → `_Overview.md` → `Home.md` → `index.md` → `log.md` → commit + push).
+5. **Execute** (screenshots → concept pages → `_Overview.md` → `Robotica.md` → `log.md` → commit + push).
 6. **Summarize** what was touched.
 
 The skill is **plan-mode-friendly** — phases 1–3 are read-only research suitable for the plan window; phase 4 is the `ExitPlanMode` gate; phases 5–6 execute on approval.
@@ -228,7 +227,7 @@ Special cases (TP ingestion, apunte del compañero as complementary source, batc
 
 ### Query
 
-1. **Read `index.md`** first to locate relevant pages.
+1. **Read `Robotica.md`** first to locate relevant pages.
 2. **Read those pages**, drill down via wikilinks if needed.
 3. **Answer in chat** with wikilinks and slide citations.
 4. **Offer to file the answer back** to the wiki when valuable: as a new section in an existing page, a new page, or a comparison table.
@@ -244,7 +243,7 @@ Check for:
 - Sections without a grounding citation.
 - Citations to slide pages that don't exist in the source PDF.
 - Orphan images in `Img/` (not referenced from any `.md`).
-- Status mismatches between page YAML `estado` and `Home.md`'s table.
+- Status mismatches between page YAML `estado` and `Robotica.md`'s table.
 - Inconsistent frontmatter (missing fields, malformed dates).
 - Contradictions between pages.
 - Proactive suggestions: high-traffic concepts that would benefit from their own page; data gaps that an external source could fill.
@@ -262,7 +261,7 @@ Append-only, one entry per operation, parseable prefix:
 
 Recent activity: `grep "^## \[" log.md | tail -10`.
 
-## `index.md` format
+## `Robotica.md` format
 
 Catalog grouped by module. One line per page:
 
@@ -276,7 +275,7 @@ Updated on every ingestion.
 
 - **LaTeX** for math: `$...$` inline, `$$...$$` block. Obsidian renders natively.
 - **Dates** everywhere: `YYYY-MM-DD`.
-- **Back-link header** mandatory on every page except `Home.md`: `> [[_Overview|← <Module>]] | [[Home|← Inicio]]`.
+- **Back-link header** mandatory on every page: `> [[_Overview|← <Module>]] | [[Robotica|← Inicio]]`.
 - **Aliases** in wikilinks when prose flow benefits: `[[Regla de Bayes|Bayes]]`.
 - **Don't reformat existing notes wholesale.** The voice and structure are deliberate. Make minimal, targeted edits unless asked for a rewrite.
 - **Image folder is per-module** (`wiki/<module>/Img/`), not vault-wide, to keep the graph clean and avoid collisions.

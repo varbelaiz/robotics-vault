@@ -6,7 +6,7 @@ fuentes:
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[_Overview|← Fundamentos]] | [[Home|← Inicio]]
+> [[Fundamentos|← Fundamentos]] | [[Robotica|← Inicio]]
 
 # Transformaciones Homogéneas
 
@@ -110,7 +110,7 @@ Este patrón **mundo → robot → sensor → objeto** (y sus variantes) aparece
 - Caso degenerado sin rotación → traslación pura.
 - Caso degenerado sin traslación → [[Rotaciones|rotación pura]].
 - La inversa permite ir **mundo → robot** (en vez de robot → mundo).
-- Aplicación directa en [[2. Locomoción/_Overview|locomoción]] (pose del robot que cambia con el tiempo) y [[3. Sensores y Modelos/_Overview|sensores]] (coordenadas relativas).
+- Aplicación directa en [[2. Locomoción/Locomoción|locomoción]] (pose del robot que cambia con el tiempo) y [[3. Sensores y Modelos/Sensores y Modelos|sensores]] (coordenadas relativas).
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf` — slides 32–40.

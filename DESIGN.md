@@ -46,8 +46,8 @@ Robotica/
 │   ├── 6. Mapeo/
 │   └── 7. ROS2 y TPs/
 │       Cada carpeta: _Overview.md + <Concepto>.md + Img/
-├── Home.md                           ← entry point + tabla de estado
-├── index.md                          ← catálogo plano de todas las páginas
+├── Robotica.md                           ← entry point + tabla de estado
+├── Robotica.md                          ← catálogo plano de todas las páginas
 ├── log.md                            ← bitácora append-only
 ├── CLAUDE.md                         ← schema operativo
 ├── DESIGN.md                         ← este documento
@@ -68,7 +68,7 @@ Cuatro templates (detalle completo en `CLAUDE.md`):
 - **Hubs conceptuales** (alto in-degree, prioridad alta de escritura): `Regla de Bayes`, `Probabilidad - Repaso`, `Algebra Lineal`, `Filtro de Kalman`, `Modelo de Movimiento`, `Modelo de Sensor`. Sostienen al resto de las páginas.
 - **Cross-module bridges críticos**: M1 (álgebra) y M4 (probabilidad) alimentan M5 (filtros). M5 alimenta M6 (mapeo). M7 (TPs/ROS2) cita conceptos de M1–M6.
 - **Aristas semánticas** modeladas: prerequisitos, variantes/generalizaciones, "usado en TP", "implementado en tutorial", citas a fuentes.
-- **`index.md` y `log.md` quedan fuera del grafo conceptual** — son meta files, no contaminan el graph view de Obsidian.
+- **`Robotica.md` y `log.md` quedan fuera del grafo conceptual** — son meta files, no contaminan el graph view de Obsidian.
 
 ## Workflows
 
@@ -91,6 +91,6 @@ El plan de implementación detalla la secuencia exacta. A grandes rasgos:
 
 - **Primera ingesta piloto**: orden no decidido. Sugerencias: (a) `Teóricas/00-introduccion` + `01-algebra_lineal` para panorama; (b) `Teóricas/05-intro_robo_proba` para atacar el corazón del parcial; (c) un Tutorial corto primero para validar el flow end-to-end.
 - **Plugin Dataview de Obsidian**: si el wiki crece, valdría usarlo para listas autogeneradas por módulo desde frontmatter.
-- **Tooling de búsqueda**: `index.md` alcanza a escala media (~50 páginas). A escala mayor, evaluar `qmd` u otra solución local.
+- **Tooling de búsqueda**: `Robotica.md` alcanza a escala media (~50 páginas). A escala mayor, evaluar `qmd` u otra solución local.
 - **Profundidad de páginas de TP**: el template C cubre objetivo + conceptos + pasos. Si se quiere registrar también la *resolución* paso-a-paso, agregar sección `## Resolución` o página separada.
 - **Marp / slide decks**: opcional para repaso pre-parcial. Postergado.

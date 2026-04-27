@@ -6,7 +6,7 @@ fuentes:
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[_Overview|← Sensores y Modelos]] | [[Home|← Inicio]]
+> [[Sensores y Modelos|← Sensores y Modelos]] | [[Robotica|← Inicio]]
 
 # Modelo de Campo de Verosimilitud (Likelihood Field)
 

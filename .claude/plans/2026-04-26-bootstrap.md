@@ -22,10 +22,10 @@
 
 | Acción | Path | Responsabilidad |
 |---|---|---|
-| Create | `Home.md` | Entry point del wiki, tabla de estado de los 7 módulos, navegación |
+| Create | `index.md` | Entry point del wiki, tabla de estado de los 7 módulos, navegación |
 | Create | `index.md` | Catálogo plano de páginas, agrupado por módulo |
 | Create | `log.md` | Bitácora append-only |
-| Delete | `Welcome.md` | Placeholder default de Obsidian, reemplazado por `Home.md` |
+| Delete | `Welcome.md` | Placeholder default de Obsidian, reemplazado por `index.md` |
 | Create | `wiki/1. Fundamentos/_Overview.md` | Hub local del módulo 1 |
 | Create | `wiki/1. Fundamentos/Img/.gitkeep` | Mantener carpeta de imágenes vacía bajo git |
 | Create | `wiki/2. Locomoción/_Overview.md` | Hub local del módulo 2 |
@@ -46,9 +46,9 @@
 
 ## Phase 1 — Meta files + cleanup
 
-### Task 1: Create `Home.md`
+### Task 1: Create `index.md`
 
-**Files:** Create `Home.md`
+**Files:** Create `index.md`
 
 - [ ] **Step 1: Write the file**
 
@@ -76,7 +76,7 @@
 
 ## Navegación rápida
 
-- [[index|Catálogo plano de todas las páginas]]
+- [[Robotica|Catálogo plano de todas las páginas]]
 - [[log|Bitácora del wiki]]
 
 ## Fuentes en `Raw/`
@@ -143,7 +143,7 @@
 ---
 
 ## [2026-04-26] bootstrap | inicialización del wiki
-- Creados meta files: `Home.md`, `index.md`, `log.md`
+- Creados meta files: `index.md`, `index.md`, `log.md`
 - Creados esqueletos de los 7 módulos (`_Overview.md` + `Img/`)
 - Skill `slide-screenshot` adaptada de NLP a Robótica
 - Eliminado `Welcome.md` placeholder default de Obsidian
@@ -171,13 +171,13 @@ Expected: `rm 'Welcome.md'` printed; file removed from disk and staged for delet
 - [ ] **Step 1: Stage and verify**
 
 ```bash
-git add Home.md index.md log.md
+git add index.md index.md log.md
 git status --short
 ```
 
 Expected:
 ```
-A  Home.md
+A  index.md
 A  index.md
 A  log.md
 D  Welcome.md
@@ -189,10 +189,10 @@ D  Welcome.md
 git commit -m "$(cat <<'EOF'
 Bootstrap meta files and remove Obsidian placeholder
 
-- Home.md: entry point with module status table and quick navigation
+- index.md: entry point with module status table and quick navigation
 - index.md: flat catalog of pages, grouped by module
 - log.md: append-only operations bitácora with bootstrap entry
-- Welcome.md: removed (replaced by Home.md as the entry point)
+- Welcome.md: removed (replaced by index.md as the entry point)
 
 Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 EOF
@@ -502,7 +502,7 @@ The skill should run silently as part of writing the page; Valentino does not ne
 Do NOT invoke this skill when:
 
 - Valentino is only asking conceptually without writing to the wiki ("explicame X", "ayudame a entender Y").
-- The work is on `Home.md`, `index.md`, `log.md`, `_Overview.md`, `CLAUDE.md`, or `DESIGN.md` — those are meta files and do not get inline screenshots.
+- The work is on `index.md`, `index.md`, `log.md`, `_Overview.md`, `CLAUDE.md`, or `DESIGN.md` — those are meta files and do not get inline screenshots.
 - He is editing existing pages without adding new content (typos, link fixes, etc.).
 - He explicitly says "sin screenshots" / "no agregues imágenes".
 
@@ -734,7 +734,7 @@ gh repo view varbelaiz/robotics-vault --web
 
 ## Definition of Done
 
-- `Home.md`, `index.md`, `log.md` exist at vault root and render in Obsidian.
+- `index.md`, `index.md`, `log.md` exist at vault root and render in Obsidian.
 - `Welcome.md` is removed from disk and from git.
 - All 7 module folders exist under `wiki/`, each with a skeleton `_Overview.md` and an empty `Img/` folder tracked via `.gitkeep`.
 - The `slide-screenshot` skill at `.claude/skills/slide-screenshot/SKILL.md` references Robótica paths, conventions, and trigger conditions — no leftover NLP-specific terms.
