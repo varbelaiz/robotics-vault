@@ -3,7 +3,7 @@ modulo: 5. Filtros Bayesianos
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/11b-filtro_ukf-3.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Filtros Bayesianos|← Filtros Bayesianos]] | [[Robotica|← Inicio]]
@@ -121,17 +121,38 @@ $$W_i^{(c)} = \frac{1}{2(d + \lambda)} \quad \text{para } i > 0$$
 
 ## 6. Algoritmo UKF completo
 
-### Predicción
-1. Calcular sigma points desde $(\mu_{t-1}, \Sigma_{t-1})$.
-2. Propagar cada sigma point a través de $f(\cdot, u_t)$.
-3. Reconstruir $(\bar{\mu}_t, \bar{\Sigma}_t)$ de los puntos transformados, sumando $R_t$.
+El UKF reemplaza los pasos analíticos del [[EKF]] (Jacobianos $G_t$, $H_t$) por la propagación de sigma points. La estructura predict/update sigue siendo la misma.
 
-### Corrección
-1. Calcular sigma points desde $(\bar{\mu}_t, \bar{\Sigma}_t)$.
-2. Propagar cada sigma point a través de $h(\cdot)$.
-3. Reconstruir la media de predicción de observación y su covarianza.
-4. Calcular la covarianza cruzada entre estado y observación.
-5. Calcular la ganancia de Kalman y actualizar $(\mu_t, \Sigma_t)$.
+### Predicción (slide 28)
+
+Con $\lambda = \alpha^2(n + \kappa) - n$:
+
+$$\mathcal{X}_{t-1} = \left(\mu_{t-1},\ \mu_{t-1} + \sqrt{(n+\lambda)\Sigma_{t-1}},\ \mu_{t-1} - \sqrt{(n+\lambda)\Sigma_{t-1}}\right)$$
+
+1. **Generar sigma points** desde $(\mu_{t-1}, \Sigma_{t-1})$.
+2. **Propagar** cada uno por el modelo de movimiento: $\bar{\mathcal{X}}_t^* = g(u_t, \mathcal{X}_{t-1})$.
+3. **Reconstruir media**: $\bar{\mu}_t = \sum_{i=0}^{2n} w_m^{[i]}\,\bar{\mathcal{X}}_t^{*[i]}$.
+4. **Reconstruir covarianza** (sumando ruido de proceso $R_t$):
+   $$\bar{\Sigma}_t = \sum_{i=0}^{2n} w_c^{[i]}\,(\bar{\mathcal{X}}_t^{*[i]} - \bar{\mu}_t)(\bar{\mathcal{X}}_t^{*[i]} - \bar{\mu}_t)^T + R_t$$
+
+### Corrección (slides 30–31)
+
+Notar que los sigma points se **regeneran** con la covarianza ya predicha $\bar{\Sigma}_t$ — esto es lo que reemplaza al $H_t$ del EKF.
+
+1. **Regenerar sigma points** desde $(\bar{\mu}_t, \bar{\Sigma}_t)$:
+   $$\bar{\mathcal{X}}_t = \left(\bar{\mu}_t,\ \bar{\mu}_t + \sqrt{(n+\lambda)\bar{\Sigma}_t},\ \bar{\mu}_t - \sqrt{(n+\lambda)\bar{\Sigma}_t}\right)$$
+2. **Propagar** por el modelo de observación: $\bar{\mathcal{Z}}_t = h(\bar{\mathcal{X}}_t)$.
+3. **Observación esperada**: $\hat{z}_t = \sum_{i=0}^{2n} w_m^{[i]}\,\bar{\mathcal{Z}}_t^{[i]}$.
+4. **Covarianza de innovación** (sumando ruido de medición $Q_t$):
+   $$S_t = \sum_{i=0}^{2n} w_c^{[i]}\,(\bar{\mathcal{Z}}_t^{[i]} - \hat{z}_t)(\bar{\mathcal{Z}}_t^{[i]} - \hat{z}_t)^T + Q_t$$
+5. **Covarianza cruzada** estado–observación:
+   $$\bar{\Sigma}_t^{x,z} = \sum_{i=0}^{2n} w_c^{[i]}\,(\bar{\mathcal{X}}_t^{[i]} - \bar{\mu}_t)(\bar{\mathcal{Z}}_t^{[i]} - \hat{z}_t)^T$$
+6. **Ganancia de Kalman**: $K_t = \bar{\Sigma}_t^{x,z} S_t^{-1}$.
+7. **Actualización del estado**: $\mu_t = \bar{\mu}_t + K_t(z_t - \hat{z}_t)$.
+8. **Actualización de covarianza**: $\Sigma_t = \bar{\Sigma}_t - K_t S_t K_t^T$.
+
+> [!info] Equivalencia con EKF
+> En el EKF, $K_t = \bar{\Sigma}_t H_t^T S_t^{-1}$ donde $H_t \bar{\Sigma}_t = (\bar{\Sigma}_t^{x,z})^T$ — es decir, **la covarianza cruzada $\bar{\Sigma}_t^{x,z}$ del UKF cumple el mismo rol que $\bar{\Sigma}_t H_t^T$ del EKF**, sólo que aquí se obtiene por sigma points en vez de por el Jacobiano analítico (slide 32).
 
 ## 7. Comparación EKF vs UKF
 
@@ -173,4 +194,6 @@ El EKF sigue siendo útil cuando:
   - págs. 8–11 → 3. Cálculo de la matriz raiz
   - págs. 12–13 → 4. Pesos
   - págs. 14–16 → 5. Resumen de la Unscented Transform
-  - págs. 27–33 → 7. Comparación EKF vs UKF
+  - pág. 28 → 6. Algoritmo UKF — Predicción
+  - págs. 30–32 → 6. Algoritmo UKF — Corrección
+  - págs. 33–37 → 7. Comparación EKF vs UKF

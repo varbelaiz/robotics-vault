@@ -2,9 +2,8 @@
 modulo: 6. Mapeo
 estado: completo
 fuentes:
-  - Raw/Diapositivas/Teoricas/00-introduccion-3.pdf
   - Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Mapeo|← Mapeo]] | [[Robotica|← Inicio]]
@@ -31,6 +30,8 @@ ultima_actualizacion: 2026-04-26
 - [[Features vs Mapas Volumétricos]] — elección de representación afecta el enfoque
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf`
 - `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf`
-  - págs. 3–6 + programa → 1. El problema
+  - págs. 3–6 → 1. El problema (planteo de mapeo, antes de fijar poses conocidas)
+
+> [!info] Página puente
+> SLAM no se desarrolla a fondo en este curso. Esta página es una landing que conecta los enfoques (EKF-SLAM, FastSLAM) con sus bases en M5/M6.

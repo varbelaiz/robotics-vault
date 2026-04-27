@@ -3,7 +3,7 @@ modulo: 3. Sensores y Modelos
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Sensores y Modelos|← Sensores y Modelos]] | [[Robotica|← Inicio]]
@@ -115,11 +115,20 @@ Aplicando el modelo a un escaneo completo en un mapa, se obtiene una **distribuc
 ![[Beam - aproximacion 3D.png]]
 *Modelos completos para laser y sonar como funciones 2D de distancia esperada y medida, slide 15.*
 
-## 8. Resumen y limitaciones
+## 8. Influencia del ángulo al obstáculo
+
+La densidad $p(z \mid x, m)$ no sólo depende de la distancia esperada — también del **ángulo de incidencia** del haz sobre el obstáculo. Cuando el haz golpea de frente vs. de costado, la dispersión y la probabilidad de detectar un retorno cambian.
+
+![[Beam - influencia angulo.png]]
+*Distribución $p(z \mid x, m)$ en función de distancia esperada vs. medida, para un ángulo fijo de incidencia, slides 16–19.*
+
+En la práctica esto motiva usar **modelos distintos por banda de ángulo**: el sonar tiene un haz cónico que rebota distinto en superficies casi paralelas que en perpendiculares; el lidar es más uniforme pero también degrada en ángulos rasantes.
+
+## 9. Resumen y limitaciones
 
 - Supone **independencia entre haces** (no estrictamente cierto, pero útil).
 - Modela explícitamente las causas físicas y mezcla sus densidades.
-- Implementación: aprender parámetros de datos reales, hacer ray-casting para distancias esperadas, posiblemente usar modelos distintos para distintos ángulos al obstáculo.
+- Implementación: aprender parámetros de datos reales, hacer ray-casting para distancias esperadas, **modelos distintos para distintos ángulos** en los que el haz detecta el obstáculo.
 - Las distancias esperadas pueden **pre-procesarse** para acelerar la evaluación.
 
 > [!warning] Costo computacional
@@ -139,4 +148,5 @@ Aplicando el modelo a un escaneo completo en un mapa, se obtiene una **distribuc
   - slide 10 → 5. Mezcla de densidades
   - slides 11–13 → 6. Aprendiendo los parámetros
   - slides 14–15 → 7. Resultado: $p(z \mid x, m)$ sobre el mapa
-  - slide 20 → 8. Resumen y limitaciones
+  - slides 16–19 → 8. Influencia del ángulo al obstáculo
+  - slide 20 → 9. Resumen y limitaciones

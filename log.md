@@ -8,6 +8,26 @@
 
 ---
 
+## [2026-04-27] audit+ingest | M3, M5, M6 — fixes de cobertura y broken images
+- **Disparador**: Valentino pidió auditar los 3 módulos restantes después del audit M2/M4.
+- **Método**: 3 agentes Explore en paralelo, uno por módulo. Verifiqué cada claim antes de actuar — uno alucinó que `[[EKF]]` y `[[MCL]]` no existían (sí existen en M5).
+- **M6 — fix urgente**:
+  - **3 imágenes broken** en `Mapeo con Poses Conocidas.md` que rompían el render: `mapas-slide-05.png`, `mapas-slide-42.png`, `mapas-slide-43.png` referenciadas pero inexistentes en `Img/`. Capturadas del PDF 12 (slides 5, 42, 43).
+  - **Mapas de Ocupación.md sec 3 ("Notación Log Odds")**: expandida a "Derivación a la regla recursiva" con: (a) la derivación con cocientes (slides 26–28: Bayes → Markov → Bayes → Markov → cociente con cancelación de términos), (b) fórmula de recuperación $p(x) = 1 - 1/(1+\exp l(x))$ (slide 30), (c) regla recursiva en log odds como suma (slides 31–32).
+  - **SLAM y Exploración**: limpieza de fuentes — `00-introduccion-3.pdf` no se consume directamente; Exploración pasa a `fuentes: []` con callout "Página puente" (landing legítima sin grounding directo).
+- **M3 — gap puntual**:
+  - **Modelo de Sensor Basado en Haz.md**: agregada sec 8 "Influencia del ángulo al obstáculo" (slides 16–19 PDF 07: 4 plots 3D que muestran cómo varía $p(z|x,m)$ según el ángulo de incidencia). Capturado slide 16 como representativo (`Beam - influencia angulo.png`); los 17–19 son la misma estructura con sonar-1/2/3, una imagen alcanza. Sec "Resumen y limitaciones" renumerada a 9.
+  - **Descarté**: el agente reportó "frontmatter ausente en `Sensores y Modelos.md`" como bug — verifiqué que **ningún overview de módulo** tiene frontmatter (Locomoción, Robótica Probabilística, Mapeo tampoco). Es por diseño.
+- **M5 — UKF corrección formal**:
+  - **UKF.md sec 6**: el algoritmo de predicción y corrección estaba descrito en lenguaje natural sin las fórmulas. Reescrito con las ecuaciones explícitas del PDF 11b: (a) predicción con sigma points + reconstrucción + $R_t$ (slide 28), (b) corrección con regeneración de sigma points + propagación por $h$ + observación esperada $\hat{z}_t$ + covarianza de innovación $S_t$ + covarianza cruzada $\bar{\Sigma}_t^{x,z}$ + ganancia $K_t$ + actualización (slides 30–31). Agregado callout que muestra la equivalencia conceptual con el EKF ($\bar{\Sigma}_t^{x,z}$ ↔ $\bar{\Sigma}_t H_t^T$, slide 32).
+- **Cobertura final**:
+  - M3 → ~98% (PDF 04 100%, PDF 07 ahora 95% con slide 16 cubierto; quedan los slides 17–19 redundantes con 16)
+  - M5 → ~92% (UKF corrección ahora completo; gaps menores de UKF restantes son cosmética/visualizaciones que las imágenes ya capturan)
+  - M6 → ~92% (broken links resueltos; derivación log odds completa; SLAM/Exploración correctamente declaradas como landing pages)
+- **Decisiones**:
+  - 3 audits + fixes en un solo commit (modules son ortogonales pero los cambios son chiquitos cada uno; un commit por módulo era overkill).
+  - No re-stagiar los cambios anteriores de `Robotica.md` — el catálogo no cambió de páginas, sólo se editó contenido in-place.
+
 ## [2026-04-27] audit+lint | M4 — integración de Derivación del Filtro de Bayes + lint cosmético
 - **Disparador**: pedido de Valentino de auditar el resto de archivos en `Robótica Probabilística`.
 - **Auditoría de cobertura**:

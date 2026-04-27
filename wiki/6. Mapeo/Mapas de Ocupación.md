@@ -3,7 +3,7 @@ modulo: 6. Mapeo
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Mapeo|← Mapeo]] | [[Robotica|← Inicio]]
@@ -44,28 +44,43 @@ Para cada celda, se aplica un filtro de Bayes de estado estático:
 - **Estado estático**: la celda no cambia con el tiempo
 - Se actualiza recursivamente con cada medición
 
-## 3. Notación Log Odds
+## 3. Derivación a la regla recursiva
 
-El cociente de probabilidades se transforma a **log odds**:
+Aplicando Bayes + Markov sobre $p(m_i \mid z_{1:t}, x_{1:t})$, y haciendo lo mismo para el evento opuesto $\neg m_i$, se llega a dos expresiones que comparten denominador. Tomando el **cociente** de ambas, la mayoría de los términos (en particular el factor de normalización $p(z_t \mid z_{1:t-1}, x_{1:t})$) se cancela:
 
-$$l = \log \frac{P(o)}{1 - P(o)}$$
+$$\frac{p(m_i \mid z_{1:t}, x_{1:t})}{p(\neg m_i \mid z_{1:t}, x_{1:t})} = \underbrace{\frac{p(m_i \mid z_t, x_t)}{1 - p(m_i \mid z_t, x_t)}}_{\text{usa } z_t} \cdot \underbrace{\frac{p(m_i \mid z_{1:t-1}, x_{1:t-1})}{1 - p(m_i \mid z_{1:t-1}, x_{1:t-1})}}_{\text{término recursivo}} \cdot \underbrace{\frac{1 - p(m_i)}{p(m_i)}}_{\text{prior}}$$
 
 ![[log-odds-ratio.png]]
-*Derivación log odds, pág. 26.*
+*Cociente de probabilidades — los términos comunes se cancelan, slide 26.*
+
+![[occupancy-update-rule.png]]
+*Regla recursiva con tres factores: nueva medición, recursivo, prior, slides 28–29.*
+
+### Definición de log odds
+
+Para evitar el producto, se aplica logaritmo. El **cociente Log Odds** se define como:
+
+$$l(x) = \log \frac{p(x)}{1 - p(x)}$$
+
+y se puede recuperar la probabilidad invirtiéndolo:
+
+$$p(x) = 1 - \frac{1}{1 + \exp\,l(x)}$$
+
+![[log-odds-notation.png]]
+*Definición y recuperación de $p(x)$ desde $l(x)$, slide 30.*
 
 ### Regla recursiva en log odds
 
-![[log-odds-notation.png]]
-*Notación log odds, pág. 30.*
+Aplicando log a la regla recursiva, el **producto se transforma en suma**:
 
-![[occupancy-update-rule.png]]
-*Regla de actualización recursiva, pág. 29.*
+$$l(m_i \mid z_{1:t}, x_{1:t}) = \underbrace{l(m_i \mid z_t, x_t)}_{\text{inverse sensor model}} + \underbrace{l(m_i \mid z_{1:t-1}, x_{1:t-1})}_{\text{término recursivo}} - \underbrace{l(m_i)}_{\text{prior}}$$
 
-- El producto se transforma en **suma** → cálculo muy eficiente
-- Solo requiere sumar valores log odds por cada medición
+que se reescribe como la regla iterativa:
+
+$$l_{t,i} = \text{inv\_sensor\_model}(m_i, x_t, z_t) + l_{t-1,i} - l_0$$
 
 ![[log-odds-algorithm.png]]
-*Algoritmo de mapa de ocupación en log odds, pág. 32.*
+*Algoritmo de mapa de ocupación en log odds — sólo sumas, slide 32.*
 
 ## 4. Algoritmo de Mapa de Ocupación
 
@@ -93,6 +108,8 @@ $$l = \log \frac{P(o)}{1 - P(o)}$$
 - `Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf`
   - págs. 13–17 → 1. Representación probabilística
   - págs. 18–25 → 2. Filtro de Bayes Binario
-  - págs. 26–32 → 3. Notación Log Odds
+  - págs. 26–28 → 3. Derivación a la regla recursiva *(cociente)*
+  - pág. 30 → 3. Definición de log odds
+  - págs. 31–32 → 3. Regla recursiva en log odds
   - págs. 33–34 → 4. Algoritmo de Mapa de Ocupación
   - pág. 46 → 5. Mapa de Maximum Likelihood

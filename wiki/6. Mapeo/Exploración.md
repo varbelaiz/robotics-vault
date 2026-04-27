@@ -1,9 +1,8 @@
 ---
 modulo: 6. Mapeo
 estado: completo
-fuentes:
-  - Raw/Diapositivas/Teoricas/00-introduccion-3.pdf
-ultima_actualizacion: 2026-04-26
+fuentes: []
+ultima_actualizacion: 2026-04-27
 ---
 
 > [[Mapeo|← Mapeo]] | [[Robotica|← Inicio]]
@@ -27,4 +26,6 @@ ultima_actualizacion: 2026-04-26
 - [[Mapeo con Poses Conocidas]] — en exploración, las poses se estiman en tiempo real
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf`
+
+> [!info] Página puente
+> La exploración no se cubre con un PDF dedicado en este curso — esta página resume los enfoques canónicos (frontier-based, coverage, information-theoretic) como referencia. Sin grounding directo a `Raw/`.
