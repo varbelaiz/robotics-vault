@@ -89,6 +89,24 @@
 - `CLAUDE.md` → `Workflows → Ingestion` slimmeado a un puntero de ~10 líneas hacia la skill (antes ~80 líneas in-place).
 - División de concerns clara: `CLAUDE.md` mantiene templates A/B/C/D + reglas duras + frontmatter spec. La skill `ingest` es la operación. La skill `slide-screenshot` es la mecánica de imágenes.
 
+## [2026-04-27] ingest | M7 Fase 6 — TP1 + TP2 + TP3 (cierre del módulo)
+- **Fuentes**:
+  - `Raw/TPs/Enunciado TP1.pdf` (3 págs) — Transformaciones, Locomoción, Sensado
+  - `Raw/TPs/Enunciado TP2.pdf` (4 págs) — Modelos Probabilísticos y Filtros Discretos
+  - `Raw/TPs/Enunciado TP3.pdf` (5 págs) — Filtros de Partículas
+- **Páginas reescritas (Template C de CLAUDE.md)**:
+  - `TP1 - Transformaciones, Locomoción y Sensado.md`: 4 ejercicios de matrices T/T12, sensado real con `odom.csv` + `scan.pkl` + matriz `robotTlidar`, secuencia de 7 comandos `diffdrive` para graficar trayectoria.
+  - `TP2 - Modelos Probabilísticos y Filtros Discretos.md`: 3 muestreadores (suma de 12, rechazo, Box-Muller) + modelo odometría con ruido evaluado a 5000 muestras + nodo ROS2 con visualización en RVIZ + filtro discreto sobre mundo 1D acotado de 20 celdas.
+  - `TP3 - Filtros de Partículas.md`: MCL completo — likelihood field desde OccupancyGrid (con tip de `distance_transform_edt`), `sample_motion_model_odometry` por partícula, `update_particles` con scan + grid, resampleo con deepcopy, log-likelihood trick para underflow.
+- **Screenshots**: 4 PNGs nuevas (1 TP2 + 3 TP3 mostrando los hitos del rviz). 109 totales en M7.
+- **Meta-updates**:
+  - `Robotica.md`: M7 `En progreso (15/21) → Completo ✅ (21/21)`. Catálogo: descripciones completas para TP1/TP2/TP3, **borradas las duplicaciones del bootstrap** (Tutorial 3–8 aparecían dos veces — una con descripción nueva y otra con la del bootstrap original).
+  - `wiki/7. ROS2 y TPs/ROS2 y TPs.md` (overview): Fase 6 ✅. **M7 cerrado**.
+- **Decisiones tomadas autónomamente**:
+  - Por mantener el plan acotado, **no** agregué backlinks en cada concept page que el TP usa (per spec strict del skill `ingest`). En cambio, cada TP enumera las páginas que necesita en su sección "Conceptos que necesitás" y "Conexiones" — el grafo bidireccional se cierra desde el lado del TP. Si en el futuro hace falta hacer el otro sentido (ej. `[[Filtros Discretos]]` mencione `[[TP2]]`), es un lint pass dedicado.
+  - Capturé sólo los visuales realmente útiles (4 PNGs): el rviz con partículas de TP2 y los 3 estados del rviz de TP3 (sin likelihood field → con likelihood field → con partículas dispersas). Las matrices y secuencias de TP1 quedaron en LaTeX/markdown nativo, no como screenshot.
+  - Cleanup del catálogo: aproveché para borrar las duplicaciones de Tutorial 3–8 que se acumularon en `Robotica.md` durante las fases 2–5.
+
 ## [2026-04-27] ingest | M7 Fase 5 — Tutorial 7 + Tutorial 8 (MCL + Kalman family)
 - **Fuentes**:
   - `Raw/Diapositivas/Tutoriales/Tutorial 7_ Filtro de Partículas.pdf` (74 slides)

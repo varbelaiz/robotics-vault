@@ -10,7 +10,7 @@ Todo el curso culmina en código real. Los tutoriales introducen las herramienta
 
 ## Estado actual
 
-**Fases 1–5 ingestadas (2026-04-27)**: Tutoriales 1–8 + 9 conceptos de infra core con contenido grounded. Los 8 tutoriales del módulo están completos. Sólo quedan los TPs (Fase 6).
+**Fases 1–6 ingestadas (2026-04-27)**: las 21 páginas del módulo están completas. M7 cerrado.
 
 | Fase | Tutoriales | Estado |
 |---|---|---|
@@ -19,7 +19,7 @@ Todo el curso culmina en código real. Los tutoriales introducen las herramienta
 | 3 | T5 | ✅ Completa |
 | 4 | T6 | ✅ Completa |
 | 5 | T7 + T8 | ✅ Completa |
-| 6 | TP1 + TP2 + TP3 | Pendiente |
+| 6 | TP1 + TP2 + TP3 | ✅ Completa |
 
 ## Recorrido sugerido
 
@@ -48,9 +48,9 @@ Todo el curso culmina en código real. Los tutoriales introducen las herramienta
 
 ### TPs
 
-1. [[TP1 - Transformaciones, Locomoción y Sensado]] — transformaciones + datos reales *(esqueleto)*.
-2. [[TP2 - Modelos Probabilísticos y Filtros Discretos]] — muestreo + filtro histograma *(esqueleto)*.
-3. [[TP3 - Filtros de Partículas]] — MCL completo en ROS2 *(esqueleto)*.
+1. [[TP1 - Transformaciones, Locomoción y Sensado]] — transformaciones 2D, datos reales (odom.csv + scan.pkl), `diffdrive`. ✅
+2. [[TP2 - Modelos Probabilísticos y Filtros Discretos]] — 3 muestreadores de gaussiana, modelo de odometría con ruido + ROS2, filtro discreto sobre mundo 1D. ✅
+3. [[TP3 - Filtros de Partículas]] — MCL completo: likelihood field + sample motion + update con scan + resampleo. ✅
 
 ## Conecta con
 
