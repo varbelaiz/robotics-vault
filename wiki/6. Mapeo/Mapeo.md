@@ -7,6 +7,13 @@
 ## Por qué este módulo
 Los mapas permiten localización, navegación eficiente, y ejecución de tareas. El módulo cubre desde la representación más simple (grilla de ocupación) hasta el problema completo de [[SLAM - Mapeo y Localización Simultánea]].
 
+> [!info] Los 4 factores de dificultad del mapeo (Thrun et al., §9.1)
+> No todos los problemas de mapeo son igualmente difíciles. El libro identifica cuatro factores que dominan la dificultad y motivan los distintos enfoques que cubre este módulo:
+> 1. **Tamaño** — cuánto más grande el entorno relativo al alcance perceptual del robot, más caro mapear.
+> 2. **Ruido** — en sensores y actuadores. Sin ruido, mapeo sería trivial; con ruido alto, los algoritmos deben modelarlo cuidadosamente.
+> 3. **Ambigüedad perceptual** — lugares que se ven iguales (pasillos simétricos, oficinas idénticas) hacen muy difícil establecer correspondencias entre observaciones distintas.
+> 4. **Ciclos** — cerrar un loop al volver a un lugar visitado acumula error odométrico que debe corregirse retroactivamente. Es el escenario más difícil y el que motiva el SLAM full (no online).
+
 ## Recorrido sugerido
 1. [[Mapas de Ocupación]] — representación probabilística celda por celda.
 2. [[Mapas de Grilla]] — estructura rígida, celdas ocupadas/libres.

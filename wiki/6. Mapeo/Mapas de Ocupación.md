@@ -3,7 +3,8 @@ modulo: 6. Mapeo
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/12-mapas_de_ocupacion-2.pdf
-ultima_actualizacion: 2026-04-27
+  - Raw/Libro/ProbabilisticRobotics.pdf
+ultima_actualizacion: 2026-04-28
 ---
 
 > [[Mapeo|← Mapeo]] | [[Robotica|← Inicio]]
@@ -33,6 +34,9 @@ $$P(m \mid z_{1:t}, x_{1:t}) = \prod_{i=1}^{N} P(m_i \mid z_{1:t}, x_{1:t})$$
 *Producto de distribuciones, pág. 16–17.*
 
 Esto permite estimar cada celda **por separado**.
+
+> [!warning] Por qué la factorización es necesaria (Thrun et al., §9.2)
+> El libro hace explícita la motivación: sin factorizar, hay que mantener una distribución sobre **todos los mapas posibles**. En un mapa de oficina típico (decenas de miles de celdas), eso significa $2^{10\,000}$ mapas distintos — astronómicamente intratable. La factorización en marginales celda-por-celda baja la dimensionalidad a algo manejable, **a costa de perder dependencias entre celdas vecinas**. Esa simplificación es la razón por la que el algoritmo de [[Mapeo con Poses Conocidas]] funciona en la práctica, pero también es su limitación principal — el libro discute en §9.4 cómo recuperar parcialmente esas dependencias con un enfoque MAP (también enriquecido en esa página).
 
 ## 2. Filtro de Bayes Binario
 
@@ -91,6 +95,16 @@ $$l_{t,i} = \text{inv\_sensor\_model}(m_i, x_t, z_t) + l_{t-1,i} - l_0$$
 ![[incremental-grid-update.png]]
 *Ejemplo de actualización incremental, pág. 44.*
 
+> [!info] Por qué importa un algoritmo que requiere poses conocidas (Thrun et al., §9.1)
+> A primera vista la suposición "poses conocidas" es muy restrictiva — ningún robot real tiene odometría perfecta. La utilidad real del occupancy grid mapping es como **post-procesamiento de SLAM**: muchos algoritmos SLAM (incluido [[SLAM - Mapeo y Localización Simultánea|EKF-SLAM]] y FastSLAM) producen estimaciones precisas de la trayectoria $x_{1:t}$ pero mapas tipo "feature-based" o "scan-based" que no son ideales para path planning. Una vez resuelto el SLAM, se pasan las poses estimadas como si fueran conocidas y se construye un mapa de ocupación encima — el resultado tiene la geometría del SLAM con la representación volumétrica que necesita un planificador.
+
+> [!info] Multi-Sensor Fusion: max es mejor que Bayes (Thrun et al., §9.2.1)
+> Cuando hay múltiples sensores con características distintas (e.g. sonar + cámara estéreo), el approach naive es ejecutar el algoritmo Bayes con cada modalidad y combinar via filtro. **El libro recomienda lo opuesto**: construir mapas separados por tipo de sensor y combinar con el operador máximo:
+>
+> $$m_i = \max_k m_i^{(k)}$$
+>
+> Esto hace una combinación **conservadora**: una celda se considera ocupada si *cualquier* sensor la reporta ocupada. Sesga hacia "más obstáculos" — exactamente lo que queremos para path planning seguro. La razón profunda: distintos sensores detectan distintos tipos de obstáculos (cámaras ven vidrio que el sonar no detecta; el sonar ve obstáculos transparentes que la cámara no), y promediar evidencias contradictorias produce mapas inválidos donde lo que cuenta es la frecuencia de polling, no la realidad física.
+
 ## 5. Mapa de Maximum Likelihood
 
 ![[maximum-likelihood-map.png]]
@@ -113,3 +127,7 @@ $$l_{t,i} = \text{inv\_sensor\_model}(m_i, x_t, z_t) + l_{t-1,i} - l_0$$
   - págs. 31–32 → 3. Regla recursiva en log odds
   - págs. 33–34 → 4. Algoritmo de Mapa de Ocupación
   - pág. 46 → 5. Mapa de Maximum Likelihood
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 221–223 → Por qué post-procesamiento de SLAM (§9.1)
+  - págs. 224–227 → Algoritmo + dimensionalidad de la factorización (§9.2)
+  - págs. 230–231 → Multi-Sensor Fusion conservativa con max (§9.2.1)
