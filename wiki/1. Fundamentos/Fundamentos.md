@@ -26,7 +26,7 @@ La robótica moderna es esencialmente **álgebra lineal aplicada a sistemas con 
 
 ## Conecta con
 - ➡️ [[2. Locomoción/Locomoción|Módulo 2: Locomoción]] (poses del robot que cambian en el tiempo).
-- ➡️ [[3. Sensores y Modelos/Sensores y Modelos|Módulo 3: Sensores y Modelos]] (transformaciones sensor → robot).
+- ➡️ [[3. Sensores/Sensores|Módulo 3: Sensores]] (transformaciones sensor → robot).
 - ➡️ [[4. Robótica Probabilística/Robótica Probabilística|Módulo 4: Robótica Probabilística]] (incertidumbre modelada).
 - ➡️ [[5. Filtros Bayesianos/Filtros Bayesianos|Módulo 5: Filtros Bayesianos]] (matrices definidas positivas, Jacobianas).
 - Es prerequisito de todos los módulos posteriores.

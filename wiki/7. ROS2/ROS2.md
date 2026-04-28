@@ -34,7 +34,7 @@ Los **trabajos prácticos** (TP1–TP3) viven en su propio módulo, [[TPs|Módul
 3. [[Tutorial 3 - Interactuando con Gazebo]] — Gazebo + [[ROS2 - TF2|TF2]] + comandos topic + Recorder.
 4. [[Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2]] — RVIZ, composición de mensajes, launch files, preview de [[TP1 - Transformaciones, Locomoción y Sensado|TP1]] y [[TP2 - Modelos Probabilísticos y Filtros Discretos|TP2]].
 5. [[Tutorial 5 - Bayes]] — ejercicio del sensor defectuoso ([[Regla de Bayes]] recursivo).
-6. [[Tutorial 6 - Movimiento, Sensores e Histogramas]] — aterriza [[Odometría y Modelo de Movimiento (Odometría)]] + [[Modelo de Sensor Basado en Haz]] + [[Modelo de Campo de Verosimilitud]] + [[Filtros Discretos]].
+6. [[Tutorial 6 - Movimiento, Sensores e Histogramas]] — aterriza [[Modelo de Movimiento (Odometría)]] + [[Modelo de Sensor Basado en Haz]] + [[Modelo de Campo de Verosimilitud]] + [[Filtros Discretos]].
 7. [[Tutorial 7 - Filtro de Partículas]] — aterriza [[MCL - Filtro de Partículas]] con SUS resampling.
 8. [[Tutorial 8 - KF, EKF, UKF]] — aterriza [[Filtro de Kalman]] / [[EKF]] / [[UKF]] + integración en ROS2 para [[TP3 - Filtros de Partículas|TP3]].
 

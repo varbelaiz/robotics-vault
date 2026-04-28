@@ -173,7 +173,7 @@ El TP2 evalúa muestreo + modelo odométrico + filtro discreto.
 ![[Tutorial 4 - TP2 odom model.png]]
 *Distribución de posiciones $(x_{t+1}, y_{t+1})$ para 5000 muestras, slide 30.*
 
-> Pregunta del enunciado: "¿Qué está ocurriendo físicamente y qué está interpretando mi algoritmo en consecuencia?". Esto se ataca con [[Modelo de Movimiento (Odometría)|el modelo de odometría]] (M2) y [[Muestreo por Importancia|muestreo]] (M5).
+> Pregunta del enunciado: "¿Qué está ocurriendo físicamente y qué está interpretando mi algoritmo en consecuencia?". Esto se ataca con [[Modelo de Movimiento (Odometría)|el modelo de odometría]] (M4) y [[Muestreo por Importancia|muestreo]] (M5).
 
 ### Filtro discreto: histograma de posiciones
 

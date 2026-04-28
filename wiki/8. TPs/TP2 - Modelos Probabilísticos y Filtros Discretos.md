@@ -26,7 +26,7 @@ Que el estudiante pueda:
 - [[Variables Aleatorias Continuas]] — muestreo de gaussianas.
 - [[Gaussiana Multivariada]] — para entender qué se está muestreando.
 - [[Muestreo por Importancia]] — el método de rechazo es un caso particular.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — el modelo $P(x_t \mid u_t, x_{t-1})$ basado en deltas.
+- [[Modelo de Movimiento (Odometría)]] — el modelo $P(x_t \mid u_t, x_{t-1})$ basado en deltas.
 - [[Filtros Discretos]] — el filtro del bloque 4.
 - [[Filtro de Bayes]] — base teórica del filtro discreto.
 - [[ROS2 - Launch Files]] — el TP provee `launch_my_odometry.launch.py` con argumento `alpha`.
@@ -126,7 +126,7 @@ Detalle del algoritmo en [[Filtros Discretos]] (M5) y [[Tutorial 6 - Movimiento,
 - [[Tutorial 6 - Movimiento, Sensores e Histogramas]] — toda la teoría: muestreo, modelo de odometría, filtro discreto.
 - [[Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2]] — preview de los outputs (scatter de odometría, histograma del filtro).
 - [[Filtros Discretos]] — base teórica del bloque 4.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — base teórica del bloque 2.
+- [[Modelo de Movimiento (Odometría)]] — base teórica del bloque 2.
 - [[TP3 - Filtros de Partículas]] — extiende este modelo de movimiento a un filtro de partículas con sensado.
 
 ## Fuentes

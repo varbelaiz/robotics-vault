@@ -1,12 +1,12 @@
 ---
-modulo: 3. Sensores y Modelos
+modulo: 3. Sensores
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/04-sensores-3.pdf
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[Sensores y Modelos|← Sensores y Modelos]] | [[Robotica|← Inicio]]
+> [[Sensores|← Sensores]] | [[Robotica|← Inicio]]
 
 # Sensores Externos: GNSS, Ultrasonido, Lidar, Cámaras
 

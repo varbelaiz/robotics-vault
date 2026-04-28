@@ -3,7 +3,7 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf
-ultima_actualizacion: 2026-04-27
+ultima_actualizacion: 2026-04-28
 ---
 
 > [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
@@ -104,12 +104,19 @@ Con esto tenemos los dos ingredientes:
 
 El [[Filtro de Bayes]] es el algoritmo que combina los tres recursivamente para estimar $Bel(x_t) = P(x_t \mid u_1, z_1, \dots, u_t, z_t)$.
 
+## 7. Instancias concretas
+
+El ejemplo de la puerta es discreto y juguete. Para un robot móvil real, $u$ es continuo y $x$ es la pose $(x, y, \theta)$. Las dos instancias canónicas — y las herramientas de muestreo asociadas — viven en páginas hijas dentro de este módulo:
+
+- [[Modelo de Movimiento (Odometría)]] — modelo $p(x_t \mid u_t, x_{t-1})$ cuando $u$ es la odometría medida por encoders. Se descompone $u$ en `(rot1, trans, rot2)` y se caracteriza el ruido con cuatro parámetros $\alpha_i$.
+- [[Modelo de Movimiento (Velocidad)]] — alternativa cuando no hay encoders: $u = (v, \omega)$ y la trayectoria es un arco de círculo.
+- [[Muestreo de Distribuciones]] — operaciones `prob` y `sample` (normal/triangular/rejection) que ambos modelos invocan.
+
 ## Conexiones
 - [[Filtro de Bayes]] — el modelo de movimiento es uno de sus dos ingredientes (paso de predicción).
-- [[Modelo de Movimiento (Velocidad)]] — instancia concreta basada en velocidades $(v, \omega)$ — M2.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — instancia concreta basada en encoders — M2.
 - [[Modelo de Sensor]] — la otra mitad del filtro (paso de actualización).
-- [[5. Filtros Bayesianos/Filtros Bayesianos|Módulo 5]] — implementaciones concretas (discretos, Kalman, partículas).
+- [[Odometría]] (M2) — el concepto operativo de dead reckoning, prerequisito del modelo basado en odometría.
+- [[5. Filtros Bayesianos/Filtros Bayesianos|Módulo 5]] — implementaciones concretas del filtro (discretos, Kalman, partículas).
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf`

@@ -1,20 +1,21 @@
 ---
-modulo: 3. Sensores y Modelos
+modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-28
 ---
 
-> [[Sensores y Modelos|← Sensores y Modelos]] | [[Robotica|← Inicio]]
+> [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
 
 # Modelo de Campo de Verosimilitud (Likelihood Field)
 
 > Alternativa eficiente al modelo basado en haz: en vez de mirar a lo largo del rayo, sólo se chequea el punto final contra el obstáculo más cercano.
 
 ## Prerequisitos
+- [[Modelo de Sensor]] — el hub conceptual de $P(z \mid x, m)$.
 - [[Modelo de Sensor Basado en Haz]] — el modelo que esta página mejora.
-- [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — sensores típicos (sonar, lidar).
+- [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — sensores típicos (sonar, lidar) (M3).
 
 ## 1. Motivación: limitaciones del beam-based
 

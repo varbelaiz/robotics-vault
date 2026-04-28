@@ -76,42 +76,26 @@
                 },
                 {
                   "type": "file",
-                  "path": "wiki/2. Locomoción/Odometría y Modelo de Movimiento (Odometría).md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/2. Locomoción/Modelo de Movimiento (Velocidad).md"
+                  "path": "wiki/2. Locomoción/Odometría.md"
                 }
               ]
             },
             {
               "type": "group",
-              "title": "3. Sensores y Modelos",
+              "title": "3. Sensores",
               "ctime": 1745798400000,
               "items": [
                 {
                   "type": "file",
-                  "path": "wiki/3. Sensores y Modelos/Sensores y Modelos.md"
+                  "path": "wiki/3. Sensores/Sensores.md"
                 },
                 {
                   "type": "file",
-                  "path": "wiki/3. Sensores y Modelos/Sensores Internos.md"
+                  "path": "wiki/3. Sensores/Sensores Internos.md"
                 },
                 {
                   "type": "file",
-                  "path": "wiki/3. Sensores y Modelos/Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/3. Sensores y Modelos/Modelo de Sensor Basado en Haz.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/3. Sensores y Modelos/Modelo de Campo de Verosimilitud.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/3. Sensores y Modelos/Modelo de Detección de Landmarks.md"
+                  "path": "wiki/3. Sensores/Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras.md"
                 }
               ]
             },
@@ -162,7 +146,23 @@
                 },
                 {
                   "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Derivación del Filtro de Bayes.md"
+                },
+                {
+                  "type": "file",
                   "path": "wiki/4. Robótica Probabilística/Modelo de Movimiento.md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Modelo de Movimiento (Odometría).md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Modelo de Movimiento (Velocidad).md"
+                },
+                {
+                  "type": "file",
+                  "path": "wiki/4. Robótica Probabilística/Muestreo de Distribuciones.md"
                 },
                 {
                   "type": "file",
@@ -170,15 +170,15 @@
                 },
                 {
                   "type": "file",
-                  "path": "wiki/4. Robótica Probabilística/Actualización Recursiva Bayesiana.md"
+                  "path": "wiki/4. Robótica Probabilística/Modelo de Sensor Basado en Haz.md"
                 },
                 {
                   "type": "file",
-                  "path": "wiki/4. Robótica Probabilística/Modelado de Acciones.md"
+                  "path": "wiki/4. Robótica Probabilística/Modelo de Campo de Verosimilitud.md"
                 },
                 {
                   "type": "file",
-                  "path": "wiki/4. Robótica Probabilística/Probabilidad - Axiomas y Variables Aleatorias.md"
+                  "path": "wiki/4. Robótica Probabilística/Modelo de Detección de Landmarks.md"
                 }
               ]
             },
@@ -261,97 +261,6 @@
                 {
                   "type": "file",
                   "path": "wiki/6. Mapeo/Exploración.md"
-                }
-              ]
-            },
-            {
-              "type": "group",
-              "title": "7. ROS2 y TPs",
-              "ctime": 1745798400000,
-              "items": [
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 y TPs.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 - Conceptos Base.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 - Nodos.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 - Topics.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 - Mensajes.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 - Publisher.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 - Subscriber.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 - TF2.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/ROS2 - Launch Files.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Gazebo y rviz.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Tutorial 1 - Bienvenida e Instalación de ROS2.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Tutorial 2 - Speaker and Listener.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Tutorial 3 - Interactuando con Gazebo.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Tutorial 4 - Mensajes, rviz, Launch y TP1_TP2.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Tutorial 5 - Bayes.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Tutorial 6 - Movimiento, Sensores e Histogramas.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Tutorial 7 - Filtro de Partículas.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/Tutorial 8 - KF, EKF, UKF.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/TP1 - Transformaciones, Locomoción y Sensado.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/TP2 - Modelos Probabilísticos y Filtros Discretos.md"
-                },
-                {
-                  "type": "file",
-                  "path": "wiki/7. ROS2 y TPs/TP3 - Filtros de Partículas.md"
                 }
               ]
             }

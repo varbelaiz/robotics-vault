@@ -119,7 +119,7 @@ Correlatividades:
 - [[Paradigmas de Control de Robots]] — cómo ha evolucionado la arquitectura de control
 - [[Introducción a la Robótica Probabilística]] — el enfoque que domina la materia
 - [[2. Locomoción/Locomoción|Módulo 2]] — cómo se mueven los robots
-- [[3. Sensores y Modelos/Sensores y Modelos|Módulo 3]] — cómo perciben
+- [[3. Sensores/Sensores|Módulo 3]] — cómo perciben
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/00-introduccion-3.pdf`

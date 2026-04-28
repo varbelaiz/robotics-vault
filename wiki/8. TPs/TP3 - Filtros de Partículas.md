@@ -21,7 +21,7 @@ Que el estudiante construya un filtro MCL funcional — al mover el robot con te
 - [[MCL - Filtro de Partículas]] — la teoría central.
 - [[Filtro de Bayes]] — base.
 - [[Muestreo por Importancia]] — fundamento del weighting.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — el `sample_motion_model_odometry` para la predicción de cada partícula.
+- [[Modelo de Movimiento (Odometría)]] — el `sample_motion_model_odometry` para la predicción de cada partícula.
 - [[Modelo de Campo de Verosimilitud]] — el modelo de sensor del TP.
 - [[Mapas de Ocupación]] — el `OccupancyGrid` que llega por topic; valores 0 (libre), 100 (ocupado), -1 (desconocido).
 - [[ROS2 - TF2]] — para componer scan del lidar al frame del mundo.
@@ -57,7 +57,7 @@ Implementar `map_callback` en `likelihood.py`. El nodo se suscribe al topic del 
 - `msg.data` es un array 1D ordenado: empieza en la **esquina inferior izquierda**, avanza por filas (izquierda → derecha), después fila superior, etc.
 - Valores: `0` = libre, `100` = ocupado, `-1` = desconocido.
 
-**Lo que hay que computar**: para cada celda libre, calcular su distancia al obstáculo más cercano y aplicar una gaussiana — exactamente el procedimiento de [[Modelo de Campo de Verosimilitud]] (M3).
+**Lo que hay que computar**: para cada celda libre, calcular su distancia al obstáculo más cercano y aplicar una gaussiana — exactamente el procedimiento de [[Modelo de Campo de Verosimilitud]] (M4).
 
 ![[TP3 - rviz likelihood field.png]]
 *Después de implementar `map_callback`: el likelihood field se renderiza como halos suaves alrededor de cada obstáculo (escala de grises).*

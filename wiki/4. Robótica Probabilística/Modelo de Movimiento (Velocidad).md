@@ -1,20 +1,21 @@
 ---
-modulo: 2. Locomoción
+modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf
-ultima_actualizacion: 2026-04-27
+ultima_actualizacion: 2026-04-28
 ---
 
-> [[Locomoción|← Locomoción]] | [[Robotica|← Inicio]]
+> [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
 
 # Modelo de Movimiento (Velocidad)
 
 > Modelo probabilístico del movimiento cuando el control viene como velocidad lineal y angular $u = (v, \omega)$ — útil cuando no hay encoders en las ruedas (e.g. con IMU).
 
 ## Prerequisitos
-- [[Cinemática del Robot Diferencial]] — la idea de ICC reaparece acá.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — modelo paralelo basado en encoders.
+- [[Modelo de Movimiento]] — el hub conceptual de $P(x \mid u, x')$.
+- [[Cinemática del Robot Diferencial]] — la idea de ICC reaparece acá (M2).
+- [[Modelo de Movimiento (Odometría)]] — modelo paralelo basado en encoders.
 
 ## 1. Cuándo usar este modelo
 
@@ -149,10 +150,10 @@ Igual que con odometría, el modelo $p(x_t \mid u_t, x_{t-1})$ por sí solo igno
 
 $$p(x' \mid u, x, m) = \eta \, p(x' \mid m) \, p(x' \mid u, x)$$
 
-donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre. Para la imagen y el detalle ver [[Odometría y Modelo de Movimiento (Odometría)#12. Modelo consistente con mapas|Odometría → sec. 12]] — la slide 47 reutiliza la misma figura que la slide 31.
+donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre. Para la imagen y el detalle ver [[Modelo de Movimiento (Odometría)#12. Modelo consistente con mapas|Modelo de Movimiento (Odometría) → sec. 12]] — la slide 47 reutiliza la misma figura que la slide 31.
 
 ## 10. Variantes y conexiones
-- [[Odometría y Modelo de Movimiento (Odometría)]] — modelo paralelo cuando hay encoders.
+- [[Modelo de Movimiento (Odometría)]] — modelo paralelo cuando hay encoders.
 - [[Muestreo de Distribuciones]] — algoritmos `prob` y `sample` que `motion_model_velocity` y `sample_motion_model_velocity` invocan.
 - [[MCL - Filtro de Partículas]] — usa `sample_motion_model_velocity` cuando el robot reporta velocidades (forward-ref, M5).
 - [[Filtro de Kalman]] / [[EKF]] — la versión linealizada se usa como modelo de transición (forward-ref, M5).

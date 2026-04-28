@@ -1,34 +1,24 @@
 ---
-modulo: 2. Locomoción
+modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
-  - Raw/Diapositivas/Teoricas/03-locomocion-3.pdf
   - Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf
-ultima_actualizacion: 2026-04-27
+ultima_actualizacion: 2026-04-28
 ---
 
-> [[Locomoción|← Locomoción]] | [[Robotica|← Inicio]]
+> [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
 
-# Odometría y Modelo de Movimiento (Odometría)
+# Modelo de Movimiento (Odometría)
 
-> Estimar la pose del robot integrando las velocidades de las ruedas (dead reckoning), y modelar la incertidumbre asociada para alimentar un filtro de Bayes.
+> Modelo probabilístico del movimiento $p(x_t \mid x_{t-1}, u_t)$ cuando el control $u_t$ es la odometría medida por encoders de rueda. Descompone $u$ en `(rot1, trans, rot2)` y caracteriza el ruido con cuatro parámetros $\alpha_i$.
 
 ## Prerequisitos
-- [[Cinemática del Robot Diferencial]] — odometría es la integración temporal de la cinemática.
-- [[Encoders Ópticos]] — sensor que provee las velocidades de las ruedas.
-- [[Regla de Bayes]] — base del modelo probabilístico (forward-ref, M4).
+- [[Modelo de Movimiento]] — el hub conceptual de $P(x \mid u, x')$.
+- [[Odometría]] — concepto de dead reckoning a partir de encoders (M2).
+- [[Cinemática del Robot Diferencial]] — odometría es la integración temporal de la cinemática (M2).
+- [[Regla de Bayes]] — base del modelo probabilístico.
 
-## 1. Odometría y dead reckoning
-
-La **odometría** es la estimación del movimiento del robot basada en las velocidades de sus ruedas, integradas en el tiempo. Es un caso particular de **dead reckoning** ("deduced reckoning" o "dead in the water"): cálculo de la posición integrando velocidades, sin referencias externas.
-
-![[Odometria - dead reckoning trayectoria.png]]
-*Odometría sin corrección (izquierda: trayectoria real; derecha: deriva acumulada), slide 34.*
-
-> [!warning] El error se acumula
-> Como cada paso integra ruido, la odometría **deriva** sin cota. Por sí sola no sirve para localización a largo plazo — debe combinarse con observaciones del entorno (próximos módulos).
-
-## 2. Por qué necesitamos un modelo probabilístico
+## 1. Por qué necesitamos un modelo probabilístico
 
 El movimiento de un robot es **inherentemente incierto**: ruedas con distintos diámetros, baches, alfombras, patinaje. Para implementar un filtro de Bayes necesitamos un **modelo de transición**:
 
@@ -39,7 +29,7 @@ Esta probabilidad especifica que la acción $u_t$ lleve al robot desde $x_{t-1}$
 ![[Odometria - DBN.png]]
 *Red Bayesiana dinámica: estados $x$, controles $u$, observaciones $z$, slide 3.*
 
-## 3. Fuentes de error de robots con ruedas
+## 2. Fuentes de error de robots con ruedas
 
 - Distintos diámetros de ruedas.
 - Baches en el terreno.
@@ -49,7 +39,7 @@ Esta probabilidad especifica que la acción $u_t$ lleve al robot desde $x_{t-1}$
 ![[Odometria - fuentes de error ruedas.png]]
 *Casos de error: ideal, distintos diámetros, bache, alfombra, slide 9.*
 
-## 4. Modelo de odometría: parametrización
+## 3. Modelo de odometría: parametrización
 
 El robot se mueve de $\langle\bar{x}, \bar{y}, \bar{\theta}\rangle$ a $\langle\bar{x}', \bar{y}', \bar{\theta}'\rangle$. La información de odometría se descompone en tres componentes:
 
@@ -71,7 +61,7 @@ Es decir: **rotar para alinear con la trayectoria → trasladar → rotar a la o
 ![[Odometria - atan2.png]]
 *Definición de atan2 y su superficie continua vs arctan, slide 11.*
 
-## 5. Modelo de ruido para la odometría
+## 4. Modelo de ruido para la odometría
 
 El movimiento medido es el verdadero más un ruido $\varepsilon$ con varianza dependiente de las propias deltas:
 
@@ -84,11 +74,11 @@ Los parámetros $\alpha_1, \dots, \alpha_4$ caracterizan el ruido del robot y de
 ![[Odometria - modelo de ruido.png]]
 *Modelo de ruido: cada delta medida es la verdadera más ruido cuya varianza depende de las deltas, slide 12.*
 
-## 6. Distribuciones típicas y operación `prob`
+## 5. Distribuciones típicas y operación `prob`
 
-El ruido $\varepsilon_{\sigma^2}$ se modela típicamente con una **normal** o **triangular** centradas en cero. La función `prob(a, b)` que aparece en el algoritmo de la sección 7 es justamente la **evaluación puntual** de esa densidad — ver [[Muestreo de Distribuciones]] para los algoritmos `prob_normal_distribution` y `prob_triangular_distribution`.
+El ruido $\varepsilon_{\sigma^2}$ se modela típicamente con una **normal** o **triangular** centradas en cero. La función `prob(a, b)` que aparece en el algoritmo de la sección 6 es justamente la **evaluación puntual** de esa densidad — ver [[Muestreo de Distribuciones]] para los algoritmos `prob_normal_distribution` y `prob_triangular_distribution`.
 
-## 7. Algoritmo `motion_model_odometry`
+## 6. Algoritmo `motion_model_odometry`
 
 Cálculo de la probabilidad $p(x' \mid x, u)$ a posteriori dadas las poses $x, x'$ (la hipótesis) y la odometría $\bar{x}, \bar{x}'$:
 
@@ -115,18 +105,18 @@ motion_model_odometry(x, x', x̄, x̄'):
 ![[Odometria - motion model algoritmo.png]]
 *Algoritmo `motion_model_odometry`, slide 15.*
 
-## 8. La distribución resultante: medialuna
+## 7. La distribución resultante: medialuna
 
 Aplicando el modelo repetidamente para pequeños desplazamientos, la proyección 2D de la distribución a posteriori 3D toma típicamente forma de **"medialuna"**:
 
 ![[Odometria - distribucion medialuna.png]]
 *La distribución $p(x' \mid u, x)$ tiene forma de medialuna por el acoplamiento entre rotación y traslación, slide 16.*
 
-## 9. Operación `sample`
+## 8. Operación `sample`
 
 Para representar la distribución con muestras (necesario para [[MCL - Filtro de Partículas]], M5) la `sample(b)` que aparece en el algoritmo de la próxima sección genera valores que siguen $\varepsilon_{b^2}$. Los algoritmos concretos (suma de 12 uniformes para normal, suma de 2 para triangular, rejection sampling para casos generales) viven en [[Muestreo de Distribuciones]].
 
-## 10. Algoritmo `sample_motion_model` (odometría)
+## 9. Algoritmo `sample_motion_model` (odometría)
 
 Para muestrear una nueva pose $x'$ dado $u, x$:
 
@@ -146,7 +136,7 @@ sample_motion_model(u, x):
 ![[Odometria - sample motion model algoritmo.png]]
 *Algoritmo `sample_motion_model` para odometría, slide 28.*
 
-## 11. Ejemplos del modelo
+## 10. Ejemplos del modelo
 
 La forma de la distribución cambia según el balance entre los $\alpha_i$ (más ruido en rotación, en traslación, etc.):
 
@@ -158,7 +148,7 @@ Aplicando repetidamente el modelo de movimiento a una trayectoria conocida, la n
 ![[Odometria - muestreado trayectoria.png]]
 *Muestreo del modelo de movimiento a lo largo de una trayectoria de ~10 m, slide 30.*
 
-## 12. Modelo consistente con mapas
+## 11. Modelo consistente con mapas
 
 Si conocemos un mapa $m$ del entorno, el modelo $p(x' \mid u, x)$ ignora obstáculos. Una aproximación que **descarta** poses imposibles (atravesar una pared) es:
 
@@ -169,7 +159,8 @@ donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre.
 ![[Movimiento - consistente con mapas.png]]
 *El modelo sin mapa permite atravesar paredes; el modelo con mapa descarta esas muestras, slide 31.*
 
-## 13. Variantes y conexiones
+## 12. Variantes y conexiones
+- [[Odometría]] — concepto operativo de dead reckoning (M2), prerequisito de este modelo.
 - [[Modelo de Movimiento (Velocidad)]] — alternativa cuando no hay encoders, basada en $u = (v, \omega)$.
 - [[Muestreo de Distribuciones]] — algoritmos `prob` y `sample` que `motion_model_odometry` y `sample_motion_model` invocan.
 - [[MCL - Filtro de Partículas]] — el principal consumidor de `sample_motion_model` (forward-ref, M5).
@@ -177,15 +168,13 @@ donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre.
 - [[Filtros Discretos]] — consumen `motion_model_odometry` para la actualización de predicción (forward-ref, M5).
 
 ## Fuentes
-- `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf`
-  - slides 34–35 → 1. Odometría y dead reckoning
 - `Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf`
-  - slides 2–4 → 2. Por qué necesitamos un modelo probabilístico
-  - slide 9 → 3. Fuentes de error de robots con ruedas
-  - slide 10 → 4. Modelo de odometría: parametrización
-  - slide 12 → 5. Modelo de ruido para la odometría
-  - slide 15 → 7. Algoritmo `motion_model_odometry` (delega `prob` a [[Muestreo de Distribuciones]])
-  - slide 16 → 8. La distribución resultante: medialuna
-  - slide 28 → 10. Algoritmo `sample_motion_model` (delega `sample` a [[Muestreo de Distribuciones]])
-  - slides 29–30 → 11. Ejemplos del modelo
-  - slide 31 → 12. Modelo consistente con mapas
+  - slides 2–4 → 1. Por qué necesitamos un modelo probabilístico
+  - slide 9 → 2. Fuentes de error de robots con ruedas
+  - slide 10 → 3. Modelo de odometría: parametrización
+  - slide 12 → 4. Modelo de ruido para la odometría
+  - slide 15 → 6. Algoritmo `motion_model_odometry` (delega `prob` a [[Muestreo de Distribuciones]])
+  - slide 16 → 7. La distribución resultante: medialuna
+  - slide 28 → 9. Algoritmo `sample_motion_model` (delega `sample` a [[Muestreo de Distribuciones]])
+  - slides 29–30 → 10. Ejemplos del modelo
+  - slide 31 → 11. Modelo consistente con mapas

@@ -10,9 +10,9 @@
 | #   | Módulo                                                                          | Estado      | Páginas completas | Total |
 | --- | ------------------------------------------------------------------------------- | ----------- | ----------------- | ----- |
 | 1   | [[1. Fundamentos/Fundamentos\|Fundamentos]]                                     | Completo    | 9                 | 9     |
-| 2   | [[2. Locomoción/Locomoción\|Locomoción]]                                        | Completo    | 6                 | 6     |
-| 3   | [[3. Sensores y Modelos/Sensores y Modelos\|Sensores y Modelos]]                | Completo    | 5                 | 5     |
-| 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 12                | 12    |
+| 2   | [[2. Locomoción/Locomoción\|Locomoción]]                                        | Completo    | 4                 | 4     |
+| 3   | [[3. Sensores/Sensores\|Sensores]]                                              | Completo    | 2                 | 2     |
+| 4   | [[4. Robótica Probabilística/Robótica Probabilística\|Robótica Probabilística]] | Completo    | 18                | 18    |
 | 5   | [[5. Filtros Bayesianos/Filtros Bayesianos\|Filtros Bayesianos]]                | Completo    | 9                 | 9     |
 | 6   | [[6. Mapeo/Mapeo\|Mapeo]]                                                       | Completo    | 6                 | 6     |
 | 7   | [[7. ROS2/ROS2\|ROS2]]                                                          | Completo    | 18                | 18    |
@@ -47,24 +47,19 @@
 - [[Transformaciones Homogéneas]] — Rototraslación; pose del robot; composición.
 
 ## 2. Locomoción — Completo ✅
-- [[Locomoción|← Locomoción]] — Mapa del módulo: cinemática, accionamientos, odometría y modelos de movimiento.
+- [[Locomoción|← Locomoción]] — Mapa del módulo: cinemática, accionamientos y odometría como concepto.
 - [[Locomoción y Tipos de Accionamientos]] — Tipos de locomoción, ruedas, accionamientos canónicos y restricciones holonómicas.
 - [[Cinemática del Robot Diferencial]] — Pose 2D, derivación completa de la cinemática directa con ICC.
 - [[Otros Accionamientos - Ackermann, Síncrono, Omni]] — Ackermann, síncrono, mecanum, vehículos especiales.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — Dead reckoning + modelo probabilístico basado en encoders.
-- [[Modelo de Movimiento (Velocidad)]] — Modelo probabilístico cuando el control viene como $(v, \omega)$.
-- [[Muestreo de Distribuciones]] — Hub de las operaciones `prob` y `sample` (normal/triangular/rejection); base de los modelos de movimiento y del filtro de partículas.
+- [[Odometría]] — Dead reckoning como integración temporal de la cinemática a partir de encoders.
 
-## 3. Sensores y Modelos — Completo ✅
-- [[Sensores y Modelos|← Sensores y Modelos]] — Mapa del módulo: hardware sensorial + modelos probabilísticos $p(z\|x,m)$.
+## 3. Sensores — Completo ✅
+- [[Sensores|← Sensores]] — Mapa del módulo: hardware sensorial (encoders, IMU, GPS, sonar, lidar, cámaras).
 - [[Sensores Internos]] — Clasificación, encoders, táctiles, magnetómetro, giróscopo, acelerómetro, IMU.
 - [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — GPS/RTK, sonar, lidar, RGBd, estéreo.
-- [[Modelo de Sensor Basado en Haz]] — Mezcla de hit/unexp/max/rand para sonar y lidar.
-- [[Modelo de Campo de Verosimilitud]] — Alternativa eficiente y suave al beam-based.
-- [[Modelo de Detección de Landmarks]] — Modelo cuando se observan marcadores conocidos.
 
 ## 4. Robótica Probabilística — Completo ✅
-- [[Robótica Probabilística|← Robótica Probabilística]] — Axiomas, variables aleatorias, Bayes, Markov, y el filtro de Bayes como base para localización.
+- [[Robótica Probabilística|← Robótica Probabilística]] — Axiomas, variables aleatorias, Bayes, Markov, el filtro de Bayes y los modelos probabilísticos de movimiento y de sensor.
 - [[Introducción a la Robótica Probabilística]] — Idea general de representar incertidumbre explícitamente en robótica.
 - [[Axiomas de Probabilidad]] — Fundamentos formales de la teoría de probabilidad.
 - [[Variables Aleatorias Discretas]] — Espacios de estados discretos y distribuciones.
@@ -74,9 +69,15 @@
 - [[Regla de Bayes]] — Actualización de creencias con evidencia + actualización recursiva con múltiples mediciones.
 - [[Suposición de Markov]] — Dependencia temporal local.
 - [[Filtro de Bayes]] — Algoritmo recursivo de estimación: predict y update.
-- [[Modelo de Movimiento]] — Transición probabilística $P(x_t \mid u_t, x_{t-1})$ con ejemplo de FSM "cerrar puerta".
-- [[Modelo de Sensor]] — Hub de los modelos de observación $P(z_t \mid x_t, m)$ del Módulo 3.
 - [[Derivación del Filtro de Bayes]] — Derivación paso a paso: Bayes + Markov + probabilidad total → ecuaciones de predicción y actualización.
+- [[Modelo de Movimiento]] — Hub de $P(x_t \mid u_t, x_{t-1})$ con ejemplo discreto FSM "cerrar puerta".
+- [[Modelo de Movimiento (Odometría)]] — Modelo probabilístico cuando $u$ es odometría medida por encoders, parametrización `(rot1, trans, rot2)`.
+- [[Modelo de Movimiento (Velocidad)]] — Modelo probabilístico cuando $u = (v, \omega)$ y la trayectoria es un arco de círculo.
+- [[Muestreo de Distribuciones]] — Hub de las operaciones `prob` y `sample` (normal/triangular/rejection); base de los modelos de movimiento y del filtro de partículas.
+- [[Modelo de Sensor]] — Hub de $P(z_t \mid x_t, m)$ y de las tres familias canónicas.
+- [[Modelo de Sensor Basado en Haz]] — Mezcla de hit/unexp/max/rand para sonar y lidar.
+- [[Modelo de Campo de Verosimilitud]] — Alternativa eficiente y suave al beam-based.
+- [[Modelo de Detección de Landmarks]] — Modelo cuando se observan marcadores conocidos.
 
 ## 5. Filtros Bayesianos — En progreso (9/9)
 - [[Filtros Bayesianos|← Filtros Bayesianos]] — Implementaciones del filtro de Bayes: discretos, Kalman, y partículas.

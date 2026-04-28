@@ -1,20 +1,21 @@
 ---
-modulo: 3. Sensores y Modelos
+modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf
-ultima_actualizacion: 2026-04-27
+ultima_actualizacion: 2026-04-28
 ---
 
-> [[Sensores y Modelos|← Sensores y Modelos]] | [[Robotica|← Inicio]]
+> [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
 
 # Modelo de Sensor Basado en Haz (Beam-Based)
 
 > Modelo probabilístico $p(z \mid x, m)$ que descompone el ruido del sensor en cuatro causas físicas y las mezcla en una densidad por haz.
 
 ## Prerequisitos
-- [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — qué es un sensor de proximidad (sonar/lidar).
-- [[Regla de Bayes]] — base teórica del modelo (forward-ref, M4).
+- [[Modelo de Sensor]] — el hub conceptual de $P(z \mid x, m)$.
+- [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — qué es un sensor de proximidad (sonar/lidar) (M3).
+- [[Regla de Bayes]] — base teórica del modelo.
 
 ## 1. El problema
 

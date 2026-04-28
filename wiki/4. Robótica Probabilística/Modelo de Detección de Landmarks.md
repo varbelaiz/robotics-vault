@@ -1,19 +1,20 @@
 ---
-modulo: 3. Sensores y Modelos
+modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf
-ultima_actualizacion: 2026-04-26
+ultima_actualizacion: 2026-04-28
 ---
 
-> [[Sensores y Modelos|← Sensores y Modelos]] | [[Robotica|← Inicio]]
+> [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
 
 # Modelo de Detección de Landmarks
 
 > Modelo de sensor cuando lo que se observa son **marcadores conocidos** (balizas, marcas visuales, postes), en lugar de distancias continuas. Se basa en triangulación.
 
 ## Prerequisitos
-- [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — sensores que pueden detectar landmarks.
+- [[Modelo de Sensor]] — el hub conceptual de $P(z \mid x, m)$.
+- [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — sensores que pueden detectar landmarks (M3).
 - [[Modelo de Sensor Basado en Haz]] o [[Modelo de Campo de Verosimilitud]] — alternativas para sensores de distancia.
 
 ## 1. Tipos de landmarks

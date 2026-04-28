@@ -1,12 +1,12 @@
 ---
-modulo: 3. Sensores y Modelos
+modulo: 3. Sensores
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/04-sensores-3.pdf
 ultima_actualizacion: 2026-04-26
 ---
 
-> [[Sensores y Modelos|← Sensores y Modelos]] | [[Robotica|← Inicio]]
+> [[Sensores|← Sensores]] | [[Robotica|← Inicio]]
 
 # Sensores Internos
 
@@ -44,7 +44,7 @@ Sensores propioceptivos que miden el giro del rotor por la cantidad de luz que p
 *Encoder incremental (A, B, dirección CW) y encoder absoluto (A, B, C), slide 4.*
 
 > [!info] Conexión con M2
-> Los encoders son la base de la [[Odometría y Modelo de Movimiento (Odometría)|odometría]]: sus lecturas alimentan las ecuaciones de cinemática inversa para estimar el desplazamiento del robot.
+> Los encoders son la base de la [[Modelo de Movimiento (Odometría)|odometría]]: sus lecturas alimentan las ecuaciones de cinemática inversa para estimar el desplazamiento del robot.
 
 ## 3. Sensores táctiles
 
@@ -110,7 +110,7 @@ Clasificación completa: PC = propioceptivo, EC = exteroceptivo, A = activo, P =
 
 ## Variantes y conexiones
 - [[Sensores Externos - GNSS, Ultrasonido, Lidar, Cámaras]] — los exteroceptivos a distancia.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — consume las lecturas de encoders.
+- [[Modelo de Movimiento (Odometría)]] — consume las lecturas de encoders.
 - [[Modelo de Movimiento (Velocidad)]] — útil cuando se sustituyen encoders por IMU.
 
 ## Fuentes

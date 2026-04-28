@@ -8,6 +8,28 @@
 
 ---
 
+## [2026-04-28] refactor | reubicar slides 06/07 M2/M3 → M4 (linealidad cronológica)
+- **Disparador**: Valentino reportó dos inconsistencias en el vault: (1) `Modelo de Movimiento.md` y `Modelo de Sensor.md` en M4 estaban prácticamente vacíos a pesar de que las slides 06 y 07 están dedicadas enteramente a esos temas; (2) los archivos detallados de modelos de movimiento (slide 06) vivían en M2 (Locomoción), rompiendo la linealidad cronológica de la materia (slide 06 viene después del intro probabilístico de slide 05).
+- **Diagnóstico**: el wiki había clasificado las slides 06/07 por **tema técnico** ("habla de movimiento → Locomoción") en lugar de por **lugar cronológico** (slides 06/07 son parte del *track probabilístico* M4). Decisión: reubicar todo el contenido probabilístico de M2/M3 a M4.
+- **Reubicaciones (`git mv` para preservar historia)**:
+  - M2 → M4: `Modelo de Movimiento (Velocidad).md`, `Muestreo de Distribuciones.md`.
+  - **Split** de `Odometría y Modelo de Movimiento (Odometría).md`: la parte conceptual (slide 03, dead reckoning) queda en M2 como **`Odometría.md` (nueva)**; la parte probabilística (slide 06, deltas + ruido + algoritmos) va a M4 como **`Modelo de Movimiento (Odometría).md`** (renumeradas las secciones 1→11).
+  - M3 → M4: `Modelo de Sensor Basado en Haz.md`, `Modelo de Campo de Verosimilitud.md`, `Modelo de Detección de Landmarks.md`.
+  - **49 imágenes** movidas de `wiki/2. Locomoción/Img/` y `wiki/3. Sensores y Modelos/Img/` a `wiki/4. Robótica Probabilística/Img/`. La única que queda en M2 es `Odometria - dead reckoning trayectoria.png` (la usa la nueva `Odometría.md`).
+- **Renombre de M3**: carpeta `3. Sensores y Modelos/` → `3. Sensores/` y file `Sensores y Modelos.md` → `Sensores.md`. El módulo ahora cubre sólo hardware (slide 04). Frontmatter `modulo:` y back-link headers actualizados en las 2 páginas restantes (Sensores Internos, Sensores Externos).
+- **Hubs M4 reescritos**:
+  - `Modelo de Movimiento.md`: contenido de slide 05 conservado (FSM cerrar puerta) + nueva sección 7 "Instancias concretas" enlazando a las 3 hijas y a `Odometría` (M2).
+  - `Modelo de Sensor.md`: era un redirect; expandido con slide 07 slides 2–3 (catálogo de sensores + framing $P(z|x,m)$ con la imagen `Sensor proximidad - haces.png`) + sección "Familias de modelos" enlazando a las 3 hijas.
+- **Wikilinks actualizados** (sed bulk + edits puntuales): `[[Odometría y Modelo de Movimiento (Odometría)]]` → `[[Modelo de Movimiento (Odometría)]]` (12 archivos); `[[3. Sensores y Modelos/...]]` → `[[3. Sensores/...]]` y `[[Sensores y Modelos]]` → `[[Sensores]]` (10 archivos); anotaciones cruzadas `(M2)`/`(M3)` → `(M4)` en Tutoriales 4/6/7 y TP3 donde apuntan a páginas que se movieron.
+- **Overviews y catálogo**:
+  - `Locomoción.md`: removidas Velocidad/Muestreo/Odometría-y-modelo del recorrido y de la lista; agregada `Odometría`; callout que apunta a M4 para los modelos probabilísticos.
+  - `Sensores.md` (M3): reescrito panorama; recorrido y lista contienen sólo las 2 páginas de hardware; callout que apunta a M4 para los modelos.
+  - `Robótica Probabilística.md` (M4): recorrido extendido a 18 entradas en orden cronológico (slide 05 → 06 → 07 dentro del módulo); 7 nuevas páginas en la lista plana; nuevo Conecta-con para M2 (Odometría) y M3 (Sensores).
+  - `Robotica.md`: tabla de módulos actualizada (M2: 6→4, M3: 5→2, M4: 12→18); catálogo reescrito con la nueva agrupación.
+- **bookmarks.json (sortspec custom-sort)**: regenerado con el orden cronológico nuevo. De paso limpié 3 entradas fantasma de M4 que no existían (`Actualización Recursiva Bayesiana.md`, `Modelado de Acciones.md`, `Probabilidad - Axiomas y Variables Aleatorias.md`) y agregué `Derivación del Filtro de Bayes.md` que faltaba.
+- **Decisión**: renombrar la carpeta M3 (`Sensores y Modelos/` → `Sensores/`) en lugar de dejar el nombre con un módulo que ya no contiene "modelos". Trade-off: ~10 wikilinks fully-qualified `[[3. Sensores y Modelos/...]]` rotos, todos resueltos en el mismo barrido. Más limpio que dejar el nombre engañoso.
+- **Páginas tocadas / commit único**: 11 archivos movidos, 49 imágenes movidas, 2 archivos creados (`Odometría.md`, `Modelo de Movimiento (Odometría).md`), 4 hubs/overviews reescritos, ~20 archivos con wikilinks actualizados.
+
 ## [2026-04-27] audit+ingest | M3, M5, M6 — fixes de cobertura y broken images
 - **Disparador**: Valentino pidió auditar los 3 módulos restantes después del audit M2/M4.
 - **Método**: 3 agentes Explore en paralelo, uno por módulo. Verifiqué cada claim antes de actuar — uno alucinó que `[[EKF]]` y `[[MCL]]` no existían (sí existen en M5).
@@ -215,7 +237,7 @@
   - `wiki/7. ROS2 y TPs/ROS2 y TPs.md` (overview): Fase 4 ✅.
 - **Decisiones tomadas autónomamente**:
   - **Bresenham** se mantuvo como sección dentro del Tutorial 6 (no merece página propia: algoritmo gráfico clásico, no concepto teórico de la materia, su uso en robótica es justo el ray-casting que aparece en el modelo basado en haz).
-  - Las secciones del modelo de odometría y del beam/likelihood enlazan a `[[Odometría y Modelo de Movimiento (Odometría)]]` (M2), `[[Modelo de Sensor Basado en Haz]]` y `[[Modelo de Campo de Verosimilitud]]` (M3) en vez de duplicar la teoría.
+  - Las secciones del modelo de odometría y del beam/likelihood enlazan a `[[Modelo de Movimiento (Odometría)]]` (M2), `[[Modelo de Sensor Basado en Haz]]` y `[[Modelo de Campo de Verosimilitud]]` (M3) en vez de duplicar la teoría.
   - El modelo discreto 25/50/25 quedó como preview de TP2 dentro del Tutorial 6 (cuando se ingeste el enunciado del TP2 en Fase 6, se referenciará desde ahí).
 
 ## [2026-04-27] ingest | M7 Fase 3 — Tutorial 5 (Bayes aplicado)

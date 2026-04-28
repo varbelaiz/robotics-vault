@@ -168,7 +168,7 @@ $$\theta(t) = \tfrac{1}{l}\int_0^t [v_r(t) - v_l(t)]\,dt$$
 ## 10. Variantes y conexiones
 - [[Otros Accionamientos - Ackermann, Síncrono, Omni]] — el ICC también aplica a Ackermann.
 - [[Modelo de Movimiento (Velocidad)]] — el modelo probabilístico que toma $u = (v, \omega)$ está construido sobre estas mismas ecuaciones.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — usa las mismas integrales para estimar la pose desde encoders.
+- [[Modelo de Movimiento (Odometría)]] — usa las mismas integrales para estimar la pose desde encoders.
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf`

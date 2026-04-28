@@ -23,7 +23,7 @@ Que cada estudiante pueda:
 
 ## Conceptos que se aplican
 - [[Filtro de Bayes]] — la fórmula que ata los dos modelos.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — modelo $P(x_t \mid u_t, x_{t-1})$ basado en encoders.
+- [[Modelo de Movimiento (Odometría)]] — modelo $P(x_t \mid u_t, x_{t-1})$ basado en encoders.
 - [[Modelo de Sensor Basado en Haz]] — mezcla hit/unexp/max/rand.
 - [[Modelo de Campo de Verosimilitud]] — alternativa precomputada.
 - [[Filtros Discretos]] — implementación con histograma.
@@ -38,7 +38,7 @@ El modelo de odometría representa el control $u_t$ como una **terna** $(\delta_
 ![[Tutorial 6 - odometria formulas deltas.png]]
 *Fórmulas: $\delta_{trans} = \sqrt{(\bar{x}' - \bar{x})^2 + (\bar{y}' - \bar{y})^2}$, $\delta_{rot1} = \text{atan2}(\bar{y}' - \bar{y}, \bar{x}' - \bar{x}) - \bar{\theta}$, $\delta_{rot2} = \bar{\theta}' - \bar{\theta} - \delta_{rot1}$, slide 4.*
 
-Detalle teórico completo en [[Odometría y Modelo de Movimiento (Odometría)]] (M2).
+Detalle teórico completo en [[Modelo de Movimiento (Odometría)]] (M4).
 
 ### El ruido en la odometría
 
@@ -137,7 +137,7 @@ La idea: en vez de hacer ray-casting cada vez, **precomputar** una vez un campo 
 
 El producto de likelihoods de todos los haces es la **likelihood total** de esa pose hipotética dada el scan. Esto se usa directo en MCL ([[MCL - Filtro de Partículas]]) para pesar partículas.
 
-Detalle teórico completo en [[Modelo de Campo de Verosimilitud]] (M3).
+Detalle teórico completo en [[Modelo de Campo de Verosimilitud]] (M4).
 
 ## 3. Discretización del espacio
 
@@ -168,7 +168,7 @@ Detalle completo en [[Filtros Discretos]] (M5).
 - [[Tutorial 5 - Bayes]] — tutorial anterior (Bayes recursivo).
 - [[Tutorial 7 - Filtro de Partículas]] — siguiente: MCL implementa el modelo de movimiento + sensor sobre un set de partículas.
 - [[Filtro de Bayes]] — la fórmula que cierra los dos modelos.
-- [[Odometría y Modelo de Movimiento (Odometría)]] / [[Modelo de Sensor Basado en Haz]] / [[Modelo de Campo de Verosimilitud]] / [[Filtros Discretos]] — teoría que respalda cada sección.
+- [[Modelo de Movimiento (Odometría)]] / [[Modelo de Sensor Basado en Haz]] / [[Modelo de Campo de Verosimilitud]] / [[Filtros Discretos]] — teoría que respalda cada sección.
 - [[TP2 - Modelos Probabilísticos y Filtros Discretos]] — primer TP que implementa todo esto.
 
 ## Fuentes

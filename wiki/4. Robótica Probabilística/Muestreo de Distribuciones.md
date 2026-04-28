@@ -1,12 +1,12 @@
 ---
-modulo: 2. Locomoción
+modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf
-ultima_actualizacion: 2026-04-27
+ultima_actualizacion: 2026-04-28
 ---
 
-> [[Locomoción|← Locomoción]] | [[Robotica|← Inicio]]
+> [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
 
 # Muestreo de Distribuciones
 
@@ -18,7 +18,7 @@ ultima_actualizacion: 2026-04-27
 
 ## 1. Por qué importan estas dos operaciones
 
-Los modelos de movimiento de [[Odometría y Modelo de Movimiento (Odometría)]] y [[Modelo de Movimiento (Velocidad)]] usan ruido $\varepsilon$ con varianza $\sigma^2$. El ruido aparece de dos maneras:
+Los modelos de movimiento de [[Modelo de Movimiento (Odometría)]] y [[Modelo de Movimiento (Velocidad)]] usan ruido $\varepsilon$ con varianza $\sigma^2$. El ruido aparece de dos maneras:
 
 - **Como densidad** en `motion_model_*`: dadas dos poses, calcular $p(x_t \mid u_t, x_{t-1})$ multiplicando densidades puntuales — necesita `prob(a, b)`.
 - **Como muestras** en `sample_motion_model_*`: generar una nueva pose $x_t$ a partir de $u_t, x_{t-1}$ — necesita `sample(b)`.
@@ -29,8 +29,8 @@ La misma dualidad reaparece en [[MCL - Filtro de Partículas]] (predict ↔ samp
 
 El curso usa dos distribuciones centradas en cero como modelo de ruido:
 
-| | Normal | Triangular |
-|---|---|---|
+|                                | Normal                                                                  | Triangular                                                                              |
+| ------------------------------ | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | $\varepsilon_{\sigma^2}(x) = $ | $\dfrac{1}{\sqrt{2\pi\sigma^2}} e^{-\tfrac{1}{2}\tfrac{x^2}{\sigma^2}}$ | $\dfrac{\sqrt{6\sigma^2} - \|x\|}{6\sigma^2}$ si $\|x\| \le \sqrt{6\sigma^2}$, sino $0$ |
 
 ![[Odometria - distribuciones normal y triangular.png]]
@@ -144,12 +144,12 @@ Y para $f(x) = \cos(x)$ en $[-1, 1]$:
 
 | Operación | Algoritmo que la consume | Aplicación |
 |---|---|---|
-| `prob_normal_distribution` | [[Odometría y Modelo de Movimiento (Odometría)\|`motion_model_odometry`]], [[Modelo de Movimiento (Velocidad)\|`motion_model_velocity`]] | Evaluar $p(x_t \mid u_t, x_{t-1})$ |
-| `sample_normal_distribution` | [[Odometría y Modelo de Movimiento (Odometría)\|`sample_motion_model_odometry`]], [[Modelo de Movimiento (Velocidad)\|`sample_motion_model_velocity`]] | Generar partículas en [[MCL - Filtro de Partículas\|MCL]] |
+| `prob_normal_distribution` | [[Modelo de Movimiento (Odometría)\|`motion_model_odometry`]], [[Modelo de Movimiento (Velocidad)\|`motion_model_velocity`]] | Evaluar $p(x_t \mid u_t, x_{t-1})$ |
+| `sample_normal_distribution` | [[Modelo de Movimiento (Odometría)\|`sample_motion_model_odometry`]], [[Modelo de Movimiento (Velocidad)\|`sample_motion_model_velocity`]] | Generar partículas en [[MCL - Filtro de Partículas\|MCL]] |
 | `sample_distribution` (rechazo) | Cualquier $f$ no estándar | Investigación / debugging de modelos custom |
 
 ## Conexiones
-- [[Odometría y Modelo de Movimiento (Odometría)]] — primer consumidor: `prob` en el modelo de medida y `sample` para partículas.
+- [[Modelo de Movimiento (Odometría)]] — primer consumidor: `prob` en el modelo de medida y `sample` para partículas.
 - [[Modelo de Movimiento (Velocidad)]] — mismo rol con $u = (v, \omega)$.
 - [[MCL - Filtro de Partículas]] — usa `sample_motion_model` partícula a partícula.
 - [[TP2 - Modelos Probabilísticos y Filtros Discretos]] — implementa los tres muestreadores de gaussiana (suma de 12, rechazo, Box-Muller) como ejercicio.

@@ -16,7 +16,7 @@ Los mapas permiten localización, navegación eficiente, y ejecución de tareas.
 6. [[Exploración]] — descubrir entornos desconocidos.
 
 ## Conecta con
-- ⬅️ [[3. Sensores y Modelos/Sensores y Modelos|Módulo 3: Sensores]] (mediciones para mapear)
+- ⬅️ [[3. Sensores/Sensores|Módulo 3: Sensores]] (mediciones para mapear)
 - ⬅️ [[4. Robótica Probabilística/Robótica Probabilística|Módulo 4: Probabilidad]] (mapeo probabilístico)
 - ⬅️ [[5. Filtros Bayesianos/Filtros Bayesianos|Módulo 5: Filtros Bayesianos]] (localización dentro de SLAM)
 

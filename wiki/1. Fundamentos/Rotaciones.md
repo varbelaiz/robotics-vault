@@ -108,7 +108,7 @@ La matriz de rotación es una de **tres** formas estándar de representar una or
 - Componiendo rotación + traslación se obtienen [[Transformaciones Homogéneas]].
 - [[Cuaterniones]] — alternativa estándar en robótica para control.
 - Caso particular de [[Matrices|matrices ortogonales]] con $\det = +1$.
-- Centrales para [[2. Locomoción/Locomoción|locomoción]] (orientación del robot) y [[3. Sensores y Modelos/Sensores y Modelos|sensores]] (cambio de sistema sensor → robot).
+- Centrales para [[2. Locomoción/Locomoción|locomoción]] (orientación del robot) y [[3. Sensores/Sensores|sensores]] (cambio de sistema sensor → robot).
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/01-algebra_lineal-2.pdf`

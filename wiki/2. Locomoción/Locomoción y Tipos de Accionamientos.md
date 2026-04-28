@@ -88,7 +88,7 @@ Los robots con ruedas **omni** o **mecanum** sí pueden moverse lateralmente —
 ## Próximos pasos
 - [[Cinemática del Robot Diferencial]] — derivación completa del accionamiento más usado.
 - [[Otros Accionamientos - Ackermann, Síncrono, Omni]] — el resto de los tipos.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — cómo estimar la pose a partir del giro de las ruedas.
+- [[Modelo de Movimiento (Odometría)]] — cómo estimar la pose a partir del giro de las ruedas.
 
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/03-locomocion-3.pdf`

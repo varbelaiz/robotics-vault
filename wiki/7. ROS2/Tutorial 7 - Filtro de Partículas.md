@@ -25,7 +25,7 @@ Que cada estudiante pueda:
 - [[Filtro de Bayes]] — base teórica.
 - [[MCL - Filtro de Partículas]] — la teoría central.
 - [[Muestreo por Importancia]] — fundamento del weighting.
-- [[Odometría y Modelo de Movimiento (Odometría)]] — el `sample_motion_model_odometry` para la predicción.
+- [[Modelo de Movimiento (Odometría)]] — el `sample_motion_model_odometry` para la predicción.
 - [[Modelo de Sensor]] (beam, likelihood field, o landmarks) — para los pesos.
 
 ## Estructura del tutorial
@@ -176,7 +176,7 @@ El tutorial le dedica un bloque (slides 9–28) a **landmarks/features** — qu�
 ![[Tutorial 7 - nearest neighbour.png]]
 *Data association con Nearest Neighbour: cada feature observada se asocia al landmark del mapa más cercano (en distancia + ángulo). Las líneas verde y roja muestran las asociaciones predicha vs. observada, slide 25.*
 
-Detalle teórico en [[Modelo de Detección de Landmarks]] (M3). Para el TP3 con Turtlebot, el modelo de sensor es **likelihood field** sobre el lidar — no se usan features explícitas.
+Detalle teórico en [[Modelo de Detección de Landmarks]] (M4). Para el TP3 con Turtlebot, el modelo de sensor es **likelihood field** sobre el lidar — no se usan features explícitas.
 
 ## 8. Recap visual
 
