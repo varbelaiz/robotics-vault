@@ -3,6 +3,7 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf
+  - Raw/Libro/ProbabilisticRobotics.pdf
 ultima_actualizacion: 2026-04-28
 ---
 
@@ -106,6 +107,13 @@ usando hill-climbing, gradient descent o algoritmos genéticos. El último pará
 ![[Beam - resultados aproximacion.png]]
 *Aproximación del modelo a datos reales (laser y sonar) para distancias 300 cm y 400 cm, slide 13.*
 
+> [!info] El método específico es Expectation-Maximization (Thrun et al., §6.3.2)
+> El libro formaliza el ajuste de parámetros como **Maximum Likelihood Estimation** vía el algoritmo **EM**: las "correspondencias" $c_i \in \{\text{hit, short, max, rand}\}$ — qué modo causó cada medición — son variables latentes desconocidas. EM alterna:
+> - **E-step**: dado $\Theta$ actual, calcular las probabilidades $e_{i,\text{xxx}}$ de que cada $z_i$ provenga de cada modo (asignación blanda).
+> - **M-step**: dado el peso $e_{i,\text{xxx}}$, los pesos de mezcla son los promedios normalizados; $\sigma_{\text{hit}}$ y $\lambda_{\text{short}}$ se obtienen como soluciones cerradas (eqs. 6.31–6.32 del libro).
+>
+> Una docena de iteraciones suele bastar. El truco es que la versión "asignación dura" no es soluble en cerrado pero la "asignación blanda" de EM sí.
+
 ## 7. Resultado: $p(z \mid x, m)$ sobre el mapa
 
 Aplicando el modelo a un escaneo completo en un mapa, se obtiene una **distribución sobre poses**: las poses compatibles con la medición tienen probabilidad alta.
@@ -135,6 +143,13 @@ En la práctica esto motiva usar **modelos distintos por banda de ángulo**: el 
 > [!warning] Costo computacional
 > El beam-based requiere ray-casting por cada haz por cada pose hipotética. Para particle filters con miles de partículas, esto es caro. La alternativa eficiente es el [[Modelo de Campo de Verosimilitud]].
 
+> [!info] Subsamplear haces y atenuar la verosimilitud (Thrun et al., §6.3.4)
+> Dos trucos prácticos importantes:
+> 1. **Subsampling de haces**. Un scan de lidar suele tener 180–360 mediciones, pero **los haces vecinos están correlacionados** (un peatón bloquea varios consecutivos; el modelo Markov asume independencia entre ellos). Tomar sólo 8–16 haces equiespaciados reduce la correlación y *evita* la sobreconfianza del filtro — además de acelerar el cómputo de manera proporcional.
+> 2. **Atenuación con exponente $\alpha < 1$**. Otra forma de reducir la información extraída por scan es reemplazar $p(z_t^k \mid x_t, m)$ por $p(z_t^k \mid x_t, m)^\alpha$. Esto suaviza la posterior sin agregar varianza al modelo — preferible a inflar $\sigma_{\text{hit}}$ porque no introduce ruido espurio.
+>
+> Ambas técnicas atacan el mismo problema: el filtro asume independencia entre haces, pero los haces *no* son independientes en el mundo real.
+
 ## Variantes y conexiones
 - [[Modelo de Campo de Verosimilitud]] — alternativa más eficiente y suave.
 - [[Modelo de Detección de Landmarks]] — para sensores que detectan marcadores en lugar de distancias continuas.
@@ -151,3 +166,7 @@ En la práctica esto motiva usar **modelos distintos por banda de ángulo**: el 
   - slides 14–15 → 7. Resultado: $p(z \mid x, m)$ sobre el mapa
   - slides 16–19 → 8. Influencia del ángulo al obstáculo
   - slide 20 → 9. Resumen y limitaciones
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 124–128 → Las 4 densidades del mixture model (§6.3.1)
+  - págs. 129–138 → ML / EM para ajustar parámetros (§6.3.2–§6.3.3)
+  - págs. 138–139 → Subsampling de haces y atenuación con $\alpha < 1$ (§6.3.4)

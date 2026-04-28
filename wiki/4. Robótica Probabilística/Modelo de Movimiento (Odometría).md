@@ -3,6 +3,7 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf
+  - Raw/Libro/ProbabilisticRobotics.pdf
 ultima_actualizacion: 2026-04-28
 ---
 
@@ -28,6 +29,9 @@ Esta probabilidad especifica que la acción $u_t$ lleve al robot desde $x_{t-1}$
 
 ![[Odometria - DBN.png]]
 *Red Bayesiana dinámica: estados $x$, controles $u$, observaciones $z$, slide 3.*
+
+> [!info] La odometría es técnicamente un sensor (Thrun et al., §5.4)
+> Los encoders **miden** lo que pasó con las ruedas — son sensores, no controles. Modelarlos rigurosamente como mediciones obligaría a incluir las velocidades reales como variables del estado, inflando la dimensión del filtro. La convención del libro — y de toda la comunidad robótica — es **tratar la odometría como si fuera un control** $u_t$. Es una simplificación deliberada que mantiene el state space chico y funciona porque la odometría ya viene "integrada" como un cambio de pose, justo el tipo de objeto que un control debería ser.
 
 ## 2. Fuentes de error de robots con ruedas
 
@@ -148,6 +152,9 @@ Aplicando repetidamente el modelo de movimiento a una trayectoria conocida, la n
 ![[Odometria - muestreado trayectoria.png]]
 *Muestreo del modelo de movimiento a lo largo de una trayectoria de ~10 m, slide 30.*
 
+> [!info] A alta frecuencia, odometría y velocidad colapsan (Thrun et al., §5.4)
+> Cuando $\Delta t$ es chico — e.g. **10 Hz** en un robot interior típico — los dos modelos producen distribuciones casi idénticas. La intuición: en intervalos cortos, ambos modelos reducen el movimiento a un giro pequeño + una traslación corta + otro giro pequeño, que es prácticamente la misma descomposición. La diferencia *cualitativa* entre ambos modelos sólo se vuelve relevante para movimientos grandes entre updates — situación poco común con filtros que corren tan rápido como pueden.
+
 ## 11. Modelo consistente con mapas
 
 Si conocemos un mapa $m$ del entorno, el modelo $p(x' \mid u, x)$ ignora obstáculos. Una aproximación que **descarta** poses imposibles (atravesar una pared) es:
@@ -178,3 +185,6 @@ donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre.
   - slide 28 → 9. Algoritmo `sample_motion_model` (delega `sample` a [[Muestreo de Distribuciones]])
   - slides 29–30 → 10. Ejemplos del modelo
   - slide 31 → 11. Modelo consistente con mapas
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 107–108 → Odometría como sensor tratado como control (§5.4)
+  - pág. 111 → Convergencia entre modelos a alta frecuencia (§5.4)

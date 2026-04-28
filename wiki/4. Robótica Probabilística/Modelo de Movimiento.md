@@ -3,6 +3,7 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf
+  - Raw/Libro/ProbabilisticRobotics.pdf
 ultima_actualizacion: 2026-04-28
 ---
 
@@ -24,6 +25,9 @@ Necesitamos una forma de incorporar estos cambios al belief.
 
 > [!warning] Las acciones nunca son perfectas
 > En contraste con las mediciones, las **acciones en general incrementan la incerteza**. Aunque el robot mande "moverse 1 metro adelante", el resultado real depende del piso, las ruedas, el deslizamiento. Por eso las modelamos probabilísticamente.
+
+> [!info] Cinemática probabilística (Thrun et al., §5.2.2)
+> El modelo $p(x_t \mid u_t, x_{t-1})$ no es una función determinista: es una **densidad de poses futuras**. El libro lo ilustra como una "smudge" de probabilidad alrededor de la pose nominal — más concentrada cerca del setpoint y más dispersa lejos. La cinemática clásica (determinista) se "probabiliza" agregando variables de ruido a los actuadores; la forma exacta del ruido importa menos que el hecho de tener *alguna* representación de la incertidumbre.
 
 ## 2. El modelo $P(x \mid u, x')$
 
@@ -112,6 +116,23 @@ El ejemplo de la puerta es discreto y juguete. Para un robot móvil real, $u$ es
 - [[Modelo de Movimiento (Velocidad)]] — alternativa cuando no hay encoders: $u = (v, \omega)$ y la trayectoria es un arco de círculo.
 - [[Muestreo de Distribuciones]] — operaciones `prob` y `sample` (normal/triangular/rejection) que ambos modelos invocan.
 
+> [!info] Velocidad vs odometría — para qué sirve cada uno (Thrun et al., §5.4)
+> Aunque las dos parametrizaciones cubren la misma densidad $p(x_t \mid u_t, x_{t-1})$, tienen usos distintos:
+> - **Odometría** es más exacta (mide directamente lo que pasó con las ruedas) pero **sólo está disponible *post-hoc***. Por eso se usa para **estimación** dentro del filtro de Bayes.
+> - **Velocidad** es menos exacta pero está disponible *antes* de ejecutar el control. Por eso se usa para **planning probabilístico** — predecir consecuencias de acciones futuras.
+> Además, a alta frecuencia de actualización (e.g. 10 Hz en interiores) la diferencia entre ambos modelos se vuelve despreciable.
+
+## 8. Profundización: sobreestimar incertidumbre (Thrun et al., §5.1)
+
+Una observación contraintuitiva del libro: **muchos de los modelos más exitosos en la práctica sobreestiman significativamente la incertidumbre real**. La idea es que el ruido del modelo absorbe no sólo el ruido físico de los actuadores, sino también:
+
+- Errores de calibración no compensados.
+- Aspectos no modelados del entorno (alfombras, baches, slippage).
+- Violaciones de la [[Suposición de Markov]] que el filtro no puede ver.
+- Errores de aproximación del propio belief (grilla, gaussiana, partículas).
+
+Inflar artificialmente $\alpha_1, \dots, \alpha_6$ hace al filtro **más robusto** a estos efectos no modelados, a costa de un belief más disperso. Es un tradeoff útil tener presente al tunear los parámetros: si el filtro pierde la pista periódicamente, *aumentar* el ruido del motion model suele funcionar.
+
 ## Conexiones
 - [[Filtro de Bayes]] — el modelo de movimiento es uno de sus dos ingredientes (paso de predicción).
 - [[Modelo de Sensor]] — la otra mitad del filtro (paso de actualización).
@@ -126,3 +147,7 @@ El ejemplo de la puerta es discreto y juguete. Para un robot móvil real, $u$ es
   - slide 28 → 4. Integrando acciones al belief
   - slides 29–30 → 5. Ejemplo del belief resultante
   - slide 31 → 6. Anticipo: la estructura del filtro de Bayes
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 91–94 → Cinemática probabilística (§5.1–§5.2.2)
+  - pág. 95 → Velocidad vs odometría (§5.3 vs §5.4 framing)
+  - pág. 92 + pág. 111 → Sobreestimar incertidumbre y robustez práctica (§5.1, §5.4)

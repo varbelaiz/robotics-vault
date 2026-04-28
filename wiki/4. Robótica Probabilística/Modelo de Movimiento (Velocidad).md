@@ -3,6 +3,7 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/06-modelos-de-movimiento_con_modelo_velocidad-3.pdf
+  - Raw/Libro/ProbabilisticRobotics.pdf
 ultima_actualizacion: 2026-04-28
 ---
 
@@ -34,6 +35,9 @@ donde $v$ es la velocidad lineal y $\omega$ la velocidad angular. La trayectoria
 ![[Velocidad - modelo setup.png]]
 *El robot se mueve sobre un arco con radio $r = v/\omega$, ICC en $\langle x_c, y_c\rangle$, slide 34.*
 
+> [!info] Qué drives admite este modelo (Thrun et al., §5.3)
+> El supuesto de trayectoria circular alrededor del ICC sólo es válido para drives **no-holonómicos**: differential drive, Ackerman drive, synchro-drive y algunos holonómicos. **No funciona** para drives sin restricciones no-holonómicas como ruedas Mecanum o robots con piernas. Para esos, hay que reemplazar las ecuaciones (5.5) por las de su geometría específica.
+
 ## 3. Modelo de ruido (primera versión)
 
 La velocidad medida es la verdadera más ruido proporcional a las velocidades:
@@ -63,6 +67,9 @@ $$\theta' = \theta + \hat{\omega}\Delta t + \hat{\gamma}\Delta t$$
 
 ![[Velocidad - modelo 3er parametro.png]]
 *El término $\hat{\gamma}\Delta t$ contempla la rotación final, slide 37.*
+
+> [!warning] Por qué el tercer parámetro es necesario (Thrun et al., §5.3.3)
+> El libro formaliza el problema: con sólo dos ruidos $(\hat v, \hat\omega)$, el soporte de la densidad $p(x_t \mid u_t, x_{t-1})$ es una **variedad 2D dentro del espacio 3D de poses** — todas las trayectorias siguen exactamente un arco circular, y la orientación final queda atada al arco. Esa **degeneración** rompe los filtros de Bayes (la posterior tiene "huecos" de medida cero en cualquier dirección perpendicular al arco). Agregar $\hat\gamma$ — un ruido rotacional adicional aplicado al final — extiende la densidad al espacio 3D completo y elimina la degeneración. Es un parámetro "no físico" pero matemáticamente indispensable.
 
 ## 5. Derivación: parámetros del círculo
 
@@ -137,6 +144,9 @@ sample_motion_model_velocity(u_t, x_{t-1}):
 ![[Velocidad - sample motion model algoritmo.png]]
 *Algoritmo `sample_motion_model_velocity`, slide 45.*
 
+> [!info] Sample es más fácil que prob (Thrun et al., §5.3.2)
+> Comparando los dos algoritmos: `sample_motion_model_velocity` sólo requiere una **simulación hacia adelante** del modelo físico — perturbá $(v, \omega, \gamma)$ con ruido y aplicá las ecuaciones cinemáticas. En cambio, `motion_model_velocity` (calcular la densidad para un $x_t$ hipotético) requiere **invertir** el modelo: dadas dos poses, retro-deducir qué controles ruidosos las conectan. Esa inversión vive en las ecuaciones (5.18)–(5.25) del libro y es lo que hace al algoritmo de la Sec. 6 más involucrado que el de la Sec. 7. Esta asimetría sample-vs-prob es una razón pragmática por la que **los filtros de partículas resultan especialmente atractivos**: sólo necesitan `sample`, nunca `prob`.
+
 ## 8. Ejemplos del modelo
 
 Como con odometría, la distribución $p(x_t \mid u_t, x_{t-1})$ tiene forma de medialuna, ahora más curvada porque la trayectoria es un arco:
@@ -169,3 +179,7 @@ donde $p(x' \mid m)$ es 0 si la pose es ocupada y constante si es libre. Para la
   - slide 45 → 7. Algoritmo `sample_motion_model_velocity` (delega `sample` a [[Muestreo de Distribuciones]])
   - slide 46 → 8. Ejemplos del modelo
   - slide 47 → 9. Modelo consistente con mapas
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - pág. 95 → Drives admitidos por el modelo de velocidad (§5.3)
+  - págs. 99, 103 → Justificación rigurosa del tercer parámetro $\gamma$ (§5.3.3)
+  - pág. 99 → Asimetría sample-vs-prob (§5.3.2)

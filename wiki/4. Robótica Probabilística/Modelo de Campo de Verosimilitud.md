@@ -3,6 +3,7 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/07-modelos_de_sensores-3.pdf
+  - Raw/Libro/ProbabilisticRobotics.pdf
 ultima_actualizacion: 2026-04-28
 ---
 
@@ -24,6 +25,9 @@ El modelo basado en haz tiene dos problemas:
 - **Poco eficiente** — requiere ray-casting por haz por pose.
 
 **Idea**: en vez de mirar a lo largo del haz, **chequear sólo el punto final** del haz contra el mapa.
+
+> [!warning] Ad hoc pero funciona (Thrun et al., §6.4)
+> El libro es enfático: el likelihood field **carece de una explicación física plausible**. No es una densidad derivada de un modelo generativo del sensor — es un algoritmo *ad hoc* que reemplaza ray-casting por *nearest-neighbor* en 2D. Y sin embargo, **funciona mejor que el beam model en la práctica**. La lección: en robótica probabilística, la fidelidad física no es el único criterio. La **suavidad** del modelo (cambios pequeños de pose → cambios pequeños de verosimilitud) y la **eficiencia** computacional pueden importar más que el realismo, porque permiten algoritmos de hill-climbing más estables y particle filters con menos partículas.
 
 ## 2. Mezcla de densidades
 
@@ -67,6 +71,12 @@ Una aplicación importante: **scan matching**. Se extrae el campo de verosimilit
 ![[Likelihood - propiedades.png]]
 *Visualización del campo de verosimilitud alrededor de un obstáculo, slide 26.*
 
+> [!warning] Tres limitaciones concretas (Thrun et al., §6.4.2)
+> El libro identifica tres flaquezas que conviene tener presente al usar likelihood field:
+> 1. **No modela dinámica** — personas u obstáculos móviles no caben naturalmente en el modelo (a diferencia del componente $p_{\text{short}}$ del beam model, que sí los absorbe).
+> 2. **"Ve a través de paredes"** — al usar nearest-neighbor en lugar de ray casting, no detecta que un obstáculo intermedio bloquea el haz. Si hay una columna entre el robot y la pared del fondo, el modelo no penaliza una pose donde la columna estaría ocluyendo la pared.
+> 3. **No maneja zonas no exploradas** — al asumir todo el mundo como occupied/free, las áreas desconocidas no aportan información correcta. La extensión propuesta en el libro: agregar una tercera categoría **unknown** y tratar las mediciones que caen ahí con probabilidad uniforme $1/z_{\max}$ (lo cual además permite reusar el likelihood field para mapeo, no sólo localización).
+
 ## Variantes y conexiones
 - [[Modelo de Sensor Basado en Haz]] — el modelo predecesor, más fiel pero más caro.
 - [[Modelo de Detección de Landmarks]] — para sensores feature-based.
@@ -81,3 +91,6 @@ Una aplicación importante: **scan matching**. Se extrae el campo de verosimilit
   - slide 24 → 4. Aplicación a un mapa real
   - slide 25 → 5. Scan matching
   - slide 26 → 6. Propiedades
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 139–140 → Motivación: lack of smoothness + ad hoc pero funciona (§6.4.1)
+  - págs. 144 → Tres limitaciones (dinámica, ver-a-través-de-paredes, áreas no exploradas) y extensión con categoría unknown (§6.4.2)
