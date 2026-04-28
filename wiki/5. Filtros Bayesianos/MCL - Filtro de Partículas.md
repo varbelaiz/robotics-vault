@@ -3,7 +3,8 @@ modulo: 5. Filtros Bayesianos
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/09-filtro-de-particulas-mcl-4.pdf
-ultima_actualizacion: 2026-04-26
+  - Raw/Libro/ProbabilisticRobotics.pdf
+ultima_actualizacion: 2026-04-28
 ---
 
 > [[Filtros Bayesianos|← Filtros Bayesianos]] | [[Robotica|← Inicio]]
@@ -107,6 +108,18 @@ El resampling soluciona esto al eliminar partículas de bajo peso y duplicar las
 
 Este método es más eficiente que el resampling discreto simple porque solo necesita un número aleatorio.
 
+> [!info] Por qué low-variance sampling supera al sampling independiente (Thrun et al., §4.2.4)
+> El libro destaca tres ventajas del muestreador sistemático sobre tirar $N$ números aleatorios independientes:
+> 1. **Cobertura sistemática del espacio de pesos** — recorre todas las particulas en orden, no aleatoriamente. Si todos los pesos son iguales, el resultado es el conjunto original sin pérdida de muestras.
+> 2. **Complejidad $O(M)$** — versus $O(M \log M)$ del muestreador independiente con búsqueda binaria. Importa cuando $M$ es grande (10k+ partículas).
+> 3. **Menor varianza del estimador** — la dispersión de pesos seleccionados es menor, lo que reduce la pérdida de diversidad por iteración.
+
+> [!warning] No resamplear cuando el estado es estático (Thrun et al., §4.2.4)
+> Una propiedad sutil del filtro: si el estado no cambia ($x_t = x_{t-1}$) y el robot no obtiene nuevas mediciones, **resamplear destruye diversidad sin agregar información**. En el límite, después de muchos resamples sin update de medición, todas las partículas convergen a una sola — el filtro "concluye" que el estado está perfectamente determinado, lo cual es falso. Las dos estrategias del libro:
+> - **Suspender el resampling** cuando se detecta que el estado es estático (e.g. el robot está parado).
+> - **Resamplear menos seguido** — integrar varias mediciones en el peso (multiplicativamente) entre resamples.
+> La regla operativa: la varianza de los pesos indica cuándo resamplear. Si los pesos son uniformes (todas las partículas igualmente probables), no resamplees; si están concentrados en pocas partículas, sí.
+
 ## 5. Modelo de movimiento
 
 El modelo de movimiento se compone en dos pasos: rotación y traslación, siguiendo el modelo del
@@ -160,6 +173,38 @@ El proceso completo en un escenario real:
 - **Particle depletion**: si el resampling elimina todas las partículas correctas por mala suerte, el filtro se pierde.
 - Coste computacional proporcional a $N$ (pero lineal, no exponencial).
 
+> [!info] MCL es resource-adaptive (Thrun et al., §8.3.2)
+> Una propiedad operativa única del MCL: el número de partículas $N$ se puede **cambiar online** según el cómputo disponible. Estrategia clásica: muestrear partículas hasta que llegue el próximo par $(u_t, z_t)$ y entonces actualizar; si la CPU es rápida, $N$ crece y la aproximación mejora; si está saturada, $N$ baja y se pierde precisión pero el filtro sigue corriendo en tiempo real. Ni el filtro de Kalman ni el filtro discreto tienen esta propiedad — el KF tiene complejidad fija por iteración, y el filtro de grilla requiere recompilar la grilla para cambiar resolución. Esta adaptabilidad explica por qué MCL es popular en robots con compute restringido.
+
+## 8. Augmented MCL: recuperarse de kidnapping (Thrun et al., §8.3.3)
+
+El MCL básico **no se recupera del problema del robot secuestrado**. Una vez que las partículas convergen a una pose, no hay forma de migrarlas a otra región del mapa si el robot es trasladado bruscamente. La razón: el resampleo siempre selecciona partículas existentes, nunca crea nuevas en regiones distintas; y el motion model sólo perturba localmente.
+
+**Solución**: inyectar partículas aleatorias durante el resampleo. La pregunta es **cuántas y cuándo**.
+
+### Detección adaptativa de kidnapping
+
+La heurística del libro: si el robot está bien localizado, las nuevas mediciones deberían tener verosimilitud alta bajo el belief actual. Si esa verosimilitud cae bruscamente, probablemente el robot fue secuestrado o el filtro se está perdiendo. Concretamente, se mantienen dos promedios exponencialmente ponderados de la verosimilitud media:
+
+$$w_{\text{avg}} = \frac{1}{M} \sum_{m=1}^{M} w_t^{[m]}$$
+
+$$w_{\text{slow}} \leftarrow w_{\text{slow}} + \alpha_{\text{slow}}\,(w_{\text{avg}} - w_{\text{slow}})$$
+
+$$w_{\text{fast}} \leftarrow w_{\text{fast}} + \alpha_{\text{fast}}\,(w_{\text{avg}} - w_{\text{fast}})$$
+
+con $0 \le \alpha_{\text{slow}} \ll \alpha_{\text{fast}}$ (e.g. 0.05 vs 0.5). El cociente $w_{\text{fast}}/w_{\text{slow}}$ mide cuánto cayó la verosimilitud reciente respecto al promedio histórico.
+
+### Algoritmo Augmented MCL
+
+Durante el resampleo, cada partícula nueva se elige así:
+- Con probabilidad $\max\{0,\, 1 - w_{\text{fast}}/w_{\text{slow}}\}$ → **agregar pose aleatoria** (uniforme sobre el mapa libre, o muestreada desde el modelo de sensor en sí — ver §6.6.4).
+- Con la probabilidad complementaria → resamplear normalmente desde los pesos.
+
+Cuando el filtro funciona bien, $w_{\text{fast}} \approx w_{\text{slow}}$ y la fracción de partículas aleatorias es ~0. Cuando el robot es secuestrado, $w_{\text{fast}}$ cae rápido y la fracción aleatoria sube — exactamente la situación donde se necesitan nuevas hipótesis.
+
+> [!info] Smoothing exponencial evita falsos positivos
+> El término "slow" en el promedio es importante: un único scan ruidoso o una oclusión transitoria no deberían disparar relocalización. El smoothing exponencial filtra esos eventos cortos y sólo activa el random injection cuando la verosimilitud cae *de manera sostenida*.
+
 ## Conecta con
 - ⬅️ [[Filtros Discretos]] — el filtro exacto que MCL aproxima
 - ⬅️ [[Muestreo por Importancia]] — técnica matemática subyacente
@@ -175,3 +220,8 @@ El proceso completo en un escenario real:
   - págs. 24–26 → 4. Resampling
   - págs. 25–26 → 5. Modelo de movimiento
   - págs. 27+ → 6. Ejemplo de localización práctica
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 77–80 → Algoritmo del particle filter (§4.2.1)
+  - págs. 84–87 → Properties + low-variance sampling + estrategias contra particle impoverishment (§4.2.4)
+  - págs. 200–203 → MCL básico + properties resource-adaptive (§8.3.1–§8.3.2)
+  - págs. 204–207 → Augmented MCL: random particle injection (§8.3.3)

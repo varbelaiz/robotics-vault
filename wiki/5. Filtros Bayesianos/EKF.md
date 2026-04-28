@@ -3,7 +3,8 @@ modulo: 5. Filtros Bayesianos
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/11-filtro_de_kalman_extendido-3.pdf
-ultima_actualizacion: 2026-04-26
+  - Raw/Libro/ProbabilisticRobotics.pdf
+ultima_actualizacion: 2026-04-28
 ---
 
 > [[Filtros Bayesianos|← Filtros Bayesianos]] | [[Robotica|← Inicio]]
@@ -41,6 +42,13 @@ Pero si la no linealidad es significativa, se necesita una extensión.
 
 Transformaciones no lineales de una Gaussiana producen distribuciones **no Gaussianas**.
 El EKF **asume** que la Gaussiana linealizada es una aproximación aceptable.
+
+> [!warning] Cuándo falla la linealización (Thrun et al., §3.3.4)
+> La calidad de la aproximación de Taylor depende de **dos factores combinados**:
+> 1. **Grado de no-linealidad** de $g$ y $h$ alrededor del punto de linealización.
+> 2. **Magnitud de la incertidumbre** del belief — cuanto más ancho sea el $\Sigma$, más lejos del punto la gaussiana extiende su masa, y más se nota la curvatura no aproximada.
+>
+> La heurística práctica del libro: **mantener la incertidumbre del estado pequeña**. Cuando el robot está bien localizado (varianza chica), la región donde la gaussiana tiene masa significativa es chica, y la linealización de Taylor es buena en esa región — aun si la función global es muy curva. Esto explica por qué el EKF funciona bien para *tracking* (localización con prior bueno) y mal para *global localization* (donde el belief es muy disperso): no es que la no-linealidad cambie, es que la incertidumbre permite que la curvatura no modelada se manifieste.
 
 ## 3. Linearización por Taylor
 
@@ -146,6 +154,22 @@ $$H = \begin{bmatrix} \frac{x_x - l_x}{h(x)} & \frac{x_y - l_y}{h(x)} & 0 \end{b
 
 Estas limitaciones motivan el [[UKF]], que evita la linearización usando sigma points.
 
+> [!info] Multi-Hypothesis EKF (MHEKF) (Thrun et al., §3.3.4)
+> Una limitación más fundamental: las gaussianas son **unimodales**. Si el robot tiene varias hipótesis distintas sobre dónde está (e.g. tres puertas idénticas con landmarks ambiguos), el promedio de las hipótesis no es ninguna de ellas — y el EKF puro reportará una pose intermedia inválida.
+>
+> La extensión natural es representar el belief como una **mezcla de gaussianas**:
+>
+> $$bel(x) = \sum_j a_j \, \mathcal{N}(x; \mu_j, \Sigma_j)$$
+>
+> Los algoritmos que mantienen esta representación se llaman **Multi-Hypothesis (Extended) Kalman Filters (MHEKF)**. El truco es decidir cuándo crear, fusionar o descartar componentes — esto típicamente usa heurísticas (mahalanobis distance entre componentes, threshold de peso $a_j$).
+
+> [!info] Alternativas a Taylor: UKF y moments matching (Thrun et al., §3.3.4)
+> Taylor es **una** forma de linealizar; el libro menciona dos alternativas que suelen dar mejores resultados:
+> - **[[UKF]] (Unscented Kalman Filter)** — en vez de derivar Jacobianos, "prueba" la función no lineal en un conjunto deterministicamente elegido de puntos (sigma points) y reconstruye una gaussiana desde las respuestas. Evita Jacobianos analíticos completamente.
+> - **Moments matching** — linealiza preservando explícitamente la **media verdadera** y **covarianza verdadera** del posterior (que el EKF no preserva, porque la propagación a través de Taylor las distorsiona).
+>
+> El UKF suele superar al EKF cuando la no-linealidad es moderada y la incertidumbre no es trivial; mantiene complejidad similar.
+
 ## Conecta con
 - ⬅️ [[Filtro de Kalman]] — base lineal que el EKF extiende
 - ⬅️ [[Gaussiana Multivariada]] — propiedades de propagación Gaussianas
@@ -163,3 +187,6 @@ Estas limitaciones motivan el [[UKF]], que evita la linearización usando sigma 
   - págs. 17–19 → 7. Ejemplo: modelo de odometría
   - págs. 32–34 → 8. Ejemplo: modelo de sensor con landmarks
   - págs. 35+ → 9. Resultados y precisión
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 49–53 → Linearización por Taylor + EKF algorithm (§3.3.1–§3.3.2)
+  - págs. 53–54 → Cuándo falla la linealización + MHEKF + alternativas UKF/moments matching (§3.3.4)

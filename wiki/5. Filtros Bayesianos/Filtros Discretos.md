@@ -3,7 +3,8 @@ modulo: 5. Filtros Bayesianos
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/08-filtros_discretos-3.pdf
-ultima_actualizacion: 2026-04-26
+  - Raw/Libro/ProbabilisticRobotics.pdf
+ultima_actualizacion: 2026-04-28
 ---
 
 > [[Filtros Bayesianos|← Filtros Bayesianos]] | [[Robotica|← Inicio]]
@@ -26,6 +27,9 @@ El filtro Bayesiano discreto es la formulación práctica más elemental de la l
 Dado un espacio de estado finito (o discretizado), la **creencia** sobre el estado del robot se representa como un vector de probabilidades —una por cada celda—, que suma 1.
 
 El problema de localización en su forma discreta responde a: *"¿En qué celda del mapa se encuentra el robot?"*, actualizando la respuesta recursivamente con cada acción y cada observación.
+
+> [!info] Es el forward pass de un HMM (Thrun et al., §4.1.1)
+> El libro lo dice explícitamente: el filtro Bayesiano discreto es exactamente el **forward pass de un Hidden Markov Model**. Esto significa que toda la maquinaria de HMMs (Viterbi para la secuencia más probable, Baum-Welch para aprender parámetros, smoothing forward-backward) se puede traer a robótica casi sin modificación cuando el estado es discreto. La diferencia con un HMM "puro" es la presencia del control $u_t$ — pero estructuralmente es el mismo grafo.
 
 ## 2. Representación y supuestos
 
@@ -87,6 +91,16 @@ El modelo de movimiento se aplica como una **convolución** sobre la grilla. Si 
 
 La corrección sensorial multiplica cada celda por su verosimilitud: si el sensor reporta "pared a la izquierda" y la celda $(i,j)$ tiene pared a la izquierda, $P(z | c_{i,j})$ es alto; si no tiene pared, es bajo.
 
+> [!info] Resoluciones típicas y trucos computacionales (Thrun et al., §8.2.2–§8.2.3)
+> Una grilla fina indoor típica usa **15 cm en $x, y$ y 5° en $\theta$** — fina-resolución métrica. Más fino mejora exactitud; más grueso ahorra cómputo. Para que el algoritmo corra en tiempo real (sin lo cual no sirve para localización online), el libro recomienda cuatro técnicas que se combinan:
+> - **Pre-caching del modelo de sensor** — pre-calcular $z^*$ por celda con ray casting offline; durante operación cada lookup es $O(1)$.
+> - **Sub-sampling de haces** — usar 8 de 360 mediciones en vez de todas (mismo argumento que en [[Modelo de Sensor Basado en Haz]]).
+> - **Delayed motion updates** — integrar varios controles antes de aplicar el motion update, no uno por uno.
+> - **Selective updating** — actualizar sólo las celdas con probabilidad por encima de un threshold; especial cuidado con kidnapping, hay que reactivar celdas eventualmente.
+
+> [!warning] Resolución gruesa requiere inflar el ruido (Thrun et al., §8.2.2)
+> Cuando la grilla es gruesa (e.g. 1 m), evaluar el modelo de sensor en el centro de la celda subestima la información: dentro de una celda de 1 m, $p(z \mid x, m)$ varía drásticamente. La solución es **inflar la varianza** del modelo de sensor en proporción al diámetro de la celda. Análogamente, el motion model debe permitir transiciones a celdas vecinas con probabilidad proporcional a `motion_arc_length / cell_diameter`. Sin este ajuste, una grilla de 1 m con motion de 10 cm/s nunca produce transiciones — el filtro queda congelado.
+
 ## 5. Integración con mapas de ocupación
 
 La representación discreta se combina naturalmente con **mapas de ocupación** generados por sensores sónicos:
@@ -128,3 +142,6 @@ y los **filtros Gaussianos** ([[Filtro de Kalman]]).
   - págs. 8–10 → 4. Grid-based localization
   - págs. 11–12 → 5. Integración con mapas de ocupación
   - pág. 12 → 6. Resumen y limitaciones
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 67–69 → Discrete Bayes filter como forward pass de HMM (§4.1.1)
+  - págs. 188–195 → Grid resolutions + computational considerations (§8.2.2–§8.2.3)
