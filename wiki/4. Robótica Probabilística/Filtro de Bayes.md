@@ -3,7 +3,8 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf
-ultima_actualizacion: 2026-04-26
+  - Raw/Libro/ProbabilisticRobotics.pdf
+ultima_actualizacion: 2026-04-28
 ---
 
 > [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
@@ -72,6 +73,13 @@ Filtro_de_Bayes(Bel(x), d):
     Retornar Bel'(x)
 ```
 
+> [!info] Notación predict/correct (Thrun et al., §2.3.4)
+> El libro distingue dos beliefs intermedios en cada paso:
+> - $\overline{bel}(x_t) = p(x_t \mid z_{1:t-1}, u_{1:t})$ — belief **predictivo**, después de aplicar $u_t$ pero antes de incorporar $z_t$.
+> - $bel(x_t) = p(x_t \mid z_{1:t}, u_{1:t})$ — belief **corregido**, después de la medición.
+>
+> El paso $bel(x_{t-1}) \to \overline{bel}(x_t)$ se llama *control update* o *prediction*; el paso $\overline{bel}(x_t) \to bel(x_t)$ se llama *measurement update* o *correction*. Esta distinción notacional es lo que hace al [[Filtro de Kalman]], [[EKF]] y [[MCL - Filtro de Partículas]] todos derivables del mismo esqueleto.
+
 ## Aplicación: localización probabilística
 
 ![[Localizacion probabilistica - pasos.png]]
@@ -95,6 +103,16 @@ El filtro de Bayes es la base de muchas herramientas:
 - Con la suposición de Markov, la actualización recursiva es eficiente
 - Los filtros de Bayes estiman el estado de un sistema dinámico de forma recursiva
 
+## Profundización: ¿por qué hay tantos filtros? (Thrun et al., §2.5)
+
+El filtro de Bayes en su forma cruda **no es implementable** salvo en casos triviales: la integral del paso de predicción y la multiplicación por la verosimilitud requieren forma cerrada o un espacio de estados finito. Todas las implementaciones reales son aproximaciones, y la elección depende de tres tradeoffs:
+
+1. **Eficiencia computacional** — las gaussianas (KF) son polinómicas en la dimensión del estado; las partículas escalan con la cantidad de muestras y tienen carácter *any-time* (más muestras → más exactitud, sin recompilar).
+2. **Exactitud de la aproximación** — las gaussianas son **unimodales**: pésimas para localización global con simetrías. Los histogramas y partículas representan distribuciones **multimodales** pero con resolución limitada.
+3. **Facilidad de implementación** — las representaciones por partículas dan implementaciones sorprendentemente simples para sistemas no lineales — una de las razones de su popularidad reciente.
+
+Esto explica por qué [[Filtros Bayesianos]] cubre [[Filtros Discretos]] (multimodal grueso), [[Filtro de Kalman]] / [[EKF]] / [[UKF]] (unimodal eficiente) y [[MCL - Filtro de Partículas]] (multimodal *any-time*) como tres ramas del mismo árbol.
+
 ## Conexiones
 - [[Derivación del Filtro de Bayes]] — derivación paso a paso de las ecuaciones de predicción y actualización
 - [[Regla de Bayes]] — base matemática
@@ -113,3 +131,7 @@ El filtro de Bayes es la base de muchas herramientas:
   - slide 42 → Usos del filtro de Bayes
   - slide 43 → Aplicación: localización probabilística
   - slide 45 → Resumen
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - pág. 22 → bel vs bel-bar (§2.3.4)
+  - págs. 23–28 → Algoritmo + ejemplo de la puerta paso a paso (§2.4.1–§2.4.2)
+  - págs. 30–31 → Tradeoffs eficiencia / exactitud / implementación (§2.5)

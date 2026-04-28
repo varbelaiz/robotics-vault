@@ -3,7 +3,8 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_1.pdf
-ultima_actualizacion: 2026-04-26
+  - Raw/Libro/ProbabilisticRobotics.pdf
+ultima_actualizacion: 2026-04-28
 ---
 
 > [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
@@ -24,6 +25,9 @@ Donde:
 - $P(z \mid x)$: **verosimilitud** — modelo de sensor, probabilidad de la medición dado el estado
 - $P(x \mid z)$: **posterior** — creencia actualizada
 - $P(z)$: **evidencia** — factor de normalización
+
+> [!info] Modelo generativo (Thrun et al., §2.2)
+> En robótica, $P(z \mid x)$ se conoce como **modelo generativo**: describe cómo el estado $X$ "genera" o causa la medición $Z$. Esta dirección es la fácil de modelar — el modelo del lidar dice qué scan se espera dada una pose. Bayes es lo que invierte ese modelo causal en uno **diagnóstico** ($P(x \mid z)$), que es lo que el robot necesita para inferir su estado a partir de las mediciones.
 
 ## Normalización
 
@@ -50,6 +54,13 @@ Si $X$ e $Y$ son incondicionalmente dependientes, pueden ser **condicionalmente 
 $$P(x \mid y, z) = P(x \mid z)$$
 
 Esto no implica que $P(y \mid x, z) = P(y \mid z)$ ni que $P(x, y \mid z) = P(x \mid z) P(y \mid z)$ automáticamente.
+
+> [!warning] Independencia condicional ≠ independencia absoluta (Thrun et al., §2.2)
+> Las dos son **lógicamente independientes**: ninguna implica la otra.
+> - $P(x, y \mid z) = P(x \mid z)\,P(y \mid z)$ **NO implica** $P(x, y) = P(x)\,P(y)$.
+> - Y al revés: independencia absoluta no garantiza independencia condicional.
+>
+> En robótica esto importa porque dos mediciones consecutivas $z_1, z_2$ son **condicionalmente independientes dado el estado** $x$ — pero no son independientes en absoluto, ya que ambas dependen del mismo $x$ desconocido. Por eso la verosimilitud combinada se multiplica como $P(z_1 \mid x)\,P(z_2 \mid x)$ una vez que $x$ está dado, pero $P(z_1, z_2)$ no factoriza.
 
 ## Actualización recursiva: combinando evidencia
 
@@ -105,3 +116,6 @@ Esta vez, $z_2$ **disminuye** la probabilidad de que la puerta esté abierta.
   - pág. 15 → Bayes con conocimiento de fondo
   - pág. 16 → Independencia condicional
   - págs. 20–22 → Actualización recursiva: combinando evidencia
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - pág. 13 → Modelo generativo / inverso (§2.2)
+  - pág. 15 → Independencia condicional vs absoluta (§2.2)

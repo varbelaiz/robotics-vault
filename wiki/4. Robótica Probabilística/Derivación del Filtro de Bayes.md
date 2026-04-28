@@ -3,7 +3,8 @@ modulo: 4. Robótica Probabilística
 estado: completo
 fuentes:
   - Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf
-ultima_actualizacion: 2026-04-27
+  - Raw/Libro/ProbabilisticRobotics.pdf
+ultima_actualizacion: 2026-04-28
 ---
 
 > [[Robótica Probabilística|← Robótica Probabilística]] | [[Robotica|← Inicio]]
@@ -11,6 +12,11 @@ ultima_actualizacion: 2026-04-27
 # Derivación del Filtro de Bayes
 
 > Cómo se llega a las ecuaciones de predicción y actualización partiendo de la definición del belief y aplicando Bayes + Markov + probabilidad total.
+
+> [!info] Supuestos de validez (Thrun et al., §2.4.3)
+> La derivación funciona si y sólo si:
+> 1. **El estado $x_t$ es completo** — resume toda la historia relevante (Markov en su forma fuerte). El libro define explícitamente *complete state* como aquel para el que el conocimiento de estados, mediciones o controles previos no aporta información adicional sobre el futuro.
+> 2. **Los controles $u_t$ se eligen al azar** — o, más precisamente, no dependen de variables ocultas que correlacionen con $z_t$. En la práctica esto se viola levemente y los filtros funcionan igual; el motivo se discute en [[Suposición de Markov]].
 
 ## Punto de partida: el belief
 
@@ -99,6 +105,9 @@ $$Bel(x_t) = \eta \cdot P(z_t \mid x_t) \cdot \bar{Bel}(x_t) \qquad \text{(actua
 > [!info] ¿Por qué es factible?
 > Sin la Suposición de Markov, la integral de predicción dependería de toda la historia $z_{1:t-1}, u_{1:t-1}$, que crece sin límite. Markov "corta" esa cadena: el presente resume todo el pasado relevante.
 
+> [!info] Equivalencia con HMM / DBN (Thrun et al., §2.3.3)
+> El modelo generativo subyacente — estado $x_t$ que evoluciona estocásticamente y emite mediciones $z_t$ — es exactamente un **Hidden Markov Model (HMM)** cuando $x_t$ es discreto, o una **Dynamic Bayes Network (DBN)** en general. El filtro de Bayes es la inferencia *online* (forward pass) sobre ese grafo. Esto explica por qué cualquier técnica diseñada para HMMs (Viterbi, Baum-Welch) se puede adaptar a robótica.
+
 ## Conexiones
 - [[Regla de Bayes]] — herramienta del Paso 1
 - [[Suposición de Markov]] — herramienta del Paso 2 y Paso 3
@@ -109,3 +118,6 @@ $$Bel(x_t) = \eta \cdot P(z_t \mid x_t) \cdot \bar{Bel}(x_t) \qquad \text{(actua
 ## Fuentes
 - `Raw/Diapositivas/Teoricas/05-intro_robo_proba-parte_2.pdf`
   - slides 33–40 → derivación completa paso a paso
+- `Raw/Libro/ProbabilisticRobotics.pdf`
+  - págs. 20–22 → Probabilistic Generative Laws + Belief (§2.3.3–§2.3.4)
+  - págs. 28–29 → Mathematical Derivation of the Bayes Filter (§2.4.3)
